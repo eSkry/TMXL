@@ -47,10 +47,10 @@ Default constructor:  Level(RenderWindow *renderWindow);
 Обьекты: «brick, platform, platform_m, platform_mh, platform_mv, other» - имеют следующую структуру:
 
 	struct Object{
-	        string              sName;
- 	       string              sType;
- 	       FloatRect           fRect;
- 	       Texture*            tTexture;
+	      string              sName;
+ 	      string              sType;
+ 	      FloatRect           fRect;
+ 	      Texture*            tTexture;
   	      Sprite*             sSprite;
   	      void*               vData;
 	};
