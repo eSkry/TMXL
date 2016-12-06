@@ -63,8 +63,9 @@ Default constructor:  Level(RenderWindow *renderWindow);
 	vData — Здесь вы можете ссылаться на любые ваши данные;
 
 Обьект: «player» - имеет структуру:
-	struct Player{
-		      string              sName;
+
+    struct Player{
+	string              sName;
         string              sType;
         FloatRect           fRect;
         Texture*            tTexture;
@@ -73,10 +74,11 @@ Default constructor:  Level(RenderWindow *renderWindow);
         int                 iMana;
         int                 iScore;
         void*               vData;
-};
+    };
 
 Обьект «enemy» - имеет структуру:
-struct Enemy{
+
+    struct Enemy{
         string              sName;
         string              sType;
         FloatRect           fRect;
@@ -84,6 +86,6 @@ struct Enemy{
         Sprite*             sSprite;
         int                 iHealth;
         void*               vData;
-};
+    };
 ***
 Реализовывать поведение и физику обьектов предстоит вам, это предназначено для удобного отделения обьектов друг от друга.
