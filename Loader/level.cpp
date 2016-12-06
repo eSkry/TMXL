@@ -1,18 +1,5 @@
 #include "level.h"
 
-Level::Level(System *system){
-    iCountAllTiles      = 0;
-    iCountAllLayers     = 0;
-    iTileHeight         = 0;
-    iTileWidth          = 0;
-    iFullWorldSizeWidth = 0;
-    iFullWorldSizeHeight= 0;
-    bLoaded             = false;
-    sSystem             = system;
-    rRenderWindow       = sSystem->getRenderWindow();
-    sLoaderVersion      = "3.0";
-}
-
 Level::Level(RenderWindow *renderWindow){
      rRenderWindow = renderWindow;
      iCountAllTiles      = 0;
