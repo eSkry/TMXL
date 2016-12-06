@@ -1,10 +1,6 @@
 #ifndef LEVEL_H
 #define LEVEL_H
 
-/////////// MARIO ///////////
-#include "system.h"
-
-/*
 /////////// PUGI ///////////
 #include <pugixml.hpp>
 
@@ -19,11 +15,9 @@ using namespace sf;
 #include <list>
 #include <map>
 using namespace std;
-*/
 
 class Level{
 public:
-    Level(System *system);
     Level(RenderWindow *renderWindow);
     ~Level();
 
