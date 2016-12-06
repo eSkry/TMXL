@@ -148,7 +148,6 @@ private:
     const unsigned FLIPPED_DIAGONALLY_FLAG   = 0x20000000;
 
     // SYSTEM //
-    System*                 sSystem;
     RenderWindow*           rRenderWindow;
 
     string                  sLoaderVersion;
