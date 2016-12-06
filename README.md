@@ -2,38 +2,57 @@
 Loader map by Tiled Map Editor
 
 Map Loader API
-1. Загрузка карты
+ Загрузка карты
+Default constructor:  Level(RenderWindow *renderWindow);
+  
+Для загрузки карты нужно вызвать метод loadLevel(string), который принимает путь до файла tmx в формате CSV (другие форматы не поддерживаются).
 
- 	Default constructor:  Level(RenderWindow *renderWindow);
-  
-	Для загрузки карты нужно вызвать метод loadLevel(string), который принимает путь до файла tmx в формате CSV (другие форматы не поддерживаются).
-	Например: loadLevel(«maps/level1.tmx»); 
- 	Для отрисовки карты понадобится вызвать метод drawLevel();
-	Если попытаться загрузить еще одну карту не выгрузив текущую то загрузка не произойдет, для выгрузки текущей карты необходимо воспользоваться методом closeLevel();
-  
+Например: loadLevel(«maps/level1.tmx»);
+
+Для отрисовки карты понадобится вызвать метод drawLevel();
+Если попытаться загрузить еще одну карту не выгрузив текущую то загрузка не произойдет, для выгрузки текущей карты необходимо воспользоваться методом closeLevel();
+
 Остальные методы
 
+
 int getWorldWidthPixel(); - Ширина мира в пикселях (tileWidth * countTilesWidth).
+
 int getWorldHeightPixel(); - Высота мира в пикселях (tileHeight * countTilesHeight).
+
 list<Enemy*>& getEnemyObjects(); - Обьекты врагов
+
 list<Object*>& getOtherObjects(); - Остальные обьекты (которые не подошли к другим типам)
+
 list<Object*>& getBrickObjects(); - Обьекты кирпичей (стен)
+
 list<Object*>& getPlatformObjects(); - Обьекты неподвижных платформ
+
 list<Object*>& getPlatform_mObjects(); - Обьекты пдвижных платформ
+
 list<Object*>& getPlatform_mvObjects(); - Обьекты пдвижных платформ
+
 list<Object*>& getPlatform_mhObjects(); - Обьекты пдвижных платформ
+
 Player* getPLayerObject(); Обьект игрока
 
 Типы обьектов
 Регистр букв учитывается
 Обьекты могут быть только прямоугольными!
+
 player — обьект игрока
+
 brick — Неподвижный твердый обьект
+
 platform — Неподвижная платформа
+
 platform_m — Подвижная платформа
+
 platform_mh — Подвижная платформа по горизонтали
+
 platform_mv — Подвижная платформа по вертикали
+
 enemy — Враг
+
 other — Остальное
 
 Обьекты это то, что вы указываете в поле «Type» (Тип) в Tiled Map Editor.
