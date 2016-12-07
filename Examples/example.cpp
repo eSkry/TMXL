@@ -2,7 +2,7 @@
 #include "level.h"
 
 int main(){
-    sf::RenderWindow window(sf::VideoMode(900, 600), "Test DBG", sf::Style::Default);
+    sf::RenderWindow window(sf::VideoMode(900, 600), "Test Loader Map", sf::Style::Default);
     window.setFramerateLimit(60);
     window.setVerticalSyncEnabled(true);
 
