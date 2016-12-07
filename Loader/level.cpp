@@ -186,8 +186,8 @@ void Level::loadLevel(string fileName){
             temp->sType = object.attribute("type").as_string();
             temp->sName = object.attribute("name").as_string();
 
-            temp->fRect.top = object.attribute("x").as_float();
-            temp->fRect.left = object.attribute("y").as_float();
+            temp->fRect.top = object.attribute("y").as_float();
+            temp->fRect.left = object.attribute("x").as_float();
             temp->fRect.width = object.attribute("width").as_float();
             temp->fRect.height = object.attribute("height").as_float();
 
