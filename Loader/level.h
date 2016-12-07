@@ -10,6 +10,7 @@ using namespace sf;
 
 /////////// STL ///////////
 #include <iostream>
+#include <cstring>
 #include <string>
 #include <vector>
 #include <list>
