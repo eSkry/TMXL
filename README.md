@@ -1,5 +1,5 @@
 # TMX-Loader-TME
-Loader map by Tiled Map Editor for SFML C++
+Loader map Tiled Map Editor for SFML C++
 
 ## Map Loader API
 Загрузка карты
