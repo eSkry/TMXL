@@ -9,7 +9,6 @@ Level::Level(RenderWindow *renderWindow){
      iFullWorldSizeWidth = 0;
      iFullWorldSizeHeight= 0;
      bLoaded             = false;
-     sSystem             = nullptr;
      sLoaderVersion      = "3.0";
 }
 
@@ -21,8 +20,12 @@ void Level::loadLevel(string fileName){
 
     cout << "MAP LOADDER: " << sLoaderVersion << "\n\t-------------Start loading map-------------" << endl << endl;
 
-    if (!doc.load_file(fileName.c_str()))
+    cout << "Load " << fileName << " Map" << endl;
+
+    if (!doc.load_file(fileName.c_str())){
+        cout << "File not Load" << endl;
         return;
+    }
 
     pugi::xml_node map        = doc.child("map");
     pugi::xml_node tileset    = map.child("tileset");
@@ -279,7 +282,7 @@ void Level::drawLevel(){
     ////////////////////////// ОТРИСОВКА ИЗОБРАЖЕНИЙ //////////////////////////
 
     for (auto it = vBackGrounds.begin(); it != vBackGrounds.end(); it++){
-        sSystem->getRenderWindow()->draw( *it->sSprite );
+        rRenderWindow->draw( *it->sSprite );
     }
 
     ////////////////////////// ОТРИСОВКА КАРТЫ //////////////////////////
