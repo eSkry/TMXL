@@ -8,7 +8,7 @@ int main(){
 
     Level level(&window);
     level.loadLevel("maps/testMap.tmx");
-
+    
     while (window.isOpen()){
     
         sf::Event event;
@@ -23,4 +23,10 @@ int main(){
 
         window.display();
     }
+    
+    /*
+        Метод closeLevel() - выгружает загруженный уровень из памяти и очищает флаг "bLoaded" тем самым разрешаю загрузку 
+        следующей карты.
+    */
+    level.closeLevel(); 
 }
