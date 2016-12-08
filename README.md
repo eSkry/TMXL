@@ -18,9 +18,9 @@ Default constructor:  Level(RenderWindow *renderWindow);
 
 	int getWorldWidthPixel(); - Ширина мира в пикселях (tileWidth * countTilesWidth).>
 	int getWorldHeightPixel(); - Высота мира в пикселях (tileHeight * countTilesHeight).
-	list<Object*>& getAllObjects(); - Возвращает все обьекты
-    	list<Object*>  getTypeObjects(string type); - Возвращает все обьекты с данным типом
-    	list<Object*>  getNameObjects(string name); - Возвращает все обьекты с данным именем
+    list<Object*>& getAllObjects(); - Возвращает все обьекты
+    list<Object*>  getTypeObjects(string type); - Возвращает все обьекты с данным типом
+    list<Object*>  getNameObjects(string name); - Возвращает все обьекты с данным именем
 ***
 
 Типы обьектов
