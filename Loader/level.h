@@ -14,7 +14,6 @@ using namespace sf;
 #include <string>
 #include <vector>
 #include <list>
-#include <map>
 using namespace std;
 
 class Level{
@@ -22,35 +21,10 @@ public:
     Level(RenderWindow *renderWindow);
     ~Level();
 
-    struct Player{
-        string              sName;
-        string              sType;
-
-        FloatRect           fRect;
-        Texture*            tTexture;
-        Sprite*             sSprite;
-
-        int                 iHealth;
-        int                 iMana;
-        int                 iScore;
-
-        void*               vData;
-    };
-
-    struct Enemy{
-        string              sName;
-        string              sType;
-
-        FloatRect           fRect;
-        Texture*            tTexture;
-        Sprite*             sSprite;
-
-        int                 iHealth;
-
-        void*               vData;
-    };
-
     struct Object{
+        Object();
+        Object(const Object &object);
+
         string              sName;
         string              sType;
 
@@ -96,15 +70,9 @@ public:
     void closeLevel();
 
     // Получить обьекты
-    list<Enemy*>& getEnemyObjects();
-    list<Object*>& getOtherObjects();
-    list<Object*>& getBrickObjects();
-    list<Object*>& getPlatformObjects();
-    list<Object*>& getPlatform_mObjects();
-    list<Object*>& getPlatform_mvObjects();
-    list<Object*>& getPlatform_mhObjects();
-
-    Player* getPLayerObject();
+    list<Object*>& getAllObjects();
+    list<Object*>  getTypeObjects(string type);
+    list<Object*>  getNameObjects(string name);
 
     // WORLD
     int getWorldWidthPixel();
@@ -126,23 +94,10 @@ private:
     vector<BackGround>      vBackGrounds;
 
     // OBJECT DATA //
-    list<Object*>          lOthers;
-    list<Object*>          lBricks;
-    list<Object*>          lPlatforms;
-    list<Object*>          lPlatforms_m; // MOVED
-    list<Object*>          lPlatforms_mh; // MOVED HORISINTALY
-    list<Object*>          lPlatforms_mv; // MOVED VERTICALY
-    list<Enemy*>           lEnemys;
-
-    // PLAYER
-    Player*                 pPlayer;
+    list<Object*>           lObjects;
 
     // Возвращает таилсет на отрисовку
     vector<Level::Tileset>::iterator getDrawSprite(int idTile);
-
-    // Помошник для удаления
-    template <class T>
-    void delObject(T &obj);
 
     const unsigned FLIPPED_HORIZONTALLY_FLAG = 0x80000000;
     const unsigned FLIPPED_VERTICALLY_FLAG   = 0x40000000;
