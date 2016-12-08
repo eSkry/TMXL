@@ -31,21 +31,22 @@ Default constructor:  Level(RenderWindow *renderWindow);
 Обьекты это то, что вы указываете в поле «Type» (Тип) в Tiled Map Editor.
 Если на карте встретится более одного обьект типа «player» то загружен будет только первый попавшийся обьект, остальные будут игнорироваться.
 Структура обьектов:
-	struct Object{
-	      string              sName;
- 	      string              sType;
- 	      FloatRect           fRect;
- 	      Texture*            tTexture;
-  	      Sprite*             sSprite;
-  	      void*               vData;
-	};
 
-	sName — Имя обьекта;
-	sType — Тип обьектa;
-	fRect — Прямоугольник обьекта;
-	tTexture — Текстура (По умолчанию nullptr, саму текстуру загружаете — вы);
-	sSprite — Спрайт (По умолчанию nullptr, спрайт создаете — вы);
-	vData — Здесь вы можете ссылаться на любые ваши данные;
+    struct Object{
+    	string              sName;
+    	string              sType;
+    	FloatRect           fRect;
+    	Texture*            tTexture;
+    	Sprite*             sSprite;
+    	void*               vData;
+    };
+
+    sName — Имя обьекта;
+    sType — Тип обьектa;
+    fRect — Прямоугольник обьекта;
+    tTexture — Текстура (По умолчанию nullptr, саму текстуру загружаете — вы);
+    sSprite — Спрайт (По умолчанию nullptr, спрайт создаете — вы);
+    vData — Здесь вы можете ссылаться на любые ваши данные;
 
 ***
 Реализовывать поведение и физику обьектов предстоит вам, это предназначено для удобного отделения обьектов друг от друга.
