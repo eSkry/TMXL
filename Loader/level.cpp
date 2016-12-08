@@ -278,6 +278,13 @@ vector<Level::Tileset>::iterator Level::getDrawSprite(int idTile){
 }
 
 void Level::closeLevel(){
+    for (auto it = lObjects.begin(); it != lObjects.end(); it++){
+        delete ((*it)->tTexture);
+        delete ((*it)->sSprite);
+    }
+
+    lObjects.clear();
+     
     for (auto it = vBackGrounds.begin(); it != vBackGrounds.end(); it++){
         delete it->tTexture;
         delete it->sSprite;
