@@ -18,34 +18,19 @@ Default constructor:  Level(RenderWindow *renderWindow);
 
 	int getWorldWidthPixel(); - Ширина мира в пикселях (tileWidth * countTilesWidth).>
 	int getWorldHeightPixel(); - Высота мира в пикселях (tileHeight * countTilesHeight).
-	list<Enemy*>& getEnemyObjects(); - Обьекты врагов
-	list<Object*>& getOtherObjects(); - Остальные обьекты (которые не подошли к другим типам)
-	list<Object*>& getBrickObjects(); - Обьекты кирпичей (стен)
-	list<Object*>& getPlatformObjects(); - Обьекты неподвижных платформ
-	list<Object*>& getPlatform_mObjects(); - Обьекты пдвижных платформ
-	list<Object*>& getPlatform_mvObjects(); - Обьекты пдвижных платформ
-	list<Object*>& getPlatform_mhObjects(); - Обьекты пдвижных платформ
-	Player* getPLayerObject(); Обьект игрока
+	list<Object*>& getAllObjects(); - Возвращает все обьекты
+    	list<Object*>  getTypeObjects(string type); - Возвращает все обьекты с данным типом
+    	list<Object*>  getNameObjects(string name); - Возвращает все обьекты с данным именем
 ***
 
 Типы обьектов
 Регистр букв учитывается
 Обьекты могут быть только прямоугольными!
 
-	player — обьект игрока
-	brick — Неподвижный твердый обьект
-	platform — Неподвижная платформа
-	platform_m — Подвижная платформа
-	platform_mh — Подвижная платформа по горизонтали
-	platform_mv — Подвижная платформа по вертикали
-	enemy — Враг
-	other — Остальное
 
 Обьекты это то, что вы указываете в поле «Type» (Тип) в Tiled Map Editor.
 Если на карте встретится более одного обьект типа «player» то загружен будет только первый попавшийся обьект, остальные будут игнорироваться.
-Структуры обьектов
-Обьекты: «brick, platform, platform_m, platform_mh, platform_mv, other» - имеют следующую структуру:
-
+Структура обьектов:
 	struct Object{
 	      string              sName;
  	      string              sType;
@@ -62,30 +47,5 @@ Default constructor:  Level(RenderWindow *renderWindow);
 	sSprite — Спрайт (По умолчанию nullptr, спрайт создаете — вы);
 	vData — Здесь вы можете ссылаться на любые ваши данные;
 
-Обьект: «player» - имеет структуру:
-
-    struct Player{
-	string              sName;
-        string              sType;
-        FloatRect           fRect;
-        Texture*            tTexture;
-        Sprite*             sSprite;
-        int                 iHealth;
-        int                 iMana;
-        int                 iScore;
-        void*               vData;
-    };
-
-Обьект «enemy» - имеет структуру:
-
-    struct Enemy{
-        string              sName;
-        string              sType;
-        FloatRect           fRect;
-        Texture*            tTexture;
-        Sprite*             sSprite;
-        int                 iHealth;
-        void*               vData;
-    };
 ***
 Реализовывать поведение и физику обьектов предстоит вам, это предназначено для удобного отделения обьектов друг от друга.
