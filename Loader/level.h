@@ -82,7 +82,7 @@ public:
     list<TShape*>   getShapesWithID(int ID);
 
     list<Polyline*> getPolylineWithObjectGroup(string objGroup);
-    list<Polyline*> getPolylineAll();
+    list<Polyline*>& getPolylineAll();
     list<Polyline*> getPolylineWithType(string type);
     list<Polyline*> getPolylineWithName(string name);
     list<Polyline*> getPolylineWithID(int ID);
