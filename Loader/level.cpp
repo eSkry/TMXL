@@ -485,7 +485,7 @@ list<Polyline*> Level::getPolylineWithObjectGroup(string objGroup){
     return getOBjectsObjectGroup<list<Polyline*>>(lPolylines, objGroup);
 }
 
-list<Polyline*> Level::getPolylineAll(){
+list<Polyline*>& Level::getPolylineAll(){
     return lPolylines;
 }
 
