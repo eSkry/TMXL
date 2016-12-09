@@ -9,7 +9,7 @@ Level::Level(RenderWindow *renderWindow){
      iFullWorldSizeWidth = 0;
      iFullWorldSizeHeight= 0;
      bLoaded             = false;
-     sLoaderVersion      = "5.0";
+     sLoaderVersion      = "6.0";
 }
 
 void Level::loadLevel(string fileName){
@@ -173,28 +173,102 @@ void Level::loadLevel(string fileName){
 
     pugi::xml_node objectgroup = map.child("objectgroup");
     pugi::xml_node object = objectgroup.child("object");
-
+    pugi::xml_node polygon;
+    pugi::xml_node polyline;
+    pugi::xml_node ellipse;
 
     while (objectgroup){
         object = objectgroup.child("object");
         while (object){
-            Object *temp = new Object;
 
-            temp->sType = object.attribute("type").as_string();
-            temp->sName = object.attribute("name").as_string();
+            polygon = object.child("polygon");
+            polyline = object.child("polyline");
+            ellipse = object.child("ellipse");
 
-            temp->fRect.top = object.attribute("y").as_float();
-            temp->fRect.left = object.attribute("x").as_float();
-            temp->fRect.width = object.attribute("width").as_float();
-            temp->fRect.height = object.attribute("height").as_float();
 
-            temp->tTexture = nullptr;
-            temp->sSprite = nullptr;
-            temp->vData = nullptr;
 
-            lObjects.push_back(temp);
+            if (ellipse != NULL && polyline == NULL && polygon == NULL){
+                TShape *temp = new TShape;
 
-            //cout << "Name: " << temp->sName << " Type: " << temp->sType << endl;
+                temp->sObjectGroupName  = objectgroup.attribute("name").as_string();
+                temp->iID   = object.attribute("id").as_int();
+                temp->sType = object.attribute("type").as_string();
+                temp->sName = object.attribute("name").as_string();
+                temp->fRect.top = object.attribute("y").as_float();
+                temp->fRect.left = object.attribute("x").as_float();
+                temp->fRect.width = object.attribute("width").as_float();
+                temp->fRect.height = object.attribute("height").as_float();
+                temp->tTexture = nullptr;
+
+                lShapes.push_back(temp);
+            }
+
+            if (ellipse == NULL && polyline == NULL && polygon == NULL){
+                TRect *temp = new TRect;
+
+                temp->sObjectGroupName  = objectgroup.attribute("name").as_string();
+                temp->iID   = object.attribute("id").as_int();
+                temp->sType = object.attribute("type").as_string();
+                temp->sName = object.attribute("name").as_string();
+                temp->fRect.top = object.attribute("y").as_float();
+                temp->fRect.left = object.attribute("x").as_float();
+                temp->fRect.width = object.attribute("width").as_float();
+                temp->fRect.height = object.attribute("height").as_float();
+                temp->tTexture = nullptr;
+                temp->sSprite = nullptr;
+                temp->vData = nullptr;
+
+                lRects.push_back(temp);
+
+                //cout << "Name: " << temp->sName << " Type: " << temp->sType << endl;
+            }
+
+            if (ellipse != NULL && polyline != NULL && polygon == NULL){
+                Polyline *temp = new Polyline;
+
+                temp->sObjectGroupName  = objectgroup.attribute("name").as_string();
+
+                temp->sName = object.attribute("name").as_string();
+                temp->sType = object.attribute("type").as_string();
+                temp->lShapePoints = stringToData( polygon.attribute("points").as_string() );
+
+                temp->iCountShapePoints = 0;
+                for (auto it : temp->lShapePoints) temp->iCountShapePoints++;
+
+                temp->cShape.setPointCount( temp->iCountShapePoints );
+                int i = 0;
+                for (auto it = temp->lShapePoints.begin(); it != temp->lShapePoints.end(); it++, i++){
+                    temp->cShape.setPoint(i, (*it));
+                }
+
+                lPolylines.push_back(temp);
+            }
+
+            if (ellipse == NULL && polyline == NULL && polygon != NULL){
+                Polygon *temp = new Polygon;
+
+                temp->sObjectGroupName  = objectgroup.attribute("name").as_string();
+                temp->sName = object.attribute("name").as_string();
+                temp->sType = object.attribute("type").as_string();
+                temp->vPosition.x = object.attribute("x").as_float();
+                temp->vPosition.y = object.attribute("y").as_float();
+                temp->lShapePoints = stringToData( polygon.attribute("points").as_string() );
+
+                temp->iCountShapePoints = 0;
+                for (auto it : temp->lShapePoints) temp->iCountShapePoints++;
+
+                temp->cShape.setPointCount( temp->iCountShapePoints );
+                int i = 0;
+                for (auto it = temp->lShapePoints.begin(); it != temp->lShapePoints.end(); it++, i++){
+                    temp->cShape.setPoint(i, (*it));
+                }
+                temp->cShape.setPosition( temp->vPosition );
+                temp->cShape.setFillColor(sf::Color::Cyan);
+
+                lPolygons.push_back(temp);
+                //cout << "Name: " << temp->sName << " Type: " << temp->sType << endl;
+            }
+
 
             object = object.next_sibling("object");
         }
@@ -202,7 +276,7 @@ void Level::loadLevel(string fileName){
         objectgroup = objectgroup.next_sibling("objectgroup");
     }
 
-    cout << "Count Objects: " << lObjects.size() << endl;
+    cout << "Count Objects: " << lRects.size() + lPolygons.size() + lPolylines.size() + lShapes.size() << endl;
 
     cout << "\n\t-------------Map Loaded-------------" << endl;
     bLoaded = true;
@@ -262,7 +336,7 @@ void Level::drawLevel(){
     }
 }
 
-vector<Level::Tileset>::iterator Level::getDrawSprite(int idTile){
+vector<Tileset>::iterator Level::getDrawSprite(int idTile){
     auto mapIT = vTilesets.begin()->mTiles.begin();
     auto it = vTilesets.begin();
 
@@ -278,13 +352,20 @@ vector<Level::Tileset>::iterator Level::getDrawSprite(int idTile){
 }
 
 void Level::closeLevel(){
-    for (auto it = lObjects.begin(); it != lObjects.end(); it++){
-        delete ((*it)->tTexture);
-        delete ((*it)->sSprite);
+    for (auto it = lShapes.begin(); it != lShapes.end(); it++){
+        delete (*it)->tTexture;
     }
 
-    lObjects.clear();
-     
+    for (auto it = lRects.begin(); it != lRects.end(); it++){
+        delete (*it)->tTexture;
+        delete (*it)->sSprite;
+    }
+
+    lRects.clear();
+    lPolygons.clear();
+    lPolylines.clear();
+    lShapes.clear();
+
     for (auto it = vBackGrounds.begin(); it != vBackGrounds.end(); it++){
         delete it->tTexture;
         delete it->sSprite;
@@ -317,26 +398,49 @@ void Level::closeLevel(){
     bLoaded         = false;
 }
 
-list<Level::Object*>& Level::getAllObjects(){
-    return lObjects;
-}
-
-list<Level::Object*>  Level::getTypeObjects(string type){
-    list<Level::Object*> temp;
-
-    for (auto it = lObjects.begin(); it != lObjects.end(); it++){
-        if (strcmp((*it)->sType.c_str(), type.c_str()  ) == 0){
-            temp.push_back( (*it) );
+list<Vector2f> Level::stringToData(string sData){
+    list<Vector2f> temp;
+    list<string> pointsStr;
+    /////////////////////////////////
+    string sTemps;
+    for (char i : sData){
+        if (i != ' '){
+            sTemps += i;
+        } else {
+            pointsStr.push_back( sTemps );
+            sTemps.clear();
         }
+    }
+    pointsStr.push_back( sTemps );
+    sTemps.clear();
+    /////////////////////////////////
+
+    Vector2f tempVec;
+    bool isX = true;
+    for (list<string>::iterator it = pointsStr.begin(); it != pointsStr.end(); it++){
+        for (char i : (*it)){
+            if (i != ','){
+                sTemps += i;
+            } else {
+                if (isX)  tempVec.x = atof(sTemps.c_str());
+                if (!isX) tempVec.y = atof(sTemps.c_str());
+                sTemps.clear();
+                isX = false;
+            }
+        }
+        isX = true;
+        tempVec.y = atof(sTemps.c_str());
+        temp.push_back(tempVec);
+        sTemps.clear();
     }
 
     return temp;
 }
 
-list<Level::Object*>  Level::getNameObjects(string name){
-    list<Level::Object*> temp;
-
-    for (auto it = lObjects.begin(); it != lObjects.end(); it++){
+template <class T>
+T Level::getObjectsName(T& object, string name){
+    T temp;
+    for (auto it = object.begin(); it != object.end(); it++){
         if (strcmp((*it)->sName.c_str(), name.c_str()  ) == 0){
             temp.push_back( (*it) );
         }
@@ -344,21 +448,117 @@ list<Level::Object*>  Level::getNameObjects(string name){
     return temp;
 }
 
-Level::Object::Object(){
-    sSprite         = nullptr;
-    tTexture        = nullptr;
-    vData           = nullptr;
+template <class T>
+T Level::getObjectsType(T& object, string type){
+    T temp;
+    for (auto it = object.begin(); it != object.end(); it++){
+        if (strcmp((*it)->sType.c_str(), type.c_str()  ) == 0){
+            temp.push_back( (*it) );
+        }
+    }
+    return temp;
 }
 
-Level::Object::Object(const Object &object){
-    sName           = object.sName;
-    sType           = object.sType;
+template <class T>
+T Level::getObjectsID(T& object, int ID){
+    T temp;
+    for (auto it = object.begin(); it != object.end(); it++){
+        if ( (*it)->iID == ID ){
+            temp.push_back( (*it) );
+        }
+    }
+    return temp;
+}
 
-    fRect           = object.fRect;
+template <class T>
+T Level::getOBjectsObjectGroup(T& object, string objGroup){
+    T temp;
+    for (auto it = object.begin(); it != object.end(); it++){
+        if (strcmp((*it)->sObjectGroupName.c_str(), objGroup.c_str()  ) == 0){
+            temp.push_back( (*it) );
+        }
+    }
+    return temp;
+}
 
-    sSprite         = object.sSprite;
-    tTexture        = object.tTexture;
-    vData           = object.vData;
+list<Polyline*> Level::getPolylineWithObjectGroup(string objGroup){
+    return getOBjectsObjectGroup<list<Polyline*>>(lPolylines, objGroup);
+}
+
+list<Polyline*> Level::getPolylineAll(){
+    return lPolylines;
+}
+
+list<Polyline*> Level::getPolylineWithType(string type){
+    return getObjectsType<list<Polyline*>>(lPolylines, type);
+}
+
+list<Polyline*> Level::getPolylineWithName(string name){
+    return getObjectsName<list<Polyline*>>(lPolylines, name);
+}
+
+list<Polyline*> Level::getPolylineWithID(int ID){
+    return getObjectsID<list<Polyline*>>(lPolylines, ID);
+}
+
+list<TRect*> Level::getRectsWithObjectGroup(string objGroup){
+    return getOBjectsObjectGroup<list<TRect*>>(lRects, objGroup);
+}
+
+list<TRect*>& Level::getRectsAll(){
+    return lRects;
+}
+
+list<TRect*>  Level::getRectsWithType(string type){
+    return getObjectsType<list<TRect*>>(lRects, type);
+}
+
+list<TRect*>  Level::getRectsWithName(string name){
+    return getObjectsName<list<TRect*>>(lRects, name);
+}
+
+list<TRect*> Level::getRectsWithID(int ID){
+    return getObjectsID<list<TRect*>>(lRects, ID);
+}
+
+list<Polygon*>& Level::getPolygonsAll(){
+    return lPolygons;
+}
+
+list<Polygon*> Level::getPolygonsWithObjectGroup(string objGroup){
+    return getOBjectsObjectGroup<list<Polygon*>>(lPolygons, objGroup);
+}
+
+list<Polygon*> Level::getPolygonsWithType(string type){
+    return getObjectsType<list<Polygon*>>(lPolygons, type);
+}
+
+list<Polygon*> Level::getPolygonsWithName(string name){
+    return getObjectsName<list<Polygon*>>(lPolygons, name);
+}
+
+list<Polygon*> Level::getPolygonsWithID(int ID){
+    return getObjectsID<list<Polygon*>>(lPolygons, ID);
+}
+
+list<TShape*> Level::getShapesWithObjectGroup(string objGroup){
+    return getOBjectsObjectGroup<list<TShape*>>(lShapes, objGroup);
+}
+
+list<TShape*>&  Level::getShapesAll(){
+    return lShapes;
+}
+
+list<TShape*>   Level::getShapesWithType(string type){
+    return getObjectsType<list<TShape*>>(lShapes, type);
+}
+
+list<TShape*>   Level::getShapesWithName(string name){
+    return getObjectsName<list<TShape*>>(lShapes, name);
+}
+
+list<TShape*>   Level::getShapesWithID(int ID){
+    return getObjectsID<list<TShape*>>(lShapes, ID);
 }
 
 int Level::getWorldWidthPixel(){
