@@ -1,7 +1,7 @@
 # TMX-Loader-TME
 Loader map Tiled Map Editor for SFML C++
 
-## Map Loader API
+## Map Loader API 6
 Загрузка карты
 Default constructor:  Level(RenderWindow *renderWindow);
 
