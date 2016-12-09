@@ -2,10 +2,12 @@
 Loader map Tiled Map Editor for SFML C++
 
 ## Map Loader API
+
+## Если у вас есть предложение по улучшению или нашли баг то сообщите vk.com/id219750877
+
 Загрузка карты
 Default constructor:  Level(RenderWindow *renderWindow);
 
-Если у вас есть предложение по улучшению или нашли баг то сообщите vk.com/id219750877
 
 Для загрузки карты нужно вызвать метод loadLevel(string), который принимает путь до файла tmx в формате CSV (другие форматы не поддерживаются).
 
