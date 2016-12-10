@@ -63,6 +63,11 @@ struct Polyline : public Objects{
     int                 iCountShapePoints;
 };
 
+typedef list<Objects*>  LObjects;
+typedef list<TShape*>   LElipse;
+typedef list<Polygon*>  LPolygon;
+typedef list<Polyline*> LPolyline;
+
 /////////////////////////// OBJECTS ///////////////////////////
 
 #endif // OBJECTS_H
