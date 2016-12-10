@@ -125,10 +125,14 @@ void Level::loadLevel(string fileName){
 
     int outCountLayers = 0;
 
+    pugi::xml_attribute opacity;
+    float tempOpacity = 0;
+
     /////////////////// ЗАГРУЗКА ДАННЫХ СЛОЕВ ///////////////////
 
     while (layer){
         outCountLayers++;
+        opacity = layer.attribute("opacity");
 
         cout << "Loading " << outCountLayers << " layer";
         cout << "Layer name: " << layer.attribute("name").as_string() << endl;
@@ -136,6 +140,19 @@ void Level::loadLevel(string fileName){
         Layer tempLayer;
         tempLayer.iWidth  = layer.attribute("width").as_int();
         tempLayer.iHeight = layer.attribute("height").as_int();
+
+        if (opacity == NULL){
+            tempOpacity = 1;
+        } else {
+            tempOpacity = opacity.as_float();
+        }
+
+        tempLayer.iOpacity = tempOpacity * 255;
+
+
+        //tempLayer.iOpacity = 255 * tempOpacity;
+
+        cout << tempLayer.iOpacity << endl;
 
         tempLayer.iLayer = new int*[tempLayer.iHeight];
         for (int i = 0; i < tempLayer.iHeight; i++)
@@ -292,7 +309,9 @@ void Level::drawLevel(){
     ////////////////////////// ОТРИСОВКА КАРТЫ //////////////////////////
     int tempID = 0;
     vector<Tileset>::iterator tempTileset;
+    int opacity = 1;
     for (auto itLayer = vLayers.begin(); itLayer != vLayers.end(); itLayer++){
+        opacity = itLayer->iOpacity;
         for (int i = 0; i < itLayer->iHeight; i++){
             for (int j = 0; j < itLayer->iWidth; j++){
                 tempID = itLayer->iLayer[i][j];
@@ -304,6 +323,7 @@ void Level::drawLevel(){
 
                 tempID &= ~(FLIPPED_HORIZONTALLY_FLAG | FLIPPED_VERTICALLY_FLAG | FLIPPED_DIAGONALLY_FLAG);
                 tempTileset = getDrawSprite( tempID );
+                tempTileset->sSprite->setColor(Color(255, 255, 255, opacity));
 
                 if (flipped_horizontally && !flipped_vertically && flipped_diagonally){
                     tempTileset->sSprite->rotate(90);
