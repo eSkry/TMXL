@@ -64,6 +64,7 @@ struct Polyline : public Objects{
 };
 
 typedef list<Objects*>  LObjects;
+typedef list<TRect*>    LRect;
 typedef list<TShape*>   LElipse;
 typedef list<Polygon*>  LPolygon;
 typedef list<Polyline*> LPolyline;
