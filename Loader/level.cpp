@@ -149,9 +149,6 @@ void Level::loadLevel(string fileName){
 
         tempLayer.iOpacity = tempOpacity * 255;
 
-
-        //tempLayer.iOpacity = 255 * tempOpacity;
-
         cout << tempLayer.iOpacity << endl;
 
         tempLayer.iLayer = new int*[tempLayer.iHeight];
