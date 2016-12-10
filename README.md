@@ -1,5 +1,5 @@
 # TMX-Loader-TME
-Loader map Tiled Map Editor for SFML C++
+Загрузчик карт из иредактора Tiled Map Edidor в проект с использованием SFML
 
 ### Если у вас есть предложение по улучшению или нашли баг то сообщите [VK](https://vk.com/id219750877)
 
