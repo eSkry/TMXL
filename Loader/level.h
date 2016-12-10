@@ -46,6 +46,7 @@ struct Tileset{
 struct Layer{
     int                 iWidth;
     int                 iHeight;
+    int                 iOpacity;
     int**               iLayer;
 };
 
