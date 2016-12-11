@@ -9,7 +9,7 @@ Level::Level(RenderWindow *renderWindow){
      iFullWorldSizeWidth = 0;
      iFullWorldSizeHeight= 0;
      bLoaded             = false;
-     sLoaderVersion      = "6.0";
+     sLoaderVersion      = "7.0";
 }
 
 void Level::loadLevel(string fileName){
@@ -18,7 +18,7 @@ void Level::loadLevel(string fileName){
 
     pugi::xml_document doc;
 
-    cout << "MAP LOADDER: " << sLoaderVersion << "\n\t-------------Start loading map-------------" << endl << endl;
+    cout << "\t-------------Start loading map V" << sLoaderVersion << "-------------" << endl << endl;
 
     cout << "Load " << fileName << " Map" << endl;
 
@@ -39,10 +39,10 @@ void Level::loadLevel(string fileName){
 
     while (imageLayer){
 
-        BackGround tempBG;
+        BackGround *tempBG = new BackGround;
 
-        tempBG.vPosition.x             = imageLayer.attribute("x").as_int();
-        tempBG.vPosition.y             = imageLayer.attribute("y").as_int();
+        tempBG->vPosition.x             = imageLayer.attribute("x").as_int();
+        tempBG->vPosition.y             = imageLayer.attribute("y").as_int();
 
         tempStringDirs                 = imageBG.attribute("source").as_string();
 
@@ -53,10 +53,10 @@ void Level::loadLevel(string fileName){
 
         Sprite *tempSprite  = new Sprite(*tempTexture);
 
-        tempBG.tTexture                = tempTexture;
-        tempBG.sSprite                 = tempSprite;
+        tempBG->tTexture                = tempTexture;
+        tempBG->sSprite                 = tempSprite;
 
-        tempBG.sSprite->setPosition( tempBG.vPosition );
+        tempBG->sSprite->setPosition( tempBG->vPosition );
 
         vBackGrounds.push_back( tempBG );
 
@@ -72,44 +72,102 @@ void Level::loadLevel(string fileName){
     iFullWorldSizeWidth = map.attribute("width").as_int() * iTileWidth;
     iFullWorldSizeHeight = map.attribute("height").as_int() * iTileHeight;
 
+    pugi::xml_attribute spacing;
+    pugi::xml_attribute marign;
+
+    pugi::xml_node tile;
+    pugi::xml_node properties;
+    pugi::xml_node property;
+
     while (tileset){
         image = tileset.child("image");
+
+        spacing = tileset.attribute("spacing");
+        marign  = tileset.attribute("margin");
 
         cout << "iFirstTileID: "   << tileset.attribute("firstgid").as_int()   << endl;
         cout << "iTileWidth: "     << tileset.attribute("tilewidth").as_int()  << endl;
         cout << "iTileHeight: "    << tileset.attribute("tileheight").as_int() << endl;
-        cout << "tempStringDirs: " << image.attribute("source").as_string()    << endl;
+        cout << "Tile directory: " << image.attribute("source").as_string()    << endl;
 
-        Tileset tempTileSet;
-        tempTileSet.iFirstTileID = tileset.attribute("firstgid").as_int();
-        tempTileSet.iTileWidth   = tileset.attribute("tilewidth").as_int();
-        tempTileSet.iTileHeight  = tileset.attribute("tileheight").as_int();
+        Tileset *tempTileSet = new Tileset;
+        tempTileSet->sName        = tileset.attribute("name").as_string();
+        tempTileSet->iFirstTileID = tileset.attribute("firstgid").as_int();
+        tempTileSet->iTileWidth   = tileset.attribute("tilewidth").as_int();
+        tempTileSet->iTileHeight  = tileset.attribute("tileheight").as_int();
+
+        tile = tileset.child("tile");
+        while (tile){
+            properties = tile.child("properties");
+            property = properties.child("property");
+
+            int iIDTile = tile.attribute("id").as_int();
+            vector<TilePropertys*> tempPropsVec;
+
+            while (property){
+                TilePropertys *tempProp = new TilePropertys;
+
+                tempProp->sName = property.attribute("name").as_string();
+                tempProp->sValue = property.attribute("value").as_string();
+
+                if (property.attribute("type") != NULL){
+                    tempProp->sValue = property.attribute("type").as_string();
+                }
+
+                tempPropsVec.push_back( tempProp );
+                property = property.next_sibling("property");
+            }
+
+            tempTileSet->mPropertys.insert( pair<int, vector<TilePropertys*>>(iIDTile, tempPropsVec) );
+
+
+            tile = tile.next_sibling("tile");
+        }
+
+
+        if (spacing == NULL){
+            tempTileSet->iSpacing = 0;
+        } else{
+            tempTileSet->iSpacing = spacing.as_int();
+        }
+
+        if (marign == NULL){
+            tempTileSet->iMarign = 0;
+        } else {
+            tempTileSet->iMarign = marign.as_int();
+        }
+
         tempStringDirs = image.attribute("source").as_string();
 
-        tempTileSet.tTexture = new Texture;
-        tempTileSet.tTexture->loadFromFile(tempStringDirs);
+        tempTileSet->tTexture = new Texture;
+        tempTileSet->tTexture->loadFromFile(tempStringDirs);
 
-        tempTileSet.sSprite  = new Sprite;
-        tempTileSet.sSprite->setTexture( *tempTileSet.tTexture );
-        tempTileSet.sSprite->setOrigin( tempTileSet.iTileWidth / 2, tempTileSet.iTileHeight / 2);
+        tempTileSet->sSprite  = new Sprite;
+        tempTileSet->sSprite->setTexture( *tempTileSet->tTexture );
+        tempTileSet->sSprite->setOrigin( tempTileSet->iTileWidth / 2, tempTileSet->iTileHeight / 2);
 
-        int countTileX  = tempTileSet.tTexture->getSize().x / tempTileSet.iTileWidth;
-        int countTileY  = tempTileSet.tTexture->getSize().y / tempTileSet.iTileHeight;
-        int startTileID = tempTileSet.iFirstTileID;
+        int countTileX  = (tempTileSet->tTexture->getSize().x - tempTileSet->iMarign) / (tempTileSet->iTileWidth + tempTileSet->iSpacing);
+        int countTileY  = (tempTileSet->tTexture->getSize().y - tempTileSet->iMarign) / (tempTileSet->iTileHeight + tempTileSet->iSpacing);
+        int startTileID = tempTileSet->iFirstTileID;
 
-        tempTileSet.iTileCount   = countTileX * countTileY + tempTileSet.iFirstTileID-1;
+        cout << "Tiles in " << tempTileSet->sName << " : " << countTileX * countTileY << endl;
 
-        cout << "iTileCount: " << tempTileSet.iTileCount << endl << endl;
+        tempTileSet->iTileCount   = countTileX * countTileY + tempTileSet->iFirstTileID-1;
+
+        cout << "iTileCount: " << tempTileSet->iTileCount << endl << endl;
+
 
         for (int i = 0; i < countTileY; i++){
             for (int j = 0; j < countTileX; j++){
                 IntRect tempRect;
-                tempRect.left   = j * tempTileSet.iTileWidth;
-                tempRect.top    = i * tempTileSet.iTileHeight;
-                tempRect.width  = tempTileSet.iTileWidth;
-                tempRect.height = tempTileSet.iTileHeight;
 
-                tempTileSet.mTiles.insert(std::pair<int, IntRect>(startTileID, tempRect));
+                tempRect.left   = j * (tempTileSet->iTileWidth  + tempTileSet->iSpacing) + tempTileSet->iMarign;
+                tempRect.top    = i * (tempTileSet->iTileHeight + tempTileSet->iSpacing) + tempTileSet->iMarign;
+
+                tempRect.width  = tempTileSet->iTileWidth;
+                tempRect.height = tempTileSet->iTileHeight;
+
+                tempTileSet->mTiles.insert(std::pair<int, IntRect>(startTileID, tempRect));
                 startTileID++;
             }
         }
@@ -137,9 +195,11 @@ void Level::loadLevel(string fileName){
         cout << "Loading " << outCountLayers << " layer";
         cout << "Layer name: " << layer.attribute("name").as_string() << endl;
 
-        Layer tempLayer;
-        tempLayer.iWidth  = layer.attribute("width").as_int();
-        tempLayer.iHeight = layer.attribute("height").as_int();
+        Layer *tempLayer = new Layer;
+        tempLayer->iWidth   = layer.attribute("width").as_int();
+        tempLayer->iHeight  = layer.attribute("height").as_int();
+        tempLayer->iOffestX = layer.attribute("offsetx").as_int();
+        tempLayer->iOffestY = layer.attribute("offsety").as_int();
 
         if (opacity == NULL){
             tempOpacity = 1;
@@ -147,13 +207,16 @@ void Level::loadLevel(string fileName){
             tempOpacity = opacity.as_float();
         }
 
-        tempLayer.iOpacity = tempOpacity * 255;
+        tempLayer->iOpacity = int(tempOpacity * 255);
 
-        cout << tempLayer.iOpacity << endl;
 
-        tempLayer.iLayer = new int*[tempLayer.iHeight];
-        for (int i = 0; i < tempLayer.iHeight; i++)
-            tempLayer.iLayer[i] = new int[tempLayer.iWidth];
+        //tempLayer->iOpacity = 255 * tempOpacity;
+
+        cout << tempLayer->iOpacity << endl;
+
+        tempLayer->iLayer = new unsigned*[tempLayer->iHeight];
+        for (int i = 0; i < tempLayer->iHeight; i++)
+            tempLayer->iLayer[i] = new unsigned[tempLayer->iWidth];
 
         string TempLayerString = data.text().as_string();
         string tempStrNum;
@@ -165,16 +228,16 @@ void Level::loadLevel(string fileName){
             if (i != ',') {
                 tempStrNum += i;
             } else {
-                tempLayer.iLayer[layerY][layerX] = atoi(tempStrNum.c_str());
+                tempLayer->iLayer[layerY][layerX] = unsigned(atoi(tempStrNum.c_str()));
                 tempStrNum.clear();
                 layerX++;
             }
-            if (layerX == tempLayer.iWidth){
+            if (layerX == tempLayer->iWidth){
                 layerX = 0;
                 layerY++;
             }
         }
-        tempLayer.iLayer[layerY][layerX] = atoi(tempStrNum.c_str());
+        tempLayer->iLayer[layerY][layerX] = unsigned(atoi(tempStrNum.c_str()));
         vLayers.push_back(tempLayer);
 
         layer = layer.next_sibling("layer");
@@ -202,7 +265,7 @@ void Level::loadLevel(string fileName){
 
 
             if (ellipse != NULL && polyline == NULL && polygon == NULL){
-                TShape *temp = new TShape;
+                Shape_ML *temp = new Shape_ML;
 
                 temp->sObjectGroupName  = objectgroup.attribute("name").as_string();
                 temp->iID   = object.attribute("id").as_int();
@@ -218,7 +281,7 @@ void Level::loadLevel(string fileName){
             }
 
             if (ellipse == NULL && polyline == NULL && polygon == NULL){
-                TRect *temp = new TRect;
+                Rect_ML *temp = new Rect_ML;
 
                 temp->sObjectGroupName  = objectgroup.attribute("name").as_string();
                 temp->iID   = object.attribute("id").as_int();
@@ -238,7 +301,7 @@ void Level::loadLevel(string fileName){
             }
 
             if (ellipse != NULL && polyline != NULL && polygon == NULL){
-                Polyline *temp = new Polyline;
+                Polyline_ML *temp = new Polyline_ML;
 
                 temp->sObjectGroupName  = objectgroup.attribute("name").as_string();
 
@@ -259,7 +322,7 @@ void Level::loadLevel(string fileName){
             }
 
             if (ellipse == NULL && polyline == NULL && polygon != NULL){
-                Polygon *temp = new Polygon;
+                Polygon_ML *temp = new Polygon_ML;
 
                 temp->sObjectGroupName  = objectgroup.attribute("name").as_string();
                 temp->sName = object.attribute("name").as_string();
@@ -300,52 +363,54 @@ void Level::drawLevel(){
     ////////////////////////// ОТРИСОВКА ИЗОБРАЖЕНИЙ //////////////////////////
 
     for (auto it = vBackGrounds.begin(); it != vBackGrounds.end(); it++){
-        rRenderWindow->draw( *it->sSprite );
+        rRenderWindow->draw( *(*it)->sSprite );
     }
 
     ////////////////////////// ОТРИСОВКА КАРТЫ //////////////////////////
-    int tempID = 0;
-    vector<Tileset>::iterator tempTileset;
+    unsigned tempID = 0;
+    vector<Tileset*>::iterator tempTileset;
     int opacity = 1;
     for (auto itLayer = vLayers.begin(); itLayer != vLayers.end(); itLayer++){
-        opacity = itLayer->iOpacity;
-        for (int i = 0; i < itLayer->iHeight; i++){
-            for (int j = 0; j < itLayer->iWidth; j++){
-                tempID = itLayer->iLayer[i][j];
+        opacity = (*itLayer)->iOpacity;
+        for (int i = 0; i < (*itLayer)->iHeight; i++){
+            for (int j = 0; j < (*itLayer)->iWidth; j++){
+                tempID = (*itLayer)->iLayer[i][j];
                 if (tempID == 0) continue;
 
                 bool flipped_horizontally = (tempID & FLIPPED_HORIZONTALLY_FLAG);
-                bool flipped_vertically = (tempID & FLIPPED_VERTICALLY_FLAG);
-                bool flipped_diagonally = (tempID & FLIPPED_DIAGONALLY_FLAG);
+                bool flipped_vertically   = (tempID & FLIPPED_VERTICALLY_FLAG);
+                bool flipped_diagonally   = (tempID & FLIPPED_DIAGONALLY_FLAG);
 
                 tempID &= ~(FLIPPED_HORIZONTALLY_FLAG | FLIPPED_VERTICALLY_FLAG | FLIPPED_DIAGONALLY_FLAG);
-                tempTileset = getDrawSprite( tempID );
-                tempTileset->sSprite->setColor(Color(255, 255, 255, opacity));
+                tempTileset = getDrawSprite( int(tempID) );
+                (*tempTileset)->sSprite->setColor(Color(255, 255, 255, opacity));
 
                 if (flipped_horizontally && !flipped_vertically && flipped_diagonally){
-                    tempTileset->sSprite->rotate(90);
+                    (*tempTileset)->sSprite->rotate(90);
                 }
 
                 if (!flipped_horizontally && flipped_vertically && flipped_diagonally){
-                    tempTileset->sSprite->rotate(-90);
+                    (*tempTileset)->sSprite->rotate(-90);
                 }
 
                 if (flipped_horizontally && flipped_vertically && !flipped_diagonally){
-                    tempTileset->sSprite->rotate(180);
+                    (*tempTileset)->sSprite->rotate(180);
                 }
 
-                tempTileset->sSprite->setPosition( j * iTileHeight + iTileHeight / 2, i * iTileWidth + iTileWidth / 2);
-                rRenderWindow->draw( *tempTileset->sSprite );
+                (*tempTileset)->sSprite->setPosition( (j * iTileHeight + iTileHeight / 2) + (*itLayer)->iOffestX,
+                                                      (i   * iTileWidth + iTileWidth / 2) + (*itLayer)->iOffestY);
+
+                rRenderWindow->draw( *(*tempTileset)->sSprite );
 
                 if (flipped_horizontally && !flipped_vertically && flipped_diagonally){
-                    tempTileset->sSprite->rotate(-90);
+                    (*tempTileset)->sSprite->rotate(-90);
                 }
                 if (!flipped_horizontally && flipped_vertically && flipped_diagonally){
-                    tempTileset->sSprite->rotate(90);
+                    (*tempTileset)->sSprite->rotate(90);
                 }
 
                 if (flipped_horizontally && flipped_vertically && !flipped_diagonally){
-                    tempTileset->sSprite->rotate(-180);
+                    (*tempTileset)->sSprite->rotate(-180);
                 }
             }
         }
@@ -353,17 +418,17 @@ void Level::drawLevel(){
     }
 }
 
-vector<Tileset>::iterator Level::getDrawSprite(int idTile){
-    auto mapIT = vTilesets.begin()->mTiles.begin();
-    auto it = vTilesets.begin();
+vector<Tileset*>::iterator Level::getDrawSprite(int idTile){
+    auto mapIT = (*vTilesets.begin())->mTiles.begin();
+    vector<Tileset*>::iterator it = vTilesets.begin();
 
     for (; it != vTilesets.end(); it++){
-        mapIT = it->mTiles.find( idTile );
-        if (mapIT != it->mTiles.end())
+        mapIT = (*it)->mTiles.find( idTile );
+        if (mapIT != (*it)->mTiles.end())
             break;
     }
 
-    it->sSprite->setTextureRect( mapIT->second );
+    (*it)->sSprite->setTextureRect( mapIT->second );
 
     return it;
 }
@@ -384,25 +449,28 @@ void Level::closeLevel(){
     lShapes.clear();
 
     for (auto it = vBackGrounds.begin(); it != vBackGrounds.end(); it++){
-        delete it->tTexture;
-        delete it->sSprite;
+        delete (*it)->tTexture;
+        delete (*it)->sSprite;
+        delete (*it);
     }
 
     vBackGrounds.clear();
 
     for (auto it = vTilesets.begin(); it != vTilesets.end(); it++){
-        delete it->tTexture;
-        delete it->sSprite;
-        it->mTiles.clear();
+        delete (*it)->tTexture;
+        delete (*it)->sSprite;
+        (*it)->mTiles.clear();
+        delete (*it);
     }
 
     vTilesets.clear();
 
     for (auto it = vLayers.begin(); it != vLayers.end(); it++){
-        for (int i = 0; i < it->iHeight; i++){
-            delete [] it->iLayer[i];
+        for (int i = 0; i < (*it)->iHeight; i++){
+            delete [] (*it)->iLayer[i];
         }
-        delete it->iLayer;
+        delete (*it)->iLayer;
+        delete (*it);
     }
 
     vLayers.clear();
@@ -418,6 +486,7 @@ void Level::closeLevel(){
 list<Vector2f> Level::stringToData(string sData){
     list<Vector2f> temp;
     list<string> pointsStr;
+
     /////////////////////////////////
     string sTemps;
     for (char i : sData){
@@ -452,6 +521,31 @@ list<Vector2f> Level::stringToData(string sData){
     }
 
     return temp;
+}
+
+vector<TilePropertys*> Level::getTilePropertys(string tilesetName, int tileID){
+    Tileset *tempTileset = nullptr;
+
+    if (vTilesets.size() > 0){
+        for (auto it = vTilesets.begin(); it != vTilesets.end(); it++){
+            if (strcmp((*it)->sName.c_str(), tilesetName.c_str()) == 0){
+                tempTileset = (*it);
+                break;
+            }
+        }
+    }
+
+    if (tempTileset != nullptr){
+        auto it = tempTileset->mPropertys.find(tileID);
+        if (tempTileset->mPropertys.size() > 0){
+            //if ((*it).second.size() > 0){
+                return it->second;
+            //}
+        }
+    }
+
+    vector<TilePropertys*> clearVector;
+    return clearVector;
 }
 
 template <class T>
@@ -498,84 +592,84 @@ T Level::getOBjectsObjectGroup(T& object, string objGroup){
     return temp;
 }
 
-list<Polyline*> Level::getPolylineWithObjectGroup(string objGroup){
-    return getOBjectsObjectGroup<list<Polyline*>>(lPolylines, objGroup);
+list<Polyline_ML*> Level::getPolylineWithObjectGroup(string objGroup){
+    return getOBjectsObjectGroup<list<Polyline_ML*>>(lPolylines, objGroup);
 }
 
-list<Polyline*>& Level::getPolylineAll(){
+list<Polyline_ML*>& Level::getPolylineAll(){
     return lPolylines;
 }
 
-list<Polyline*> Level::getPolylineWithType(string type){
-    return getObjectsType<list<Polyline*>>(lPolylines, type);
+list<Polyline_ML*> Level::getPolylineWithType(string type){
+    return getObjectsType<list<Polyline_ML*>>(lPolylines, type);
 }
 
-list<Polyline*> Level::getPolylineWithName(string name){
-    return getObjectsName<list<Polyline*>>(lPolylines, name);
+list<Polyline_ML*> Level::getPolylineWithName(string name){
+    return getObjectsName<list<Polyline_ML*>>(lPolylines, name);
 }
 
-list<Polyline*> Level::getPolylineWithID(int ID){
-    return getObjectsID<list<Polyline*>>(lPolylines, ID);
+list<Polyline_ML*> Level::getPolylineWithID(int ID){
+    return getObjectsID<list<Polyline_ML*>>(lPolylines, ID);
 }
 
-list<TRect*> Level::getRectsWithObjectGroup(string objGroup){
-    return getOBjectsObjectGroup<list<TRect*>>(lRects, objGroup);
+list<Rect_ML*> Level::getRectsWithObjectGroup(string objGroup){
+    return getOBjectsObjectGroup<list<Rect_ML*>>(lRects, objGroup);
 }
 
-list<TRect*>& Level::getRectsAll(){
+list<Rect_ML*>& Level::getRectsAll(){
     return lRects;
 }
 
-list<TRect*>  Level::getRectsWithType(string type){
-    return getObjectsType<list<TRect*>>(lRects, type);
+list<Rect_ML*>  Level::getRectsWithType(string type){
+    return getObjectsType<list<Rect_ML*>>(lRects, type);
 }
 
-list<TRect*>  Level::getRectsWithName(string name){
-    return getObjectsName<list<TRect*>>(lRects, name);
+list<Rect_ML*>  Level::getRectsWithName(string name){
+    return getObjectsName<list<Rect_ML*>>(lRects, name);
 }
 
-list<TRect*> Level::getRectsWithID(int ID){
-    return getObjectsID<list<TRect*>>(lRects, ID);
+list<Rect_ML*> Level::getRectsWithID(int ID){
+    return getObjectsID<list<Rect_ML*>>(lRects, ID);
 }
 
-list<Polygon*>& Level::getPolygonsAll(){
+list<Polygon_ML*>& Level::getPolygonsAll(){
     return lPolygons;
 }
 
-list<Polygon*> Level::getPolygonsWithObjectGroup(string objGroup){
-    return getOBjectsObjectGroup<list<Polygon*>>(lPolygons, objGroup);
+list<Polygon_ML*> Level::getPolygonsWithObjectGroup(string objGroup){
+    return getOBjectsObjectGroup<list<Polygon_ML*>>(lPolygons, objGroup);
 }
 
-list<Polygon*> Level::getPolygonsWithType(string type){
-    return getObjectsType<list<Polygon*>>(lPolygons, type);
+list<Polygon_ML*> Level::getPolygonsWithType(string type){
+    return getObjectsType<list<Polygon_ML*>>(lPolygons, type);
 }
 
-list<Polygon*> Level::getPolygonsWithName(string name){
-    return getObjectsName<list<Polygon*>>(lPolygons, name);
+list<Polygon_ML*> Level::getPolygonsWithName(string name){
+    return getObjectsName<list<Polygon_ML*>>(lPolygons, name);
 }
 
-list<Polygon*> Level::getPolygonsWithID(int ID){
-    return getObjectsID<list<Polygon*>>(lPolygons, ID);
+list<Polygon_ML*> Level::getPolygonsWithID(int ID){
+    return getObjectsID<list<Polygon_ML*>>(lPolygons, ID);
 }
 
-list<TShape*> Level::getShapesWithObjectGroup(string objGroup){
-    return getOBjectsObjectGroup<list<TShape*>>(lShapes, objGroup);
+list<Shape_ML*> Level::getShapesWithObjectGroup(string objGroup){
+    return getOBjectsObjectGroup<list<Shape_ML*>>(lShapes, objGroup);
 }
 
-list<TShape*>&  Level::getShapesAll(){
+list<Shape_ML*>&  Level::getShapesAll(){
     return lShapes;
 }
 
-list<TShape*>   Level::getShapesWithType(string type){
-    return getObjectsType<list<TShape*>>(lShapes, type);
+list<Shape_ML*>   Level::getShapesWithType(string type){
+    return getObjectsType<list<Shape_ML*>>(lShapes, type);
 }
 
-list<TShape*>   Level::getShapesWithName(string name){
-    return getObjectsName<list<TShape*>>(lShapes, name);
+list<Shape_ML*>   Level::getShapesWithName(string name){
+    return getObjectsName<list<Shape_ML*>>(lShapes, name);
 }
 
-list<TShape*>   Level::getShapesWithID(int ID){
-    return getObjectsID<list<TShape*>>(lShapes, ID);
+list<Shape_ML*>   Level::getShapesWithID(int ID){
+    return getObjectsID<list<Shape_ML*>>(lShapes, ID);
 }
 
 int Level::getWorldWidthPixel(){
