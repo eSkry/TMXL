@@ -12,7 +12,7 @@ using namespace sf;
 using namespace std;
 
 /////////////////////////// OBJECTS ///////////////////////////
-struct Objects{
+struct Objects_ML{
     string              sObjectGroupName;
     string              sName;
     string              sType;
@@ -22,18 +22,18 @@ struct Objects{
     void*               vData;
 };
 
-struct TShape : public Objects{
-    TShape();
-    TShape(const TShape &obj);
+struct Shape_ML : public Objects_ML{
+    Shape_ML();
+    Shape_ML(const Shape_ML &obj);
 
     FloatRect           fRect;
 
     Texture*            tTexture;
 };
 
-struct TRect : public Objects{
-    TRect();
-    TRect(const TRect &object);
+struct Rect_ML : public Objects_ML{
+    Rect_ML();
+    Rect_ML(const Rect_ML &object);
 
     FloatRect           fRect;
 
@@ -41,9 +41,9 @@ struct TRect : public Objects{
     Sprite*             sSprite;
 };
 
-struct Polygon : public Objects{
-    Polygon();
-    Polygon(const Polygon &obj);
+struct Polygon_ML : public Objects_ML{
+    Polygon_ML();
+    Polygon_ML(const Polygon_ML &obj);
 
     Vector2f            vPosition;
 
@@ -53,9 +53,9 @@ struct Polygon : public Objects{
     int                 iCountShapePoints;
 };
 
-struct Polyline : public Objects{
-    Polyline();
-    Polyline(const Polyline &obj);
+struct Polyline_ML : public Objects_ML{
+    Polyline_ML();
+    Polyline_ML(const Polyline_ML &obj);
 
     ConvexShape         cShape;
 
@@ -63,11 +63,10 @@ struct Polyline : public Objects{
     int                 iCountShapePoints;
 };
 
-typedef list<Objects*>  LObjects;
-typedef list<TRect*>    LRect;
-typedef list<TShape*>   LElipse;
-typedef list<Polygon*>  LPolygon;
-typedef list<Polyline*> LPolyline;
+typedef list<Objects_ML*>  LObjects;
+typedef list<Shape_ML*>    LElipse;
+typedef list<Polygon_ML*>  LPolygon;
+typedef list<Polyline_ML*> LPolyline;
 
 /////////////////////////// OBJECTS ///////////////////////////
 
