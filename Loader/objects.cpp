@@ -1,13 +1,13 @@
 #include "objects.h"
 
-TRect::TRect() : Objects() {
+Rect_ML::Rect_ML() : Objects_ML() {
     sSprite         = nullptr;
     tTexture        = nullptr;
     vData           = nullptr;
     iID             = 0;
 }
 
-TRect::TRect(const TRect &object){
+Rect_ML::Rect_ML(const Rect_ML &object){
     iID             = object.iID;
     sName           = object.sName;
     sType           = object.sType;
@@ -20,12 +20,12 @@ TRect::TRect(const TRect &object){
     vData           = object.vData;
 }
 
-TShape::TShape(){
+Shape_ML::Shape_ML(){
     tTexture        = nullptr;
     vData           = nullptr;
 }
 
-TShape::TShape(const TShape &obj){
+Shape_ML::Shape_ML(const Shape_ML &obj){
     sName           = obj.sName;
     sType           = obj.sType;
     sObjectGroupName     = obj.sObjectGroupName;
@@ -38,11 +38,11 @@ TShape::TShape(const TShape &obj){
     vData           = obj.vData;
 }
 
-Polygon::Polygon() : Objects(){
+Polygon_ML::Polygon_ML() : Objects_ML(){
     iCountShapePoints = 0;
 }
 
-Polygon::Polygon(const Polygon &obj){
+Polygon_ML::Polygon_ML(const Polygon_ML &obj){
     iID               = obj.iID;
     iCountShapePoints = obj.iCountShapePoints;
     sName             = obj.sName;
@@ -54,11 +54,11 @@ Polygon::Polygon(const Polygon &obj){
     cShape            = obj.cShape;
 }
 
-Polyline::Polyline(){
+Polyline_ML::Polyline_ML(){
     iCountShapePoints = 0;
 }
 
-Polyline::Polyline(const Polyline &obj){
+Polyline_ML::Polyline_ML(const Polyline_ML &obj){
     cShape            = obj.cShape;
     iCountShapePoints = obj.iCountShapePoints;
     iID               = obj.iID;
