@@ -65,6 +65,7 @@ struct Polyline_ML : public Objects_ML{
 
 typedef list<Objects_ML*>  LObjects;
 typedef list<Shape_ML*>    LElipse;
+typedef list<Rect_ML*>     LRect;
 typedef list<Polygon_ML*>  LPolygon;
 typedef list<Polyline_ML*> LPolyline;
 
