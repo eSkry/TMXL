@@ -31,14 +31,27 @@ struct BackGround{
     Vector2f            vPosition;
 };
 
+struct TilePropertys{
+    string              sName;
+    string              sType;
+    string              sValue;
+};
+
 struct Tileset{
+    string              sName;
+
     int                 iFirstTileID;
     int                 iTileCount;
     int                 iTileWidth;
     int                 iTileHeight;
 
+    int                 iSpacing;
+    int                 iMarign;
+
     Texture*            tTexture;
     Sprite*             sSprite;
+
+    map<int, vector<TilePropertys*>> mPropertys;
 
     map<int, IntRect>   mTiles;
 };
@@ -47,10 +60,18 @@ struct Layer{
     int                 iWidth;
     int                 iHeight;
     int                 iOpacity;
-    int**               iLayer;
+
+    int                 iOffestX;
+    int                 iOffestY;
+
+    unsigned**          iLayer;
 };
 
 /////////////////////////// GRAPHICS ///////////////////////////
+
+/////////////////////////// TYPEDEFS ///////////////////////////
+typedef vector<TilePropertys*> LTilePropertys;
+/////////////////////////// TYPEDEFS ///////////////////////////
 
 class Level{
 public:
@@ -64,29 +85,31 @@ public:
     void closeLevel();
 
     // Получить обьекты
-    list<TRect*>    getRectsWithObjectGroup(string objGroup);
-    list<TRect*>&   getRectsAll();
-    list<TRect*>    getRectsWithType(string type);
-    list<TRect*>    getRectsWithName(string name);
-    list<TRect*>    getRectsWithID(int ID);
+    list<Rect_ML*>    getRectsWithObjectGroup(string objGroup);
+    list<Rect_ML*>&   getRectsAll();
+    list<Rect_ML*>    getRectsWithType(string type);
+    list<Rect_ML*>    getRectsWithName(string name);
+    list<Rect_ML*>    getRectsWithID(int ID);
 
-    list<Polygon*>  getPolygonsWithObjectGroup(string objGroup);
-    list<Polygon*>& getPolygonsAll();
-    list<Polygon*>  getPolygonsWithType(string type);
-    list<Polygon*>  getPolygonsWithName(string name);
-    list<Polygon*>  getPolygonsWithID(int ID);
+    list<Polygon_ML*>  getPolygonsWithObjectGroup(string objGroup);
+    list<Polygon_ML*>& getPolygonsAll();
+    list<Polygon_ML*>  getPolygonsWithType(string type);
+    list<Polygon_ML*>  getPolygonsWithName(string name);
+    list<Polygon_ML*>  getPolygonsWithID(int ID);
 
-    list<TShape*>   getShapesWithObjectGroup(string objGroup);
-    list<TShape*>&  getShapesAll();
-    list<TShape*>   getShapesWithType(string type);
-    list<TShape*>   getShapesWithName(string name);
-    list<TShape*>   getShapesWithID(int ID);
+    list<Shape_ML*>   getShapesWithObjectGroup(string objGroup);
+    list<Shape_ML*>&  getShapesAll();
+    list<Shape_ML*>   getShapesWithType(string type);
+    list<Shape_ML*>   getShapesWithName(string name);
+    list<Shape_ML*>   getShapesWithID(int ID);
 
-    list<Polyline*> getPolylineWithObjectGroup(string objGroup);
-    list<Polyline*>& getPolylineAll();
-    list<Polyline*> getPolylineWithType(string type);
-    list<Polyline*> getPolylineWithName(string name);
-    list<Polyline*> getPolylineWithID(int ID);
+    list<Polyline_ML*> getPolylineWithObjectGroup(string objGroup);
+    list<Polyline_ML*>& getPolylineAll();
+    list<Polyline_ML*> getPolylineWithType(string type);
+    list<Polyline_ML*> getPolylineWithName(string name);
+    list<Polyline_ML*> getPolylineWithID(int ID);
+
+    vector<TilePropertys*> getTilePropertys(string tilesetName, int tileID);
 
     // WORLD
     int getWorldWidthPixel();
@@ -103,18 +126,18 @@ private:
     bool                    bLoaded;
 
     // MAP DATA //
-    vector<Tileset>         vTilesets;
-    vector<Layer>           vLayers;
-    vector<BackGround>      vBackGrounds;
+    vector<Tileset*>        vTilesets;
+    vector<Layer*>          vLayers;
+    vector<BackGround*>     vBackGrounds;
 
     // OBJECT DATA //
-    list<TRect*>            lRects;       // Прямоугольники
-    list<Polygon*>          lPolygons;    // Полигоны
-    list<Polyline*>         lPolylines;   // Полилайны
-    list<TShape*>           lShapes;      // Элипсы
+    list<Rect_ML*>          lRects;       // Прямоугольники
+    list<Polygon_ML*>       lPolygons;    // Полигоны
+    list<Polyline_ML*>      lPolylines;   // Полилайны
+    list<Shape_ML*>         lShapes;      // Элипсы
 
     // Возвращает таилсет на отрисовку
-    vector<Tileset>::iterator getDrawSprite(int idTile);
+    vector<Tileset*>::iterator getDrawSprite(int idTile);
 
     // Преобразует строку точек в список точек (points)
     list<Vector2f> stringToData(string sData);
