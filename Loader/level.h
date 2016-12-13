@@ -108,7 +108,8 @@ public:
     list<Polyline_ML*> getPolylineWithType(string type);
     list<Polyline_ML*> getPolylineWithName(string name);
     list<Polyline_ML*> getPolylineWithID(int ID);
-
+    
+    //Получить параметры тайла
     vector<TilePropertys*> getTilePropertys(string tilesetName, int tileID);
 
     // WORLD
