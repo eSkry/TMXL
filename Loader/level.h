@@ -18,6 +18,7 @@ using namespace sf;
 using namespace std;
 
 /////////// LOADER ///////////
+#include "datatilepropertys.h"
 #include "objects.h"
 
 /////////////////////////// GRAPHICS ///////////////////////////
@@ -31,10 +32,10 @@ struct BackGround{
     Vector2f            vPosition;
 };
 
-struct TilePropertys{
+struct LTilePropertys{
     string              sName;
     string              sType;
-    string              sValue;
+    DataTilePropertys   dValue;
 };
 
 struct Tileset{
@@ -51,7 +52,7 @@ struct Tileset{
     Texture*            tTexture;
     Sprite*             sSprite;
 
-    map<int, vector<TilePropertys*>> mPropertys;
+    map<int, vector<LTilePropertys*>> mPropertys;
 
     map<int, IntRect>   mTiles;
 };
@@ -70,7 +71,7 @@ struct Layer{
 /////////////////////////// GRAPHICS ///////////////////////////
 
 /////////////////////////// TYPEDEFS ///////////////////////////
-typedef vector<TilePropertys*> LTilePropertys;
+typedef vector<LTilePropertys*> LVecTilePropertys;
 /////////////////////////// TYPEDEFS ///////////////////////////
 
 class Level{
@@ -108,9 +109,9 @@ public:
     list<Polyline_ML*> getPolylineWithType(string type);
     list<Polyline_ML*> getPolylineWithName(string name);
     list<Polyline_ML*> getPolylineWithID(int ID);
-    
-    //Получить параметры тайла
-    vector<TilePropertys*> getTilePropertys(string tilesetName, int tileID);
+
+    vector<LTilePropertys*> getTilePropertys(string tilesetName, int tileID);
+    LTilePropertys* getTileConcrProperty(string tilesetName, int tileID, string propertyName);
 
     // WORLD
     int getWorldWidthPixel();
