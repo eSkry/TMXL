@@ -9,7 +9,7 @@ Level::Level(RenderWindow *renderWindow){
      iFullWorldSizeWidth = 0;
      iFullWorldSizeHeight= 0;
      bLoaded             = false;
-     sLoaderVersion      = "7.0";
+     sLoaderVersion      = "7.1";
 }
 
 void Level::loadLevel(string fileName){
@@ -102,23 +102,23 @@ void Level::loadLevel(string fileName){
             property = properties.child("property");
 
             int iIDTile = tile.attribute("id").as_int();
-            vector<TilePropertys*> tempPropsVec;
+            vector<LTilePropertys*> tempPropsVec;
 
             while (property){
-                TilePropertys *tempProp = new TilePropertys;
+                LTilePropertys *tempProp = new LTilePropertys;
 
                 tempProp->sName = property.attribute("name").as_string();
-                tempProp->sValue = property.attribute("value").as_string();
+                tempProp->dValue = static_cast<string>(property.attribute("value").as_string());
 
                 if (property.attribute("type") != NULL){
-                    tempProp->sValue = property.attribute("type").as_string();
+                    tempProp->sType = property.attribute("type").as_string();
                 }
 
                 tempPropsVec.push_back( tempProp );
                 property = property.next_sibling("property");
             }
 
-            tempTileSet->mPropertys.insert( pair<int, vector<TilePropertys*>>(iIDTile, tempPropsVec) );
+            tempTileSet->mPropertys.insert( pair<int, vector<LTilePropertys*>>(iIDTile, tempPropsVec) );
 
 
             tile = tile.next_sibling("tile");
@@ -228,7 +228,7 @@ void Level::loadLevel(string fileName){
             if (i != ',') {
                 tempStrNum += i;
             } else {
-                tempLayer->iLayer[layerY][layerX] = unsigned(atoi(tempStrNum.c_str()));
+                tempLayer->iLayer[layerY][layerX] = static_cast<unsigned>(atoi(tempStrNum.c_str()));
                 tempStrNum.clear();
                 layerX++;
             }
@@ -237,7 +237,7 @@ void Level::loadLevel(string fileName){
                 layerY++;
             }
         }
-        tempLayer->iLayer[layerY][layerX] = unsigned(atoi(tempStrNum.c_str()));
+        tempLayer->iLayer[layerY][layerX] = static_cast<unsigned>(atoi(tempStrNum.c_str()));
         vLayers.push_back(tempLayer);
 
         layer = layer.next_sibling("layer");
@@ -523,7 +523,20 @@ list<Vector2f> Level::stringToData(string sData){
     return temp;
 }
 
-vector<TilePropertys*> Level::getTilePropertys(string tilesetName, int tileID){
+LTilePropertys* Level::getTileConcrProperty(string tilesetName, int tileID, string propertyName){
+    vector<LTilePropertys*> temp = getTilePropertys(tilesetName, tileID);
+    LTilePropertys* prop = nullptr;
+
+    for (auto it = temp.begin(); it != temp.end(); it++){
+        if (strcmp( (*it)->sName.c_str(), propertyName.c_str() ) == 0){
+            prop = (*it);
+        }
+    }
+
+    return prop;
+}
+
+vector<LTilePropertys*> Level::getTilePropertys(string tilesetName, int tileID){
     Tileset *tempTileset = nullptr;
 
     if (vTilesets.size() > 0){
@@ -544,7 +557,7 @@ vector<TilePropertys*> Level::getTilePropertys(string tilesetName, int tileID){
         }
     }
 
-    vector<TilePropertys*> clearVector;
+    vector<LTilePropertys*> clearVector;
     return clearVector;
 }
 
