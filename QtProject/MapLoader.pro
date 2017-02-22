@@ -9,9 +9,6 @@ CONFIG(debug, debug|release): LIBS += -lsfml-audio -lsfml-graphics -lsfml-networ
 CONFIG(release, debug|release): LIBS += -lpugixml
 CONFIG(debug, debug|release): LIBS += -lpugixml
 
-CONFIG(release, debug|release): LIBS += -lBox2D
-CONFIG(debug, debug|release): LIBS += -lBox2D
-
 SOURCES += main.cpp \
     Loader/level.cpp \
     Loader/objects.cpp \
