@@ -9,7 +9,7 @@ Level::Level(RenderWindow *renderWindow){
      iFullWorldSizeWidth = 0;
      iFullWorldSizeHeight= 0;
      bLoaded             = false;
-     sLoaderVersion      = "7.1";
+     sLoaderVersion      = "7.2.0";
 }
 
 void Level::loadImages(pugi::xml_document &doc){

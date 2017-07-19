@@ -12,9 +12,11 @@ CONFIG(debug, debug|release): LIBS += -lpugixml
 SOURCES += main.cpp \
     Loader/level.cpp \
     Loader/objects.cpp \
-    Loader/datatilepropertys.cpp
+    Loader/datatilepropertys.cpp \
+    Loader/Tools/grid.cpp
 
 HEADERS += \
     Loader/level.h \
     Loader/objects.h \
-    Loader/datatilepropertys.h
+    Loader/datatilepropertys.h \
+    Loader/Tools/grid.h
