@@ -7,7 +7,7 @@ int main(){
     window.setVerticalSyncEnabled(true);
 
     Level level(&window);
-    level.loadLevel("./maps/level1_1.tmx");
+    level.loadLevel("./maps/testMap.tmx");
 
 
     LPropertyData* bgColor = level.getTileConcrProperty("marioTiles", 1, "background");
