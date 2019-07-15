@@ -8,7 +8,7 @@ addons:
       - ubuntu-toolchan-r-test
     packages:
      - g++
-     - gcc-
+     - gcc
      - cmake
 
 script:
