@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 17)
 #   NOT_USE_SFML_COLOR_TYPE
 
 option(BUILD_EXAMPLES "Build example projects" ON)
-option(BUILD_TESTS "Build TMXL tests" ON)
+option(TMXL_BUILD_TESTS "Build TMXL tests" ON)
 option(USE_STL_STRING "Use string from std by default" OFF)
 
 string(TOLOWER ${CMAKE_BUILD_TYPE} TMXL_BUILD_TYPE)
@@ -45,7 +45,7 @@ add_subdirectory("${CMAKE_SOURCE_DIR}/extlibs/pugixml")
 target_link_libraries(${TMXL_LIBRARY_NAME} pugixml)
 #### PROJECT TMXL BUILD ####
 
-if(BUILD_TESTS)
+if(TMXL_BUILD_TESTS)
     add_subdirectory(tests)
 endif()
 
