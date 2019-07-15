@@ -7,13 +7,13 @@ addons:
     sources:
       - ubuntu-toolchan-r-test
     packages:
-     - g++-7
-     - gcc-7
+     - g++
+     - gcc-
      - cmake
 
 script:
-  - export CC=gcc-7
-  - export CXX=g++-7
+  - export CC=gcc
+  - export CXX=g++
   - cmake --version
   - cmake CMakeLists.txt
   - cmake --build .
