@@ -8,9 +8,8 @@ before_install:
  
 install:
   - apt search libsfml
-  - apt search libsfml-dev
   - sudo apt install -y libsfml-dev
-  - apt-get install libfreetype6-dev libx11-dev libxrandr-dev libgl1-mesa-dev libudev-dev libopenal-dev libflac-dev libogg-dev libvorbis-dev -y
+  - sudo apt-get install libfreetype6-dev libx11-dev libxrandr-dev libgl1-mesa-dev libudev-dev libopenal-dev libflac-dev libogg-dev libvorbis-dev -y
   
 os: linux
 addons:
@@ -21,6 +20,7 @@ addons:
      - g++-6
      - gcc-6
      - cmake
+     - libsfml-dev
 
 script:
   - export CC=gcc
