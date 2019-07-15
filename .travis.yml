@@ -17,13 +17,15 @@ addons:
     sources:
       - ubuntu-toolchan-r-test
     packages:
-     - g++
-     - gcc
+     - g++-6
+     - gcc-6
      - cmake
 
 script:
   - export CC=gcc
   - export CXX=g++
   - cmake --version
-  - cmake CMakeLists.txt
+  - mkdir build
+  - cd build
+  - cmake ../
   - cmake --build .

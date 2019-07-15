@@ -1,3 +1,6 @@
 TiledLoader/.idea
 TiledLoader/cmake-build*
 /cmake-build*
+build
+CMakeFiles
+CMakeCache.txt
