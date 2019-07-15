@@ -10,7 +10,6 @@ install:
   - apt search libsfml
   - apt search libsfml-dev
   - sudo apt install libsfml-dev
-  - apt -y install libboost-tools-dev libboost-thread1.62-dev magics++
 
 os: lunux
 addons:
