@@ -20,6 +20,8 @@ addons:
       - clang-6.0
       - libstdc++6
       - libpng-dev
+      - build-essential
+      - glibc-static
 
 script:
   - export CC=clang-6.0
