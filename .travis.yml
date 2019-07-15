@@ -1,4 +1,4 @@
-dist: xenial
+dist: trusty
 language: cpp
 compiler: gcc
 
@@ -9,19 +9,25 @@ install:
 os: linux
 addons:
   apt:
+    sources:
+     - ubuntu-toolchain-r-test
+     - llvm-toolchain-trusty-6.0
+     - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-6.0 main'
+     key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key' 
     packages:
-     - g++-6
-     - gcc-6
      - cmake
      - libsfml-dev
+     - clang-6.0
+     - libstdc++6
+     - libpng-dev
 
 script:
-  - export CC=gcc
-  - export CXX=g++
+  - export MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
+  - export LINKER_FLAGS="-stdlib=libc++ -lc++abi"
   - cmake --version
   - gcc --version
   - g++ --version
   - mkdir build
   - cd build
-  - cmake ../
+  - cmake CMAKE_CXX_FLAGS="-stdlib=libC++" ../ 
   - cmake --build .
