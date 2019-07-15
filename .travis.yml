@@ -10,16 +10,16 @@ os: linux
 addons:
   apt:
     sources:
-     - ubuntu-toolchain-r-test
-     - llvm-toolchain-trusty-6.0
-     - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-6.0 main'
-     key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key' 
+      - ubuntu-toolchain-r-test
+      - llvm-toolchain-trusty-6.0
+      - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-6.0 main'
+      - key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key' 
     packages:
-     - cmake
-     - libsfml-dev
-     - clang-6.0
-     - libstdc++6
-     - libpng-dev
+      - cmake
+      - libsfml-dev
+      - clang-6.0
+      - libstdc++6
+      - libpng-dev
 
 script:
   - export CC=CC=clang-6.0
