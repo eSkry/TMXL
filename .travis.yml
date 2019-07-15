@@ -13,15 +13,6 @@ addons:
      - g++-6
      - gcc-6
      - cmake
-     - libfreetype6-dev
-     - libgl1-mesa-dev
-     - libudev-dev
-     - libopenal-dev
-     - libx11-dev
-     - libxrandr-dev
-     - libflac-dev
-     - libogg-dev
-     - libvorbis-dev
      - libsfml-dev
 
 script:
