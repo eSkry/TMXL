@@ -8,6 +8,7 @@ addons:
       - ubuntu-toolchan-r-test
     packages:
      - g++-7
+     - gcc-7
 
 script:
   - export CC=gcc-7
