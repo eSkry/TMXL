@@ -7,9 +7,7 @@ before_install:
   - sudo apt-get update -qq
  
 install:
-  - apt search libsfml
-  - sudo apt install -y libsfml-dev
-  - sudo apt-get install libfreetype6-dev libx11-dev libxrandr-dev libgl1-mesa-dev libudev-dev libopenal-dev libflac-dev libogg-dev libvorbis-dev -y
+  - sudo apt-get install libpthread-*
   
 os: linux
 addons:
@@ -20,6 +18,15 @@ addons:
      - g++-6
      - gcc-6
      - cmake
+     - libfreetype6-dev
+     - libgl1-mesa-dev
+     - libudev-dev
+     - libopenal-dev
+     - libx11-dev
+     - libxrandr-dev
+     - libflac-dev
+     - libogg-dev
+     - libvorbis-dev
      - libsfml-dev
 
 script:
