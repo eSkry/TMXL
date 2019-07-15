@@ -26,4 +26,4 @@ script:
   - export CXX=g++
   - cmake --version
   - cmake CMakeLists.txt
-  - cmake --build . --target 
+  - cmake --build .
