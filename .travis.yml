@@ -25,7 +25,7 @@ addons:
       - g++
       - cmake
       - libsfml-dev
-      - clang-6.0
+#      - clang-6.0
       - libstdc++6
       - libpng-dev
       - build-essential
@@ -40,7 +40,7 @@ script:
   - cmake --version
   - gcc --version
   - g++ --version
-#  - mkdir build
-#  - cd build
-  - cmake .
+  - mkdir build
+  - cd build
+  - cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTS=ON -DBUILD_EXAMPLES=ON
   - cmake --build .

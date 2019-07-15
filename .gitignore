@@ -4,3 +4,4 @@ TiledLoader/cmake-build*
 build
 CMakeFiles
 CMakeCache.txt
+.idea

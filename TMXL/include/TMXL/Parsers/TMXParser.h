@@ -32,7 +32,7 @@ namespace TMXL {
          * @brief Возвращает карту
          * @return
          */
-        std::shared_ptr<TMEMap> getMap() const _TMXL_NOEXCEPT;
+        std::shared_ptr<TMEMap> getMap() override;
 
     protected:
 

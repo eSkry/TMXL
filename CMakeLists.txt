@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.12)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 
 set(CMAKE_CXX_STANDARD 17)
@@ -13,13 +13,13 @@ option(USE_STL_STRING "Use string from std by default" OFF)
 
 string(TOLOWER ${CMAKE_BUILD_TYPE} TMXL_BUILD_TYPE)
 if(TMXL_BUILD_TYPE STREQUAL debug)
-    add_definitions(_COUT_DEBUG_OUTPUT)
+    add_compile_definitions(_COUT_DEBUG_OUTPUT)
 endif()
 
 #### PROJECT TMXL BUILD ####
 project(TMXL)
 set(TMXL_VERSION v0.1.0)
-add_definitions(TMXL_VERSION="${TMXL_VERSION}")
+add_compile_definitions(TMXL_VERSION="${TMXL_VERSION}")
 
 set(CMAKE_DEBUG_POSTFIX d)
 set(TMXL_LIBRARY_NAME ${PROJECT_NAME})
@@ -42,7 +42,7 @@ if(SFML_FOUND)
 endif()
 
 add_subdirectory("${CMAKE_SOURCE_DIR}/extlibs/pugixml")
-target_link_libraries(${PROJECT_NAME} pugixml)
+target_link_libraries(${TMXL_LIBRARY_NAME} pugixml)
 #### PROJECT TMXL BUILD ####
 
 if(BUILD_TESTS)
@@ -51,8 +51,8 @@ endif()
 
 #### EXAMPLES BUILD ####
 if(BUILD_EXAMPLES)
+    add_subdirectory(examples/Base)
 endif()
-add_subdirectory(examples/Base)
 #### EXAMPLES BUILD ####
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)

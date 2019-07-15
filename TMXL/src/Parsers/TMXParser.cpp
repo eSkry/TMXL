@@ -83,7 +83,7 @@ namespace TMXL {
 //        }
 //    }
 
-    std::shared_ptr<TMEMap> TMXParser::getMap() const {
+    std::shared_ptr<TMEMap> TMXParser::getMap() {
         return m_tmeMap;
     }
 
