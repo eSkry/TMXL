@@ -9,8 +9,6 @@ install:
 os: linux
 addons:
   apt:
-    sources:
-      - ubuntu-toolchan-r-test
     packages:
      - g++-6
      - gcc-6
