@@ -21,6 +21,7 @@ addons:
       - libstdc++6
       - libpng-dev
       - build-essential
+      - doxygen
 
 script:
   - export CC=clang-6.0
