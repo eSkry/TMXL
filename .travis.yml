@@ -12,7 +12,7 @@ install:
   - sudo apt install -y libsfml-dev
   - apt-get install libfreetype6-dev libx11-dev libxrandr-dev libgl1-mesa-dev libudev-dev libopenal-dev libflac-dev libogg-dev libvorbis-dev -y
   
-os: lunux
+os: linux
 addons:
   apt:
     sources:
