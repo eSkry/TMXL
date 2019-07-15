@@ -10,19 +10,7 @@ install:
   - apt search libsfml
   - apt search libsfml-dev
   - sudo apt install -y libsfml-dev
-  - sudo apt-get install -y libpthread-stubs0-dev
-  - sudo apt-get install -y libgl1-mesa-dev
-  - sudo apt-get install -y libx11-dev
-  - sudo apt-get install -y libxrandr-dev
-  - sudo apt-get install -y libfreetype6-dev
-  - sudo apt-get install -y libglew1.5-dev
-  - sudo apt-get install -y libjpeg8-dev
-  - sudo apt-get install -y libsndfile1-dev
-  - sudo apt-get install -y libopenal-dev
-  - sudo apt-get install -y libudev-dev
-  - sudo apt-get install -y libxcb-image0-dev
-  - sudo apt-get install libflac-dev
-  - sudo apt-get install libjpeg-dev
+  - apt-get install libfreetype6-dev libx11-dev libxrandr-dev libgl1-mesa-dev libudev-dev libopenal-dev libflac-dev libogg-dev libvorbis-dev -y
   
 os: lunux
 addons:
@@ -39,7 +27,7 @@ script:
   - export CXX=g++
   - cmake --version
   - gcc --version
-  - g++ -version
+  - g++ --version
   - mkdir build
   - cd build
   - cmake ../
