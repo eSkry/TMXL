@@ -1,3 +1,6 @@
 [submodule ".\\extlibs\\pugixml"]
 	path = .\\extlibs\\pugixml
 	url = https://github.com/zeux/pugixml
+[submodule ".\\tests\\lib\\googletest"]
+	path = .\\tests\\lib\\googletest
+	url = https://github.com/google/googletest
