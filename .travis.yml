@@ -29,5 +29,5 @@ script:
   - cmake --version
   - mkdir build
   - cd build
-  - cmake CMAKE_CXX_FLAGS="-stdlib=libC++" ../ 
+  - cmake ../ 
   - cmake --build .
