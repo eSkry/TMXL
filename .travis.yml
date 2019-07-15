@@ -22,6 +22,8 @@ addons:
      - libpng-dev
 
 script:
+  - export CC=CC=clang-6.0
+  - export CXX=clang++-6.0
   - export MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
   - export LINKER_FLAGS="-stdlib=libc++ -lc++abi"
   - cmake --version
