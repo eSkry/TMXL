@@ -7,7 +7,7 @@ before_install:
   - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
   - sudo apt-get update -qq
 
-install: 
+install:
   # C++17
   - sudo apt-get install -qq g++-8 libpthread-stubs0-dev
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 90
@@ -19,7 +19,7 @@ addons:
 #      - ubuntu-toolchain-r-test
 #      - llvm-toolchain-trusty-6.0
 #      - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-6.0 main'
-#      - key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key' 
+#      - key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
     packages:
       - gcc
       - g++
@@ -42,5 +42,5 @@ script:
   - g++ --version
 #  - mkdir build
 #  - cd build
-  - cmake . 
+  - cmake .
   - cmake --build .
