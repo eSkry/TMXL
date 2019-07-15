@@ -33,8 +33,8 @@ addons:
 script:
   - export CC=gcc
   - export CXX=g++
-  - sudo ./scripts/linux/dependencies.sh
-  - sudo ./scripts/linux/install_SFML_dependencies.sh
+#  - sudo ./scripts/linux/dependencies.sh
+#  - sudo ./scripts/linux/install_SFML_dependencies.sh
   - export MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
 #  - export LINKER_FLAGS="-stdlib=libc++ -lc++abi"
   - cmake --version
