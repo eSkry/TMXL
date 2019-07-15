@@ -13,13 +13,13 @@ option(USE_STL_STRING "Use string from std by default" OFF)
 
 string(TOLOWER ${CMAKE_BUILD_TYPE} TMXL_BUILD_TYPE)
 if(TMXL_BUILD_TYPE STREQUAL debug)
-    add_compile_definitions(_COUT_DEBUG_OUTPUT)
+    add_definitions(_COUT_DEBUG_OUTPUT)
 endif()
 
 #### PROJECT TMXL BUILD ####
 project(TMXL)
 set(TMXL_VERSION v0.1.0)
-add_compile_definitions(TMXL_VERSION="${TMXL_VERSION}")
+add_definitions(TMXL_VERSION="${TMXL_VERSION}")
 
 set(CMAKE_DEBUG_POSTFIX d)
 set(TMXL_LIBRARY_NAME ${PROJECT_NAME})
