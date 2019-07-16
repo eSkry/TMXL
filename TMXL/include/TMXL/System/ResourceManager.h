@@ -4,7 +4,7 @@
 
 #ifndef RESOURCEMANAGER_H
 
-#include "../Config.h"
+#include "TMXL/Config.h"
 
 #include <SFML/System/String.hpp>
 
@@ -12,6 +12,11 @@
 #include <map>
 
 namespace TMXL {
+
+    enum RDC : int { // Singletone Data Category
+        DEFAULT = 1,
+        USER
+    };
 
     template <typename T, typename String_t = sf::String>
     class ResourceManager : public std::map<String_t, std::shared_ptr<T>> {

@@ -20,7 +20,7 @@ namespace TMXL {
         }
 
         xml_node mapNode = l_document.child("Map");
-        std::shared_ptr<TMEMap> pRootNode = parseMapNode(&mapNode);
+        std::shared_ptr<TMEMap> pRootNode = parseMap(&mapNode);
 
         xml_node tilesetNode = mapNode.child("tileset");
 //        parseTilesetNode(&tilesetNode, pRootNode);
@@ -28,8 +28,8 @@ namespace TMXL {
         return true;
     }
 
-    std::shared_ptr<TMEMap> TMXParser::parseMapNode(pugi::xml_node *pMapNode) {
-        if (pMapNode == nullptr){
+    std::shared_ptr<TMEMap> TMXParser::parseMap(pugi::xml_node *pMapNode) {
+        if (pMapNode == nullptr) {
             tmxlDebug("Map node is not exists")
             return nullptr;
         }
@@ -38,32 +38,45 @@ namespace TMXL {
 
         m_tmeMap->mapSize.x = static_cast<TLSize_t>(pMapNode->attribute("width").as_ullong(0));
         m_tmeMap->mapSize.y = static_cast<TLSize_t>(pMapNode->attribute("height").as_ullong(0));
-
         m_tmeMap->tileSize.x = static_cast<TLSize_t>(pMapNode->attribute("tilewidth").as_ullong(0));
         m_tmeMap->tileSize.y = static_cast<TLSize_t>(pMapNode->attribute("tileheight").as_ullong(0));
-
         m_tmeMap->backgroundColor = strToColorARGB(pMapNode->attribute("backgroundcolor").as_string());
-
         m_tmeMap->nextObjectId = static_cast<TLSize_t>(pMapNode->attribute("nextobjectid").as_ullong(0));
         m_tmeMap->nextLayerId = static_cast<TLSize_t>(pMapNode->attribute("nextlayerid").as_ullong(0));
-
         m_tmeMap->renderOrder = spotRenderOrder(pMapNode->attribute("renderorder").as_string());
         m_tmeMap->mapOrientation = spotMapOrientation(pMapNode->attribute("orientation").as_string());
-
         m_tmeMap->staggerAxis = pMapNode->attribute("staggeraxis").as_string("-")[0];
         m_tmeMap->staggerIndex = pMapNode->attribute("staggerindex").as_string("-")[0];
-
         m_tmeMap->hexSideLength = static_cast<TLSize_t>(pMapNode->attribute("hexsidelength").as_ullong(0));
 
-        pugi::xml_node properties = pMapNode->child("properties");
-        parseProperties(&properties, m_tmeMap->properties);
+        {
+            pugi::xml_node properties = pMapNode->child("properties");
+            parseProperties(&properties, m_tmeMap->properties);
+        }
+
+        pugi::xml_node node = pMapNode->first_child();
+        while (node){
+            sf::String nodeName = node.name();
+            if ( compare(nodeName, "tileset") ) {
+
+            } else if (compare(nodeName, "image", StringComparison::IgnoreCase)) {
+
+            } else if (compare(nodeName, "terraintypes", StringComparison::IgnoreCase)) {
+
+            } else if (compare(nodeName, "tile", StringComparison::IgnoreCase)) {
+
+            } else if (compare(nodeName, "wangsets", StringComparison::IgnoreCase)) {
+
+            }
+
+            node = node.next_sibling();
+        }
 
         //TODO: Парсинг специфичных для данного загрузчика возможностей
-
         return m_tmeMap;
     }
 
-    void TMXParser::parseTilesetNode(pugi::xml_node *pTilesetNode, std::shared_ptr<TMEMap> pParent) {
+    void TMXParser::parseTileset(pugi::xml_node *pTilesetNode, std::shared_ptr<TMEMap> pMap) {
         if (pTilesetNode == nullptr) {
             return;
         }
@@ -75,13 +88,6 @@ namespace TMXL {
 //        auto temp = std::make_shared<MapNode>(pParent);
 //        fillAttributes(pTilesetNode, temp);
     }
-
-//    void TMXParser::fillAttributes(pugi::xml_node *pNodeFrom, std::shared_ptr<MapNode> pNode) {
-//        for (auto it = pNodeFrom->attributes_begin(); it != pNodeFrom->attributes_end(); it++){
-//            pNode->attributes.insert({it->name(), it->value()});
-//            tmxlDebug(it->name() << it->value());
-//        }
-//    }
 
     std::shared_ptr<TMEMap> TMXParser::getMap() {
         return m_tmeMap;
@@ -109,26 +115,39 @@ namespace TMXL {
         return MapOrientation::Undefined;
     }
 
-    void TMXParser::getAttributes(pugi::xml_node *pNodeWithAttributes, std::map<sf::String, TMXLType>& to) _TMXL_NOEXCEPT {
+    void TMXParser::parseAttributes(pugi::xml_node *pNodeWithAttributes, std::map<sf::String, TMXLType> &to) _TMXL_NOEXCEPT {
         if (pNodeWithAttributes == nullptr) return;
 
-        for (auto it = pNodeWithAttributes->begin(); it != pNodeWithAttributes->end(); it++){
+        for (auto & pNodeWithAttribute : *pNodeWithAttributes){
             TMXLType temp;
-            temp = it->value();
-            to.insert({ it->name(), temp });
+            temp = pNodeWithAttribute.value();
+            to.insert({ pNodeWithAttribute.name(), temp });
         }
     }
 
-    void TMXParser::parseProperties(pugi::xml_node *pNodeProperties, std::vector<TMEProperty>& a_vectorTo) {
+    void TMXParser::parseProperties(pugi::xml_node *pNodeProperties, std::vector<TMEProperty>& vectorTo) _TMXL_NOEXCEPT {
         if (pNodeProperties == nullptr) return;
 
-        for (auto it = pNodeProperties->begin(); it != pNodeProperties->end(); it++){
+        for (auto & pNodePropertie : *pNodeProperties){
             TMEProperty temp;
-            temp.name = it->attribute("name").as_string();
-            temp.type = stringToType(it->attribute("type").as_string());
-            temp.value = it->attribute("value").as_string();
-            a_vectorTo.push_back(temp);
+            temp.name = pNodePropertie.attribute("name").as_string();
+            temp.type = stringToType(pNodePropertie.attribute("type").as_string());
+            temp.value = pNodePropertie.attribute("value").as_string();
+            vectorTo.push_back(temp);
         }
+    }
+
+    void TMXParser::parseImage(pugi::xml_node *pNodeImage, std::shared_ptr<TMEMap> map) {
+        auto temp = std::make_shared<TMEImage>();
+        temp->trans =  strToColorARGB(pNodeImage->attribute("trans").as_string());
+        temp->size.x = pNodeImage->attribute("width").as_uint();
+        temp->size.y = pNodeImage->attribute("height").as_uint();
+
+        sf::String source = pNodeImage->attribute("source").as_string();
+        temp->image = std::make_shared<sf::Image>();
+        temp->image->loadFromFile(source);
+
+        //map->images[source] = temp;
     }
 
 }
