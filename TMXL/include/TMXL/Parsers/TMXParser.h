@@ -13,6 +13,8 @@
 #include "TMXL/Config.h"
 #include "IParser.h"
 
+#include <SFML/System/String.hpp>
+
 #include "pugixml.hpp"
 
 #include <memory>
@@ -51,7 +53,7 @@ namespace TMXL {
 
         static void parseAttributes(pugi::xml_node *pNodeWithAttributes, std::map<sf::String, TMXLType> &to) _TMXL_NOEXCEPT;
 
-        static void parseImage(pugi::xml_node *pNodeImage, std::shared_ptr<TMEMap> map) _TMXL_NOEXCEPT;
+        void parseImage(pugi::xml_node *pNodeImage, std::shared_ptr<TMEMap> map) _TMXL_NOEXCEPT;
 
         MapRenderOrder spotRenderOrder(const sf::String &str) const _TMXL_NOEXCEPT;
         MapOrientation spotMapOrientation(const sf::String& str) const _TMXL_NOEXCEPT;

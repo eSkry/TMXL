@@ -1,11 +1,12 @@
 
-#include <iostream>
-using namespace std;
-
 #include <TMXL/Parsers/TMXParser.h>
+#include <TMXL/Tools.h>
+
+#include <SFML/System/String.hpp>
 #include <SFML/Graphics.hpp>
 
-#include <TMXL/Tools.h>
+#include <iostream>
+using namespace std;
 
 int main() {
     cout << "TMXL Version: " << TMXL::getTMXLVersion() << endl;
