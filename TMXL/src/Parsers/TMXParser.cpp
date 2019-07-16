@@ -138,6 +138,8 @@ namespace TMXL {
     }
 
     void TMXParser::parseImage(pugi::xml_node *pNodeImage, std::shared_ptr<TMEMap> map) _TMXL_NOEXCEPT {
+		if (pNodeImage == nullptr) return;
+
         auto temp = std::make_shared<TMEImage>();
         temp->trans =  strToColorARGB(pNodeImage->attribute("trans").as_string());
         temp->size.x = pNodeImage->attribute("width").as_uint();

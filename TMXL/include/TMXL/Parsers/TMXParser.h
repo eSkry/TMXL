@@ -42,16 +42,16 @@ namespace TMXL {
          */
         std::shared_ptr<TMEMap> parseMap(pugi::xml_node *pMapNode);
 
-        static void parseTileset(pugi::xml_node *pTilesetNode, std::shared_ptr<TMEMap> pMap);
+        void parseTileset(pugi::xml_node *pTilesetNode, std::shared_ptr<TMEMap> pMap);
 
         /**
          * @details Принимает на вход ноду properties и вектор со строками по ссылке, парсит все properties
          * @param pNodeProperties
          * @param a_vectorTo
          */
-        static void parseProperties(pugi::xml_node *pNodeProperties, std::vector<TMEProperty>& vectorTo) _TMXL_NOEXCEPT;
+        void parseProperties(pugi::xml_node *pNodeProperties, std::vector<TMEProperty>& vectorTo) _TMXL_NOEXCEPT;
 
-        static void parseAttributes(pugi::xml_node *pNodeWithAttributes, std::map<sf::String, TMXLType> &to) _TMXL_NOEXCEPT;
+        void parseAttributes(pugi::xml_node *pNodeWithAttributes, std::map<sf::String, TMXLType> &to) _TMXL_NOEXCEPT;
 
         void parseImage(pugi::xml_node *pNodeImage, std::shared_ptr<TMEMap> map) _TMXL_NOEXCEPT;
 
