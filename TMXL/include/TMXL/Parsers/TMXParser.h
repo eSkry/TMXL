@@ -15,10 +15,7 @@
 
 #include "pugixml.hpp"
 
-#include <filesystem>
 #include <memory>
-
-namespace fs = std::filesystem;
 
 namespace TMXL {
 
