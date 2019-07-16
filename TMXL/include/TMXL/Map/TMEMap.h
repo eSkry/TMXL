@@ -1,6 +1,7 @@
 #ifndef TMXL_TMEMAP_H
 #define TMXL_TMEMAP_H
 
+#include "TMXL/System/ResourceManager.h"
 #include "TMXL/TMXLType.h"
 #include "TMXL/Config.h"
 #include "TMXL/Tools.h"
@@ -39,6 +40,12 @@ namespace TMXL {
         TMXLType                value;
     };
 
+    struct TMEImage {
+        sf::Color                   trans;
+        sf::Vector2u                size;
+        std::shared_ptr<sf::Image>  image;
+    };
+
     struct TMETileset {
 
         TMETileset() { image = nullptr; }
@@ -53,6 +60,12 @@ namespace TMXL {
         int                     marign;
         std::size_t             tileCount;
         std::size_t             columns;
+    };
+
+    class Tilesets : public std::map<sf::String, std::shared_ptr<TMETileset>> {
+    public:
+
+    private:
     };
 
     /**
@@ -76,8 +89,10 @@ namespace TMXL {
         char                    staggerIndex          = '-';
         char                    staggerAxis           = '-';
 
-        std::map<sf::String, std::shared_ptr<TMETileset>>    tilesets;
-        std::vector<TMEProperty>                             properties;
+        //ResourceManager<TMEImage>   images            = ResourceManager<TMEImage>::
+
+        Tilesets                                        tilesets;
+        std::vector<TMEProperty>                        properties;
     };
 
 }
