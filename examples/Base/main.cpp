@@ -1,4 +1,5 @@
 
+#include <TMXL/System/NodeObjectConverter.h>
 #include <TMXL/Parsers/XMLParser.h>
 #include <TMXL/Map/NodeObject.h>
 #include <TMXL/Tools.h>
@@ -7,6 +8,7 @@
 #include <SFML/Graphics.hpp>
 
 #include <iostream>
+#include <memory>
 using namespace std;
 
 int main() {
@@ -20,7 +22,16 @@ int main() {
     parser.parse();
 
     auto map = parser.getRoot();
-    map->dump();
+    //map->dump();
+
+    TMXL::NodeObjectConverter converter;
+    converter.registerCallback("map", [](std::shared_ptr<TMXL::NodeObject> node){
+        cout << node->name.toAnsiString() << endl;
+    });
+    converter.registerCallback("object", [](std::shared_ptr<TMXL::NodeObject> node){
+        node->parent->dump();
+    });
+    converter.convert(map);
 
     sf::RenderWindow window(sf::VideoMode(600, 600) ,"Game");
     while(window.isOpen()){
