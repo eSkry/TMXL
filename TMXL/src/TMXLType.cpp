@@ -7,10 +7,8 @@ namespace TMXL {
         m_data = nullptr;
     }
 
-    TMXLType::TMXLType(const TMXLType& object) {
-        deleteData();
+    TMXLType::TMXLType(const TMXLType& object) : TMXLType() {
         m_type = object.getType();
-        m_data = nullptr;
         switch (m_type){
             case TMXLTypes::Undefined_e: break;
             case TMXLTypes::Int_e: m_data = new int(object.as_int()); break;
