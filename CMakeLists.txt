@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.10)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 
 set(CMAKE_CXX_STANDARD 17)
@@ -11,15 +11,15 @@ option(BUILD_EXAMPLES "Build example projects" ON)
 option(TMXL_BUILD_TESTS "Build TMXL tests" ON)
 option(USE_STL_STRING "Use string from std by default" OFF)
 
-string(TOLOWER ${CMAKE_BUILD_TYPE} TMXL_BUILD_TYPE)
-if(TMXL_BUILD_TYPE STREQUAL debug)
-    add_compile_definitions(_COUT_DEBUG_OUTPUT)
+if(${CMAKE_VERSION} VERSION_LESS "3.12")
+	add_definitions(-DTMXL_VERSION=${TMXL_VERSION})
+else()
+	add_compile_definitions(TMXL_VERSION="${TMXL_VERSION}")
 endif()
 
 #### PROJECT TMXL BUILD ####
 project(TMXL)
 set(TMXL_VERSION v0.1.0)
-add_compile_definitions(TMXL_VERSION="${TMXL_VERSION}")
 
 set(CMAKE_DEBUG_POSTFIX d)
 set(TMXL_LIBRARY_NAME ${PROJECT_NAME})
