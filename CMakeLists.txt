@@ -44,7 +44,7 @@ add_subdirectory("${CMAKE_SOURCE_DIR}/extlibs/pugixml")
 target_link_libraries(${TMXL_LIBRARY_NAME} pugixml)
 #### PROJECT TMXL BUILD ####
 
-if(TMXL_BUILD_TESTS)
+if(BUILD_TESTS)
     add_subdirectory(tests)
 endif()
 
