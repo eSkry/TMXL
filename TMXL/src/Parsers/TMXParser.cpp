@@ -141,11 +141,11 @@ namespace TMXL {
 		if (pNodeImage == nullptr) return;
 
         auto temp = std::make_shared<TMEImage>();
-        temp->trans =  strToColorARGB(pNodeImage->attribute("trans").as_string());
+        temp->trans =  strToColorARGB(pugi::as_wide(pNodeImage->attribute("trans").as_string()));
         temp->size.x = pNodeImage->attribute("width").as_uint();
         temp->size.y = pNodeImage->attribute("height").as_uint();
-
-        sf::String source = pNodeImage->attribute("source").as_string();
+		
+        sf::String source = pugi::as_wide(pNodeImage->attribute("source").as_string());
         temp->image = std::make_shared<sf::Image>();
         temp->image->loadFromFile(source);
 
