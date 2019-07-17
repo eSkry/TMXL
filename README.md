@@ -20,6 +20,7 @@ Project uses [CMake](https://cmake.org) to generate platform and compiler-specif
 1. Build TMXL:
     - By script: `chmod +x ./build.sh && ./build.sh`
     - By command: `mkdir build && cd build && cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE=Release -DBUILD_EXAMPLES=ON && cmake --build .`
+1. For install lib and include files run: `make install`
 
 ### Building on Window (Visual Studio)
 1. Install SFML and add path to include and bin files
