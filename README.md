@@ -1,7 +1,10 @@
 <h1 align="center">TMXL</h1>
 
 <div align="center">
-[![Build Status](https://travis-ci.com/eSkry/TMXL.svg?branch=TMXL_V1)](https://travis-ci.com/eSkry/TMXL) [![Coverage Status](https://coveralls.io/repos/github/eSkry/TMXL/badge.svg?branch=TMXL_V1)](https://coveralls.io/github/eSkry/TMXL?branch=TMXL_V1)  [![CodeFactor](https://www.codefactor.io/repository/github/eskry/tmxl/badge)](https://www.codefactor.io/repository/github/eskry/tmxl) ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+ <a href="https://travis-ci.com/eSkry/TMXL"><img src="https://travis-ci.com/eSkry/TMXL.svg?branch=TMXL_V1" /></a>
+ <a href="https://coveralls.io/github/eSkry/TMXL?branch=TMXL_V1"><img src="https://coveralls.io/repos/github/eSkry/TMXL/badge.svg?branch=TMXL_V1" /></a>
+ <a href="https://www.codefactor.io/repository/github/eskry/tmxl"><img src="https://www.codefactor.io/repository/github/eskry/tmxl/badge" /></a>
+ <a href="https://github.com/eSkry/TMXL/blob/TMXL_V1/LICENSE.md"><img src="https://img.shields.io/badge/License-MIT-blue.svg" /></a>
 </div>
 
 ## Build
