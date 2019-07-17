@@ -1,8 +1,8 @@
 #ifndef TMXL_IPARSER_H
 #define TMXL_IPARSER_H
 
+#include "TMXL/Map/NodeObject.h"
 #include "TMXL/Config.h"
-#include "TMXL/Map/TMEMap.h"
 
 namespace TMXL {
 
@@ -27,7 +27,7 @@ namespace TMXL {
          * @details Возвращает структуру карты
          * @return
          */
-        virtual std::shared_ptr<TMEMap> getMap() = 0;
+        virtual std::shared_ptr<NodeObject> getRoot() = 0;
 
         /**
          * @brief void setFileName(const TLString_t& fileName) [NOEXCEPT]

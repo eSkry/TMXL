@@ -19,10 +19,8 @@ namespace TMXL {
         Long_e,
         Bool_e,
         Double_e,
-        Float_e,
         String_e,
-        Color_e,
-        File_e
+        Color_e
     };
 
     /**
@@ -86,13 +84,13 @@ namespace TMXL {
         } else if (str == "int"){
             return TMXLTypes::Int_e;
         } else if (str == "float") {
-            return TMXLTypes::Float_e;
+            return TMXLTypes::Double_e;
         } else if (str == "bool") {
             return TMXLTypes ::Bool_e;
         } else if (str == "color") {
             return TMXLTypes::Color_e;
         } else if (str == "file") {
-            return TMXLTypes::File_e;
+            return TMXLTypes::String_e;
         }
 
         return TMXLTypes::Undefined_e;
@@ -104,13 +102,13 @@ namespace TMXL {
         } else if (compare(str, "int", StringComparison::IgnoreCase))  {
             return TMXLTypes::Int_e;
         } else if (compare(str, "float", StringComparison::IgnoreCase)) {
-            return TMXLTypes::Float_e;
+            return TMXLTypes::Double_e;
         } else if (compare(str, "bool", StringComparison::IgnoreCase)) {
             return TMXLTypes ::Bool_e;
         } else if (compare(str, "color", StringComparison::IgnoreCase)) {
             return TMXLTypes::Color_e;
         } else if (compare(str, "flie", StringComparison::IgnoreCase)) {
-            return TMXLTypes::File_e;
+            return TMXLTypes::String_e;
         }
 
         return TMXLTypes::Undefined_e;

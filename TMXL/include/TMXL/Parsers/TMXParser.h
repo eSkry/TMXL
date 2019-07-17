@@ -7,8 +7,8 @@
  */
 
 #include "TMXL/System/StringTools.h"
+#include "TMXL/Map/NodeObject.h"
 #include "TMXL/TypeConvert.h"
-#include "TMXL/Map/TMEMap.h"
 #include "TMXL/TMXLType.h"
 #include "TMXL/Config.h"
 #include "IParser.h"
@@ -31,35 +31,16 @@ namespace TMXL {
          * @brief Возвращает карту
          * @return
          */
-        std::shared_ptr<TMEMap> getMap() override;
+        std::shared_ptr<NodeObject> getRoot() override;
 
     protected:
 
-        /**
-         * @details Парсит корневую ноду карты - map и возвращает указатель на объект содержащий данные карты.
-         * @param pMapNode
-         * @return
-         */
-        std::shared_ptr<TMEMap> parseMap(pugi::xml_node *pMapNode);
+        void parseNode(pugi::xml_node *pNode, std::shared_ptr<NodeObject> pNodeObject);
 
-        void parseTileset(pugi::xml_node *pTilesetNode, std::shared_ptr<TMEMap> pMap);
-
-        /**
-         * @details Принимает на вход ноду properties и вектор со строками по ссылке, парсит все properties
-         * @param pNodeProperties
-         * @param a_vectorTo
-         */
-        void parseProperties(pugi::xml_node *pNodeProperties, std::vector<TMEProperty>& vectorTo) _TMXL_NOEXCEPT;
-
-        void parseAttributes(pugi::xml_node *pNodeWithAttributes, std::map<sf::String, TMXLType> &to) _TMXL_NOEXCEPT;
-
-        void parseImage(pugi::xml_node *pNodeImage, std::shared_ptr<TMEMap> map) _TMXL_NOEXCEPT;
-
-        MapRenderOrder spotRenderOrder(const sf::String &str) const _TMXL_NOEXCEPT;
-        MapOrientation spotMapOrientation(const sf::String& str) const _TMXL_NOEXCEPT;
+        void parseAttributes(pugi::xml_node *pNodeWithAttributes, std::shared_ptr<NodeObject> pToObject) _TMXL_NOEXCEPT;
 
     private:
-        std::shared_ptr<TMEMap>      m_tmeMap;
+        std::shared_ptr<NodeObject>      mRootNode;
     };
 
 }

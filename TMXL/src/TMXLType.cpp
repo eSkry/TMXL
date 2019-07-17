@@ -7,6 +7,21 @@ namespace TMXL {
         m_data = nullptr;
     }
 
+    TMXLType::TMXLType(const TMXLType& object) {
+        m_type = object.getType();
+        m_data = nullptr;
+        switch (m_type){
+            case TMXLTypes::Undefined_e: break;
+            case TMXLTypes::Int_e: m_data = new int(object.as_int()); break;
+            case TMXLTypes::TLSize_e: m_data = new TLSize_t(object.as_int()); break; // TODO as TLSize_t
+            case TMXLTypes::Long_e: m_data = new long(object.as_long()); break;
+            case TMXLTypes::Bool_e: m_data = new bool(object.as_bool()); break;
+            case TMXLTypes::Double_e: m_data = new double(object.as_double()); break;
+            case TMXLTypes::String_e: m_data = new sf::String(object.as_string()); break;
+            case TMXLTypes::Color_e: m_data = new sf::Color(object.as_color()); break;
+        }
+    }
+
     TMXLTypes TMXLType::getType() const {
         return m_type;
     }

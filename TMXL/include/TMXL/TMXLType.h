@@ -24,6 +24,7 @@ namespace TMXL {
     public:
 
         TMXLType();
+        TMXLType(const TMXLType& object);
         ~TMXLType();
 
         /**

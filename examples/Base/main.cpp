@@ -1,5 +1,6 @@
 
 #include <TMXL/Parsers/TMXParser.h>
+#include <TMXL/Map/NodeObject.h>
 #include <TMXL/Tools.h>
 
 #include <SFML/System/String.hpp>
@@ -17,6 +18,9 @@ int main() {
     TMXL::TMXParser parser;
     parser.setFileName("map1.tmx");
     parser.parse();
+
+    auto map = parser.getRoot();
+    map->dump();
 
     sf::RenderWindow window(sf::VideoMode(600, 600) ,"Game");
     while(window.isOpen()){
