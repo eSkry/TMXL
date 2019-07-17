@@ -147,7 +147,7 @@ namespace TMXL {
 		
         sf::String source = pugi::as_wide(pNodeImage->attribute("source").as_string());
         temp->image = std::make_shared<sf::Image>();
-        temp->image->loadFromFile(source);
+        temp->image->loadFromFile(source.toAnsiString());
 
         //map->images[source] = temp;
     }
