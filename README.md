@@ -1,4 +1,8 @@
-# TMXL. [![Build Status](https://travis-ci.com/eSkry/TMXL.svg?branch=TMXL_V1)](https://travis-ci.com/eSkry/TMXL) [![Coverage Status](https://coveralls.io/repos/github/eSkry/TMXL/badge.svg?branch=TMXL_V1)](https://coveralls.io/github/eSkry/TMXL?branch=TMXL_V1)  [![CodeFactor](https://www.codefactor.io/repository/github/eskry/tmxl/badge)](https://www.codefactor.io/repository/github/eskry/tmxl) ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+<h1 align="center">TMXL</h1>
+
+<div align="center">
+[![Build Status](https://travis-ci.com/eSkry/TMXL.svg?branch=TMXL_V1)](https://travis-ci.com/eSkry/TMXL) [![Coverage Status](https://coveralls.io/repos/github/eSkry/TMXL/badge.svg?branch=TMXL_V1)](https://coveralls.io/github/eSkry/TMXL?branch=TMXL_V1)  [![CodeFactor](https://www.codefactor.io/repository/github/eskry/tmxl/badge)](https://www.codefactor.io/repository/github/eskry/tmxl) ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+</div>
 
 ## Build
 Project uses [CMake](https://cmake.org) to generate platform and compiler-specific build files.
