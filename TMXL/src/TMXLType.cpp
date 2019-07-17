@@ -8,6 +8,7 @@ namespace TMXL {
     }
 
     TMXLType::TMXLType(const TMXLType& object) {
+        deleteData();
         m_type = object.getType();
         m_data = nullptr;
         switch (m_type){
