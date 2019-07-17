@@ -21,6 +21,7 @@ namespace TMXL {
 
         xml_node lRootNode = l_document.root();
         parseNode(&lRootNode, mRootNode);
+        mRootNode->isRootNode = true;
 
         return true;
     }
