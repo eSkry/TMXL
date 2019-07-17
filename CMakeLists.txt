@@ -7,12 +7,12 @@ set(CMAKE_CXX_STANDARD 17)
 #   USE_STL_STRING
 #   NOT_USE_SFML_COLOR_TYPE
 
-option(BUILD_EXAMPLES "Build example projects" ON)
-option(TMXL_BUILD_TESTS "Build TMXL tests" ON)
+option(BUILD_EXAMPLES "Build example projects" OFF)
+option(BUILD_TESTS "Build tests" OFF)
 option(USE_STL_STRING "Use string from std by default" OFF)
 
 #### PROJECT TMXL BUILD ####
-project(TMXL)
+project("TMXL")
 set(TMXL_VERSION v0.1.0)
 if(${CMAKE_VERSION} VERSION_LESS "3.12")
 	add_definitions(-DTMXL_VERSION=${TMXL_VERSION})
@@ -22,7 +22,7 @@ endif()
 
 set(CMAKE_DEBUG_POSTFIX d)
 set(TMXL_LIBRARY_NAME ${PROJECT_NAME})
-set(TMXL_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/TMXL")
+set(TMXL_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/TMXL/include/TMXL")
 message("TMXL Version: ${TMXL_VERSION}")
 message("TMXL Binary dir: ${CMAKE_CURRENT_BINARY_DIR}")
 set(TMXL_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR})
@@ -36,8 +36,8 @@ message("TMXL OUT DIR: ${CMAKE_CURRENT_BINARY_DIR}")
 
 find_package(SFML REQUIRED window graphics system)
 if(SFML_FOUND)
-    include_directories(${SFML_INCLUDE_DIR})
-    target_link_libraries(${TMXL_LIBRARY_NAME} ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
+	include_directories(${SFML_INCLUDE_DIR})
+	target_link_libraries(${TMXL_LIBRARY_NAME} ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
 endif()
 
 add_subdirectory("${CMAKE_SOURCE_DIR}/extlibs/pugixml")
@@ -50,8 +50,17 @@ endif()
 
 #### EXAMPLES BUILD ####
 if(BUILD_EXAMPLES)
-    add_subdirectory(examples/Base)
+	add_subdirectory(examples/Base)
 endif()
 #### EXAMPLES BUILD ####
 
-install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+
+#### INSTALL SECTION ####
+include(GNUInstallDirs)
+install(TARGETS ${TMXL_LIBRARY_NAME} 
+		PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+		LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+		ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+
+install(DIRECTORY "${CMAKE_SOURCE_DIR}/TMXL/include/TMXL" DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+#### INSTALL SECTION ####

@@ -11,3 +11,6 @@ add_executable(${TMXL_TEST_NAME} tools_check.cpp sfml_sugar_check.cpp xmlparser_
 
 target_link_libraries(${TMXL_TEST_NAME} gtest gtest_main)
 target_link_libraries(${TMXL_TEST_NAME} ${TMXL_LIBRARY_NAME})
+
+add_test(${TMXL_TEST_NAME} ${TMXL_TEST_NAME})
+add_custom_command(TARGET ${TMXL_TEST_NAME} POST_BUILD COMMAND ${TMXL_TEST_NAME} WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
