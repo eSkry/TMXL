@@ -1,5 +1,5 @@
-#ifndef TMXL_TMXPARSER_H
-#define TMXL_TMXPARSER_H
+#ifndef TMXL_XMLPARSER_H
+#define TMXL_XMLPARSER_H
 
 /**
  * @details XML Структура карты описана в оффициальной документации Tiled Map Editor
@@ -21,11 +21,11 @@
 
 namespace TMXL {
 
-    class TMXParser : public IParser {
+    class XMLParser : public IParser {
     public:
         bool parse() override;
 
-        TMXParser();
+        XMLParser();
 
         /**
          * @brief Возвращает карту
@@ -45,4 +45,4 @@ namespace TMXL {
 
 }
 
-#endif //TMXL_TMXPARSER_H
+#endif //TMXL_XMLPARSER_H
