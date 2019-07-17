@@ -19,14 +19,14 @@ Project uses [CMake](https://cmake.org) to generate platform and compiler-specif
 1. Clone repository, enter to TMXL directory and run init script: `git clone https://github.com/eSkry/TMXL && cd ./TMXL && chmod +x ./initsubmodules.sh && ./initsubmodules.sh`
 1. Build TMXL:
     - By script: `chmod +x ./build.sh && ./build.sh`
-    - By command: `mkdir build && cd build && cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE=Debug -DTMXL_BUILD_TESTS=ON -DBUILD_EXAMPLES=ON && cmake --build .`
+    - By command: `mkdir build && cd build && cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE=Release -DBUILD_EXAMPLES=ON && cmake --build .`
 
 ### Building on Window (Visual Studio)
 1. Install SFML and add path to include and bin files
 1. CMake build list:
-    - Visual Studio 2019: `cmake .. -G "Visual Studio 16 2019" -DTMXL_BUILD_TESTS=ON -DBUILD_EXAMPLES=ON`
-    - Visual Studio 2017: `cmake .. -G "Visual Studio 15 2017 Win64" -DTMXL_BUILD_TESTS=ON -DBUILD_EXAMPLES=ON`
-    - Visual Studio 2015: `cmake .. -G "Visual Studio 14 2015 Win64" -DTMXL_BUILD_TESTS=ON -DBUILD_EXAMPLES=ON`
+    - Visual Studio 2019: `cmake .. -G "Visual Studio 16 2019" -DBUILD_EXAMPLES=ON`
+    - Visual Studio 2017: `cmake .. -G "Visual Studio 15 2017 Win64" -DBUILD_EXAMPLES=ON`
+    - Visual Studio 2015: `cmake .. -G "Visual Studio 14 2015 Win64" -DBUILD_EXAMPLES=ON`
 1. Open TMXL.sln project
 
 ## Contributing
