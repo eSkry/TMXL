@@ -3,7 +3,6 @@
 ## TMXL. Map loader from Tiles Map Editor
 
 ## Build
-------
 Project uses [CMake](https://cmake.org) to generate platform and compiler-specific build files.
 
 ### Dependencies
