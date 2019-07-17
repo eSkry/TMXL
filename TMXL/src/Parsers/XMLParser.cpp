@@ -41,6 +41,7 @@ namespace TMXL {
 
         for (auto childNode : pNode->children()){
             pNodeObject->childrens.push_back(std::make_shared<NodeObject>());
+            pNodeObject->childrens.back()->parent = pNodeObject;
             parseNode(&childNode, pNodeObject->childrens.back());
         }
     }

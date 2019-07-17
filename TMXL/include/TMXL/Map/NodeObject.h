@@ -61,6 +61,11 @@ namespace TMXL {
          * @brief ture if is root node
          */
         bool isRootNode             = false;
+
+        /**
+         * @brief Pointer to parent object, if nullptr then is root node
+         */
+        std::shared_ptr<NodeObject> parent;
     };
 
 }
