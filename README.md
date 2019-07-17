@@ -14,6 +14,9 @@ Project uses [CMake](https://cmake.org) to generate platform and compiler-specif
  - By script: `chmod +x ./build.sh && ./build.sh`
  - By command: `mkdir build && cd build && cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE=Debug -DTMXL_BUILD_TESTS=ON -DBUILD_EXAMPLES=ON && cmake --build .`
 
+## Contributing
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
