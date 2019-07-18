@@ -7,3 +7,5 @@ CMakeCache.txt
 .idea
 .vs
 out
+CMakeSettings.json
+
