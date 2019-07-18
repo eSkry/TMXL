@@ -16,7 +16,7 @@ namespace TMXL {
 		
 		XMLFormater();
 
-		std::stringstream& formatNode(std::shared_ptr<NodeObject> node) override;
+		std::stringstream& formatNode(std::shared_ptr<NodeObject> node, bool skipFirstNode = false) override;
 
 	protected:
 

@@ -19,7 +19,7 @@ namespace TMXL {
             return false;
         }
 
-        xml_node lRootNode = l_document.child("map");
+		xml_node lRootNode = l_document.root();
 
         parseNode(&lRootNode, mRootNode);
         mRootNode->isRootNode = true;
@@ -55,7 +55,7 @@ namespace TMXL {
         for (auto it : pNodeWithAttributes->attributes()){
             TMXLType value;
             value = sf::String(std::string(it.value()));
-            pToObject->attributes.insert(std::make_pair(sf::String(std::string(it.name())), value));
+            pToObject->attributes.insert(std::make_pair(std::string(it.name()), value));
         }
     }
 

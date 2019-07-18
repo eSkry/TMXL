@@ -6,13 +6,19 @@ namespace TMXL {
 		mLevel = -1;
 	}
 
-	std::stringstream& XMLFormater::formatNode(std::shared_ptr<NodeObject> node) {
+	std::stringstream& XMLFormater::formatNode(std::shared_ptr<NodeObject> node, bool skipFirstNode) {
 		bool isNodeHaveChild = false;
 		if (node->childrens.size() != 0) {
 			isNodeHaveChild = true;
 		}
 
-		recurseFormat(node, mStream);
+		if (skipFirstNode) {
+			for (auto it : node->childrens) {
+				recurseFormat(it, mStream);
+			}
+		} else {
+			recurseFormat(node, mStream);
+		}
 
 		return mStream;
 	}

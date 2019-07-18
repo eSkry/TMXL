@@ -3,7 +3,7 @@
 namespace TMXL {
 
 	std::ostream& NodeObjectPrinter::print(std::shared_ptr<NodeObject> node, IFormater* formater, std::ostream& os) {
-		os << formater->formatNode(node).str();
+		os << formater->formatNode(node, true).str();
 		return os;
 	}
 
