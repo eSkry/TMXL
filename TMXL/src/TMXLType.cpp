@@ -90,8 +90,8 @@ namespace TMXL {
     }
 
     void TMXLType::deleteData() {
-        if (m_data){
-            switch (m_type){
+        if (m_data) {
+            switch (m_type) {
                 case TMXLTypes::String_e:		delete reinterpret_cast<sf::String*>(m_data); break;
                 case TMXLTypes::Int_e:			delete reinterpret_cast<int*>(m_data); break;
                 case TMXLTypes::TLSize_e:		delete reinterpret_cast<TLSize_t*>(m_data); break;
@@ -105,8 +105,7 @@ namespace TMXL {
     }
 
     int TMXLType::as_int(int defaultValue) const {
-		switch (m_type)
-		{
+		switch (m_type) {
 			case TMXL::TMXLTypes::String_e:		return strToInt(*reinterpret_cast<sf::String*>(m_data)); break;
 			case TMXL::TMXLTypes::Int_e:		return *reinterpret_cast<int*>(m_data); break;
 			case TMXL::TMXLTypes::TLSize_e:		return static_cast<int>(*reinterpret_cast<TLSize_t*>(m_data)); break;
@@ -121,8 +120,7 @@ namespace TMXL {
     }
 
     long TMXLType::as_long(long defaultValue) const {
-		switch (m_type)
-		{
+		switch (m_type) {
 			case TMXL::TMXLTypes::String_e:		return strToLong(*reinterpret_cast<sf::String*>(m_data)); break;
 			case TMXL::TMXLTypes::Int_e:		return *reinterpret_cast<int*>(m_data); break;
 			case TMXL::TMXLTypes::Long_e:		return *reinterpret_cast<long*>(m_data); break;
@@ -137,8 +135,7 @@ namespace TMXL {
     }
 
     double TMXLType::as_double(double defaultValue) const {
-		switch (m_type)
-		{
+		switch (m_type) {
 			case TMXL::TMXLTypes::String_e:		return strToDouble(*reinterpret_cast<sf::String*>(m_data)); break;
 			case TMXL::TMXLTypes::Int_e:		return static_cast<double>(*reinterpret_cast<int*>(m_data)); break;
 			case TMXL::TMXLTypes::Long_e:		return static_cast<double>(*reinterpret_cast<long*>(m_data)); break;
@@ -153,8 +150,7 @@ namespace TMXL {
     }
 
     sf::Color TMXLType::as_color(const sf::Color &defaultValue) const {
-		switch (m_type)
-		{
+		switch (m_type) {
 			case TMXL::TMXLTypes::String_e:		return strToColorARGB(*reinterpret_cast<sf::String*>(m_data)); break;
 			case TMXL::TMXLTypes::Int_e:		return intToColor(*reinterpret_cast<int*>(m_data)); break;
 			case TMXL::TMXLTypes::Long_e:		return intToColor(*reinterpret_cast<long*>(m_data)); break;
@@ -169,8 +165,7 @@ namespace TMXL {
     }
 
     sf::String TMXLType::as_string(const sf::String &defaultValue) const {
-		switch (m_type)
-		{
+		switch (m_type) {
 			case TMXL::TMXLTypes::String_e:		return *reinterpret_cast<sf::String*>(m_data); break;
 			case TMXL::TMXLTypes::Int_e:		return intToString(*reinterpret_cast<int*>(m_data)); break;
 			case TMXL::TMXLTypes::Long_e:		return longToString(*reinterpret_cast<long*>(m_data)); break;
@@ -185,8 +180,7 @@ namespace TMXL {
     }
 
     bool TMXLType::as_bool(bool defaultValue) const {
-		switch (m_type)
-		{
+		switch (m_type) {
 			case TMXL::TMXLTypes::String_e:		return strToBool(*reinterpret_cast<sf::String*>(m_data), defaultValue); break;
 			case TMXL::TMXLTypes::Int_e:		return intToBool(*reinterpret_cast<int*>(m_data)); break;
 			case TMXL::TMXLTypes::Long_e:		return longToBool(*reinterpret_cast<long*>(m_data)); break;
