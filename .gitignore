@@ -5,3 +5,5 @@ build
 CMakeFiles
 CMakeCache.txt
 .idea
+.vs
+out
