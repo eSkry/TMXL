@@ -24,7 +24,19 @@ namespace TMXL {
 
 		void dump() const;
 
+		/**
+		 * @brief Find nodes on all childrens and return std::shared_ptr<vector<std::shared_ptr<NodeObject>>>
+		 * @param nodeName
+		 * @return
+		 */
 		std::shared_ptr<std::vector<std::shared_ptr<NodeObject>>> findAllNodes(const sf::String& nodeName) _TMXL_NOEXCEPT;
+
+		/**
+		 * @brief Find nodes on all childrens and add finded nodes to 'toVector'
+		 * @param nodeName
+		 * @param toVector
+		 */
+        void findAllNodes(const sf::String& nodeName, std::shared_ptr<std::vector<std::shared_ptr<NodeObject>>> toVector) _TMXL_NOEXCEPT;
 
         /**
          * @brief Node name
