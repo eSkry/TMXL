@@ -1,5 +1,5 @@
 
-#include <TMXL/System/NodeObjectConverter.h>
+#include <TMXL/System/NodeObjectWalker.h>
 #include <TMXL/Parsers/XMLParser.h>
 #include <TMXL/Map/NodeObject.h>
 #include <TMXL/Tools.h>
@@ -24,14 +24,14 @@ int main() {
     auto map = parser.getRoot();
     //map->dump();
 
-    TMXL::NodeObjectConverter converter;
-    converter.registerCallback("map", [](std::shared_ptr<TMXL::NodeObject> node){
+    TMXL::NodeObjectWalker walker;
+	walker.registerCallback("map", [](std::shared_ptr<TMXL::NodeObject> node){
         cout << node->name.toAnsiString() << endl;
     });
-    converter.registerCallback("object", [](std::shared_ptr<TMXL::NodeObject> node){
+	walker.registerCallback("object", [](std::shared_ptr<TMXL::NodeObject> node){
         node->parent->dump();
     });
-    converter.convert(map);
+	walker.run(map);
 
     sf::RenderWindow window(sf::VideoMode(600, 600) ,"Game");
     while(window.isOpen()){
