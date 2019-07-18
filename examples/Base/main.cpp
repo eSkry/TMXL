@@ -37,7 +37,13 @@ int main() {
 	//walker.run(map);
 
 	TMXL::XMLFormater xmlFormat;
-	TMXL::NodeObjectPrinter::print(map, &xmlFormat, cout);
+	//TMXL::NodeObjectPrinter::print(map, &xmlFormat, cout);
+
+	auto nodes = map->findAllNodes("property");
+	cout << nodes->size() << endl;
+	for (auto it : *nodes) {
+		TMXL::NodeObjectPrinter::print(it, &xmlFormat, cout) << endl;
+	}
 
     sf::RenderWindow window(sf::VideoMode(600, 600) ,"Game");
     while(window.isOpen()){

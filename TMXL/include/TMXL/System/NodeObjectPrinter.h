@@ -16,7 +16,7 @@ namespace TMXL {
 	class NodeObjectPrinter {
 	public:
 
-		static std::ostream& print(std::shared_ptr<NodeObject> node, IFormater* formater, std::ostream& os);
+		static std::ostream& print(std::shared_ptr<NodeObject> node, IFormater* formater, std::ostream& os, bool skipFirstNode = false);
 
 	};
 
