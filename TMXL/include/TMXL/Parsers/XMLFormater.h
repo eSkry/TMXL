@@ -24,7 +24,8 @@ namespace TMXL {
 
 	private:
 
-		std::stringstream stream;
+		std::stringstream mStream;
+		int mLevel;
 
 	};
 

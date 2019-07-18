@@ -19,7 +19,8 @@ namespace TMXL {
             return false;
         }
 
-        xml_node lRootNode = l_document.root();
+        xml_node lRootNode = l_document.child("map");
+
         parseNode(&lRootNode, mRootNode);
         mRootNode->isRootNode = true;
 
@@ -35,10 +36,10 @@ namespace TMXL {
     }
 
     void XMLParser::parseNode(pugi::xml_node *pNode, std::shared_ptr<NodeObject> pNodeObject) {
-        pNodeObject->name = pugi::as_wide(pNode->name());
+        pNodeObject->name = std::string(pNode->name());
         parseAttributes(pNode, pNodeObject);
 
-		sf::String content = pugi::as_wide(pNode->text().as_string());
+		sf::String content = std::string(pNode->text().as_string());
 		if (!content.isEmpty()) {
 			pNodeObject->content = content;
 		}
@@ -53,8 +54,8 @@ namespace TMXL {
     void XMLParser::parseAttributes(pugi::xml_node *pNodeWithAttributes, std::shared_ptr<NodeObject> pToObject) {
         for (auto it : pNodeWithAttributes->attributes()){
             TMXLType value;
-            value = sf::String(pugi::as_wide(it.value()));
-            pToObject->attributes.insert(std::make_pair(sf::String(pugi::as_wide(it.name())), value));
+            value = sf::String(std::string(it.value()));
+            pToObject->attributes.insert(std::make_pair(sf::String(std::string(it.name())), value));
         }
     }
 

@@ -18,6 +18,7 @@
 #include "pugixml.hpp"
 
 #include <memory>
+#include <string>
 
 namespace TMXL {
 
