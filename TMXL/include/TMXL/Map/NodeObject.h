@@ -22,8 +22,6 @@ namespace TMXL {
         using NodeList = std::vector<std::shared_ptr<NodeObject>>;
         using Attributes = std::map<sf::String, TMXLType>;
 
-		void dump() const;
-
 		/**
 		 * @brief Find nodes on all childrens and return std::shared_ptr<vector<std::shared_ptr<NodeObject>>>
 		 * @param nodeName
