@@ -1,9 +1,9 @@
 #ifndef TMXL_TMXLTYPE_H
 #define TMXL_TMXLTYPE_H
 
-#include "TypeConvert.h"
-#include "Config.h"
-#include "Tools.h"
+#include "TMXL/TypeConvert.h"
+#include "TMXL/Config.h"
+#include "TMXL/Tools.h"
 
 #include <memory>
 

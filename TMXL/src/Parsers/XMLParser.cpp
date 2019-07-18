@@ -37,7 +37,11 @@ namespace TMXL {
     void XMLParser::parseNode(pugi::xml_node *pNode, std::shared_ptr<NodeObject> pNodeObject) {
         pNodeObject->name = pugi::as_wide(pNode->name());
         parseAttributes(pNode, pNodeObject);
-        pNodeObject->content = pugi::as_wide(pNode->text().as_string());
+
+		sf::String content = pugi::as_wide(pNode->text().as_string());
+		if (!content.isEmpty()) {
+			pNodeObject->content = content;
+		}
 
         for (auto childNode : pNode->children()){
             pNodeObject->childrens.push_back(std::make_shared<NodeObject>());

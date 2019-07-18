@@ -1,5 +1,7 @@
 
+#include <TMXL/System/NodeObjectPrinter.h>
 #include <TMXL/System/NodeObjectWalker.h>
+#include <TMXL/Parsers/XMLFormater.h>
 #include <TMXL/Parsers/XMLParser.h>
 #include <TMXL/Map/NodeObject.h>
 #include <TMXL/Tools.h>
@@ -8,6 +10,7 @@
 #include <SFML/Graphics.hpp>
 
 #include <iostream>
+#include <sstream>
 #include <memory>
 using namespace std;
 
@@ -24,14 +27,17 @@ int main() {
     auto map = parser.getRoot();
     //map->dump();
 
-    TMXL::NodeObjectWalker walker;
-	walker.registerCallback("map", [](std::shared_ptr<TMXL::NodeObject> node){
-        cout << node->name.toAnsiString() << endl;
-    });
-	walker.registerCallback("object", [](std::shared_ptr<TMXL::NodeObject> node){
-        node->parent->dump();
-    });
-	walker.run(map);
+ //   TMXL::NodeObjectWalker walker;
+	//walker.registerCallback("map", [](std::shared_ptr<TMXL::NodeObject> node){
+ //       cout << node->name.toAnsiString() << endl;
+ //   });
+	//walker.registerCallback("object", [](std::shared_ptr<TMXL::NodeObject> node){
+ //       node->dump();
+ //   });
+	//walker.run(map);
+
+	TMXL::XMLFormater xmlFormat;
+	TMXL::NodeObjectPrinter::print(map, &xmlFormat, cout);
 
     sf::RenderWindow window(sf::VideoMode(600, 600) ,"Game");
     while(window.isOpen()){

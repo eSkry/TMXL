@@ -18,6 +18,11 @@ namespace TMXL {
 
     class NodeObjectWalker {
     public:
+
+		struct NodeMeta {
+			TLSize_t level = 0;
+		};
+
         using CallbackType = std::function<void(std::shared_ptr<NodeObject>)>;
 
         /**
