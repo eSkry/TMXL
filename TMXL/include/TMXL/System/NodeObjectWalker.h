@@ -2,22 +2,21 @@
 // Created by depish on 17.07.19.
 //
 
-#ifndef TMXL_NODEOBJECTCONVERTER_H
-#define TMXL_NODEOBJECTCONVERTER_H
+#ifndef TMXL_NODEOBJECTWALKER_H
+#define TMXL_NODEOBJECTWALKER_H
 
 #include "TMXL/Map/NodeObject.h"
 #include "TMXL/Config.h"
 
 #include <SFML/System/String.hpp>
 
-#include <iostream>
 #include <functional>
 #include <utility>
 #include <map>
 
 namespace TMXL {
 
-    class NodeObjectConverter {
+    class NodeObjectWalker {
     public:
         using CallbackType = std::function<void(std::shared_ptr<NodeObject>)>;
 
@@ -27,7 +26,7 @@ namespace TMXL {
          */
         void registerCallback(const sf::String& nodeName, CallbackType callback);
 
-        void convert(std::shared_ptr<NodeObject> root);
+        void run(std::shared_ptr<NodeObject> root);
 
         void clearCallbacks();
 
@@ -37,4 +36,4 @@ namespace TMXL {
 
 }
 
-#endif //TMXL_NODEOBJECTCONVERTER_H
+#endif //TMXL_NODEOBJECTWALKER_H
