@@ -1,0 +1,11 @@
+
+# todo service https://github.com/jasonetco/todo
+todo:
+  caseSensitive: false
+  label: true
+  reopenClosed: true
+  exclude: null
+  keyword: ['@todo','TODO']
+  bodyKeyword: ['@body','BODY']
+  autoAssign: true
+  blobLines: 10
