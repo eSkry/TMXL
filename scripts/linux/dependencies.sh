@@ -1,3 +1,7 @@
 #!/bin/bash
 
-apt-get install googletest libgtest-dev
+echo 'Install depends for SFML'
+apt-get install libfreetype6-dev libjpeg-dev libpng-dev
+
+echo 'Install SFML'
+apt-get install libsfml-*
