@@ -10,6 +10,7 @@ set(CMAKE_CXX_STANDARD 17)
 option(BUILD_EXAMPLES "Build example projects" OFF)
 option(BUILD_TESTS "Build tests" OFF)
 option(BUILD_TMXL_TEST_ONLY "Build TMXL test only" OFF)
+option(BUILD_USE_PUGIXML "Use pugixml parser and build module" ON)
 
 #### PROJECT TMXL BUILD ####
 project("TMXL")
@@ -40,9 +41,14 @@ if(SFML_FOUND)
 	target_link_libraries(${TMXL_LIBRARY_NAME} ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
 endif()
 
-add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/extlibs/pugixml")
-target_link_libraries(${TMXL_LIBRARY_NAME} pugixml)
-#### PROJECT TMXL BUILD ####
+if (BUILD_USE_PUGIXML)
+	add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/extlibs/pugixml")
+	target_link_libraries(${TMXL_LIBRARY_NAME} pugixml)
+else()
+	list(REMOVE_ITEM TMXL_LIBRARY_HEADERS 
+		"${CMAKE_SOURCE_DIR}/TMXL/include/TMXL/Parsers/XML/PugiParser.h"
+		"${CMAKE_SOURCE_DIR}/TMXL/src/Parsers/XML/PugiParser.h")
+endif()
 
 if(BUILD_TESTS OR BUILD_TMXL_TEST_ONLY)
     add_subdirectory(tests)
