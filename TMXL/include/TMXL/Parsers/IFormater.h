@@ -9,7 +9,7 @@ namespace TMXL {
 	class IFormater {
 	public:
 
-		virtual std::stringstream& formatNode(NodeObject& node, bool skipFirstNode = false) = 0;
+		virtual std::stringstream& formatNode(const NodeObject& node, bool skipFirstNode = false) = 0;
 
 	};
 

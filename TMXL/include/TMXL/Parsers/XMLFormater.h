@@ -15,11 +15,11 @@ namespace TMXL {
 		
 		XMLFormater();
 
-		std::stringstream& formatNode(NodeObject& node, bool skipFirstNode = false) override;
+		std::stringstream& formatNode(const NodeObject& node, bool skipFirstNode = false) override;
 
 	protected:
 
-		void recurseFormat(NodeObject& node, std::stringstream& stream);
+		void recurseFormat(const NodeObject& node, std::stringstream& stream);
 
 	private:
 

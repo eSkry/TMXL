@@ -6,7 +6,7 @@ namespace TMXL {
 		mLevel = -1;
 	}
 
-	std::stringstream& XMLFormater::formatNode(NodeObject& node, bool skipFirstNode) {
+	std::stringstream& XMLFormater::formatNode(const NodeObject& node, bool skipFirstNode) {
 		bool isNodeHaveChild = false;
 		if (node.childrens.size() != 0) {
 			isNodeHaveChild = true;
@@ -23,7 +23,7 @@ namespace TMXL {
 		return mStream;
 	}
 
-	void XMLFormater::recurseFormat(NodeObject& node, std::stringstream& stream) {
+	void XMLFormater::recurseFormat(const NodeObject& node, std::stringstream& stream) {
 		++mLevel;
 		mStream << std::string(mLevel, ' ') << '<' << node.name.toAnsiString();
 		for (auto attr : node.attributes) {
