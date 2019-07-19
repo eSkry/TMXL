@@ -11,13 +11,17 @@ namespace TMXL {
     }
 
     void NodeObjectWalker::run(std::shared_ptr<NodeObject> node) {
-        if (const sf::String& name = node->name; callbacks.find(name) != callbacks.end()){
-            callbacks[name](node);
-        }
-        for (auto it : node->childrens){
-            run(it);
-        }
+		walk(node, 0, 0);
     }
+
+	void NodeObjectWalker::walk(std::shared_ptr<NodeObject> node, TLSize_t thisId, TLSize_t parentId) {
+		if (const sf::String& name = node->name; callbacks.find(name) != callbacks.end()) {
+			callbacks[name](node, thisId, parentId);
+		}
+		for (auto it : node->childrens) {
+			walk(it, /*gen new id with non collision*/-1, thisId);
+		}
+	}
 
     void NodeObjectWalker::clearCallbacks() {
         callbacks.clear();
