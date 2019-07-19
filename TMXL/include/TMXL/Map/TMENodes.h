@@ -2,7 +2,6 @@
 #define TMXL_TMENODE_H
 
 #include "TMXL/System/ResourceManager.h"
-#include "TMXL/TMXLType.h"
 #include "TMXL/Config.h"
 #include "TMXL/Tools.h"
 
