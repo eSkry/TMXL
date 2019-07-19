@@ -1,5 +1,5 @@
-#ifndef TMXL_TMEMAP_H
-#define TMXL_TMEMAP_H
+#ifndef TMXL_TMENODE_H
+#define TMXL_TMENODE_H
 
 #include "TMXL/System/ResourceManager.h"
 #include "TMXL/TMXLType.h"
@@ -97,4 +97,4 @@ namespace TMXL {
 
 }
 
-#endif //TMXL_TMEMAP_H
+#endif //TMXL_TMENODE_H
