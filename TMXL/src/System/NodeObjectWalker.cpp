@@ -11,7 +11,8 @@ namespace TMXL {
     }
 
     void NodeObjectWalker::run(std::shared_ptr<NodeObject> node) {
-		walk(node, 0, 0);
+		auto rootId = IDGenerator<GCategory::NODEOBJECTS>::getId();
+		walk(node, rootId, rootId);
     }
 
 	void NodeObjectWalker::walk(std::shared_ptr<NodeObject> node, TLSize_t thisId, TLSize_t parentId) {
@@ -19,7 +20,7 @@ namespace TMXL {
 			callbacks[name](node, thisId, parentId);
 		}
 		for (auto it : node->childrens) {
-			walk(it, /*gen new id with non collision*/-1, thisId);
+			walk(it, IDGenerator<GCategory::NODEOBJECTS>::getId(), thisId);
 		}
 	}
 

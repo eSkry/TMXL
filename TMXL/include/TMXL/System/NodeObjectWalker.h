@@ -5,6 +5,7 @@
 #ifndef TMXL_NODEOBJECTWALKER_H
 #define TMXL_NODEOBJECTWALKER_H
 
+#include "TMXL/System/IDGenerator.h"
 #include "TMXL/Map/NodeObject.h"
 #include "TMXL/Config.h"
 
