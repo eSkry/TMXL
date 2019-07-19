@@ -36,7 +36,7 @@ namespace TMXL {
     struct TMEProperty {
         sf::String              name;
         TMXLTypes               type;
-        TMXLType                value;
+        sf::String              value;
     };
 
     struct TMEImage {
