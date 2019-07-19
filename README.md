@@ -12,7 +12,15 @@ Project uses [CMake](https://cmake.org) to generate platform and compiler-specif
 
 ### Dependencies
 - [SFML](https://www.sfml-dev.org)
-- [pugixml](https://pugixml.org)
+- `optional` [pugixml](https://pugixml.org)
+
+### CMake options:
+| Options              | Description                        | Default |
+|----------------------|------------------------------------|---------|
+| BUILD_EXAMPLES       | Build example projects             | ON      |
+| BUILD_TESTS          | Build all test existing in project | OFF     |
+| BUILD_TMXL_TEST_ONLY | Build test only for TMXL lib       | OFF     |
+| BUILD_USE_PUGIXML    | Build lib with pugixml support     | ON      |
 
 ### Building on Linux (Unix Makefiles)
 1. Install SFML: `apt-get install sfml-dev libsfml-*2.4`
