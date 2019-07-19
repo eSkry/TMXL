@@ -19,12 +19,6 @@
 #define TMXL_VERSION "0.0.0"
 #endif
 
-#ifdef USE_NOEXCEPT
-#define _TMXL_NOEXCEPT noexcept
-#else
-#define _TMXL_NOEXCEPT
-#endif
-
 #include <stddef.h> // Used for std::size_t
 #include <string>
 

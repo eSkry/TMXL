@@ -27,14 +27,14 @@ namespace TMXL {
 		 * @param nodeName
 		 * @return
 		 */
-		std::shared_ptr<std::vector<std::shared_ptr<NodeObject>>> findAllNodes(const sf::String& nodeName) _TMXL_NOEXCEPT;
+		std::shared_ptr<std::vector<std::shared_ptr<NodeObject>>> findAllNodes(const sf::String& nodeName) noexcept;
 
 		/**
 		 * @brief Find nodes on all childrens and add finded nodes to 'toVector'
 		 * @param nodeName
 		 * @param toVector
 		 */
-        void findAllNodes(const sf::String& nodeName, std::shared_ptr<std::vector<std::shared_ptr<NodeObject>>> toVector) _TMXL_NOEXCEPT;
+        void findAllNodes(const sf::String& nodeName, std::shared_ptr<std::vector<std::shared_ptr<NodeObject>>> toVector) noexcept;
 
         /**
          * @brief Node name
@@ -68,7 +68,7 @@ namespace TMXL {
 
 	private:
 
-		void recursiveFind(const sf::String& nodeName, std::shared_ptr<NodeObject> object, std::shared_ptr<std::vector<std::shared_ptr<NodeObject>>> vector) _TMXL_NOEXCEPT;
+		void recursiveFind(const sf::String& nodeName, std::shared_ptr<NodeObject> object, std::shared_ptr<std::vector<std::shared_ptr<NodeObject>>> vector) noexcept;
 
     };
 

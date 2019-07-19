@@ -50,7 +50,7 @@ namespace TMXL {
      * @param str2
      * @return
      */
-    static bool compare(const sf::String& str1, const sf::String& str2, StringComparison comparsion = StringComparison::Normal) _TMXL_NOEXCEPT {
+    static bool compare(const sf::String& str1, const sf::String& str2, StringComparison comparsion = StringComparison::Normal) noexcept {
         if (str1.getSize() != str2.getSize()) {
             return false;
         }
@@ -74,7 +74,7 @@ namespace TMXL {
      * @param comparison
      * @return
      */
-    static bool compare(const sf::String& str1, const char* str2, std::size_t len, StringComparison comparison = StringComparison::IgnoreCase) _TMXL_NOEXCEPT {
+    static bool compare(const sf::String& str1, const char* str2, std::size_t len, StringComparison comparison = StringComparison::IgnoreCase) noexcept {
         if (str1.getSize() != len) {
             return false;
         }

@@ -19,11 +19,11 @@ namespace TMXL {
 	class IDGenerator {
 	public:
 
-		static void reset() {
+		static void reset() noexcept {
 			mId = std::numeric_limits<TLSize_t>::min();
 		}
 
-		static TLSize_t getId() {
+		static TLSize_t getId() noexcept {
 			sf::Lock lock(mMutex);
 			if (mId == std::numeric_limits<TLSize_t>::max()) {
 				// @todo: send exception or massage 'generator out of numeric range'
@@ -32,7 +32,7 @@ namespace TMXL {
 			return mId;
 		}
 
-		static GCategory getCategory() {
+		static GCategory getCategory() noexcept {
 			return static_cast<GCategory>(genCategory);
 		}
 

@@ -32,7 +32,7 @@ namespace TMXL {
      * @param val
      */
     template <typename T, typename V>
-    void snn(T *object, V val) _TMXL_NOEXCEPT {
+    void snn(T *object, V val) noexcept {
         if (object)
             *object = val;
     }
@@ -42,7 +42,7 @@ namespace TMXL {
      * @param str
      * @return
      */
-    static sf::String strToLowerCase(const sf::String& str) _TMXL_NOEXCEPT {
+    static sf::String strToLowerCase(const sf::String& str) noexcept {
         if (str.isEmpty()){
             return {};
         }
@@ -64,7 +64,7 @@ namespace TMXL {
      * @param ch
      * @return
      */
-    static char charToLowerCase(char ch) _TMXL_NOEXCEPT {
+    static char charToLowerCase(char ch) noexcept {
         const TLSize_t distance = static_cast<int>('a') - static_cast<int>('A');
         if (ch >= 'A' && ch <= 'Z'){
             return static_cast<char>(static_cast<int>(ch) + distance);
@@ -73,12 +73,12 @@ namespace TMXL {
     }
 
     /**
-     * @brief static TMXLType stringToType(const sf::String& str) [_TMXL_NOEXCEPT]
+     * @brief static TMXLType stringToType(const sf::String& str) [noexcept]
      * @details Определяет тип данных написанный в строке
      * @param str
      * @return
      */
-    static TMXLTypes stringToType(const sf::String& str) _TMXL_NOEXCEPT {
+    static TMXLTypes stringToType(const sf::String& str) noexcept {
         if (str == "string"){
             return TMXLTypes::String_e;
         } else if (str == "int"){
@@ -96,7 +96,7 @@ namespace TMXL {
         return TMXLTypes::Undefined_e;
     }
 
-    static TMXLTypes stringToType(const char *str) _TMXL_NOEXCEPT {
+    static TMXLTypes stringToType(const char *str) noexcept {
         if (compare(str, "string", StringComparison::IgnoreCase)) {
             return TMXLTypes::String_e;
         } else if (compare(str, "int", StringComparison::IgnoreCase))  {

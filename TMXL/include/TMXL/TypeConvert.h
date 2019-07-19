@@ -23,7 +23,7 @@ namespace TMXL {
      * @param val
      * @return
      */
-    inline int boolToInt(bool val) _TMXL_NOEXCEPT {
+    inline int boolToInt(bool val) noexcept {
         return val ? 1 : 0;
     }
 
@@ -35,7 +35,7 @@ namespace TMXL {
      * @param val
      * @return
      */
-    inline bool intToBool(int val) _TMXL_NOEXCEPT {
+    inline bool intToBool(int val) noexcept {
         return val > 0;
     }
 
@@ -47,7 +47,7 @@ namespace TMXL {
      * @param val
      * @return
      */
-    inline bool longToBool(long val) _TMXL_NOEXCEPT {
+    inline bool longToBool(long val) noexcept {
         return val > 0;
     }
 
@@ -59,7 +59,7 @@ namespace TMXL {
      * @param val
      * @return
      */
-    inline long boolToLong(bool val) _TMXL_NOEXCEPT {
+    inline long boolToLong(bool val) noexcept {
         return val ? 1 : 0;
     }
 
@@ -71,7 +71,7 @@ namespace TMXL {
      * @param val
      * @return
      */
-    inline double boolToDouble(bool val) _TMXL_NOEXCEPT {
+    inline double boolToDouble(bool val) noexcept {
         return val ? 1.0 : 0.0;
     }
 
@@ -83,7 +83,7 @@ namespace TMXL {
      * @param val
      * @return
      */
-    inline bool doubleToBool(double val) _TMXL_NOEXCEPT {
+    inline bool doubleToBool(double val) noexcept {
         return val >= 1;
     }
 
@@ -98,7 +98,7 @@ namespace TMXL {
      */
     static sf::String boolToString(bool val, bool fullFormat = true
                     , const char* a_true = "true"
-                    , const char* a_false = "false") _TMXL_NOEXCEPT {
+                    , const char* a_false = "false") noexcept {
         if (val && fullFormat) return a_true;
         if (val && !fullFormat) return a_true[0];
         if (!val && fullFormat) return a_false;
@@ -122,7 +122,7 @@ namespace TMXL {
      * @param defaultValue - Значение возвращаемое если строку невозможно преобразовать в bool.
      * @return
      */
-    static bool strToBool(const sf::String& str, bool defaultValue = false) _TMXL_NOEXCEPT {
+    static bool strToBool(const sf::String& str, bool defaultValue = false) noexcept {
         if (str.isEmpty()){
             return defaultValue;
         }
@@ -152,7 +152,7 @@ namespace TMXL {
      * @param ch2
      * @return
      */
-    static sf::Uint8 charToUint8(char ch1, char ch2) _TMXL_NOEXCEPT {
+    static sf::Uint8 charToUint8(char ch1, char ch2) noexcept {
         sf::Uint8 temp = 0;
 
         ch1 = charToLowerCase(ch1);
@@ -185,7 +185,7 @@ namespace TMXL {
      * @param str
      * @return
      */
-    static sf::Color strToColorARGB(const sf::String &str) _TMXL_NOEXCEPT {
+    static sf::Color strToColorARGB(const sf::String &str) noexcept {
         if (str.getSize() < 6) {
             return {};
         }
@@ -216,7 +216,7 @@ namespace TMXL {
      * @param defaultValue
      * @return
      */
-    static int strToInt(const sf::String& str, int defaultValue = -1) _TMXL_NOEXCEPT {
+    static int strToInt(const sf::String& str, int defaultValue = -1) noexcept {
         return std::stoi(sfStringToChar(str));
     }
 
@@ -226,7 +226,7 @@ namespace TMXL {
      * @param defaultValue
      * @return
      */
-    static long strToLong(const sf::String& str, long defaultValue = -1) _TMXL_NOEXCEPT {
+    static long strToLong(const sf::String& str, long defaultValue = -1) noexcept {
         return std::stol(sfStringToChar(str));
     }
 
@@ -236,7 +236,7 @@ namespace TMXL {
      * @param defaultValue
      * @return
      */
-    static double strToDouble(const sf::String& str, double defaultValue = -1.0) _TMXL_NOEXCEPT {
+    static double strToDouble(const sf::String& str, double defaultValue = -1.0) noexcept {
         return std::stod(sfStringToChar(str));
     }
 
@@ -247,7 +247,7 @@ namespace TMXL {
      * @param c
      * @return
      */
-    static int colorToInt(const sf::Color& c) _TMXL_NOEXCEPT {
+    static int colorToInt(const sf::Color& c) noexcept {
         return  ( ((c.a & 0xff) << 24)
                 + ((c.r & 0xff) << 16)
                 + ((c.g & 0xff) << 8)
@@ -259,7 +259,7 @@ namespace TMXL {
      * @param color
      * @return
      */
-    static sf::Color intToColor(int color) _TMXL_NOEXCEPT {
+    static sf::Color intToColor(int color) noexcept {
         sf::Color temp;
         temp.a = static_cast<sf::Uint8>((color >> 24) & 0xff);
         temp.r = static_cast<sf::Uint8>((color >> 16) & 0xff);
@@ -273,7 +273,7 @@ namespace TMXL {
      * @param val
      * @return
      */
-    static sf::String colorToStringARGB(const sf::Color &val) _TMXL_NOEXCEPT {
+    static sf::String colorToStringARGB(const sf::Color &val) noexcept {
         char temp[10] = {'0'}; // 10-й эллемент под нуль символ sprintf
         sprintf(temp, "#%2x%2x%2x%2x", val.a, val.r, val.g, val.b);
 
@@ -290,7 +290,7 @@ namespace TMXL {
      * @param val
      * @return
      */
-    static sf::String intToString(int val) _TMXL_NOEXCEPT {
+    static sf::String intToString(int val) noexcept {
         return std::to_string(val);
     }
 
@@ -299,7 +299,7 @@ namespace TMXL {
      * @param val
      * @return
      */
-    static sf::String longToString(long val) _TMXL_NOEXCEPT {
+    static sf::String longToString(long val) noexcept {
         return std::to_string(val);
     }
 

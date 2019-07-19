@@ -21,7 +21,7 @@ namespace TMXL {
         }
     }
 
-    TMXLTypes TMXLType::getType() const {
+    TMXLTypes TMXLType::getType() const noexcept {
         return m_type;
     }
 
@@ -29,7 +29,7 @@ namespace TMXL {
         deleteData();
     }
 
-    void TMXLType::operator=(int val) {
+    void TMXLType::operator=(int val) noexcept {
         if (m_type == TMXLTypes::Int_e){
             *reinterpret_cast<int*>(m_data) = val;
             return;
@@ -39,7 +39,7 @@ namespace TMXL {
         m_data = new int(val);
     }
 
-    void TMXLType::operator=(long val) {
+    void TMXLType::operator=(long val) noexcept {
         if (m_type == TMXLTypes::Long_e){
             *reinterpret_cast<long*>(m_data) = val;
             return;
@@ -49,7 +49,7 @@ namespace TMXL {
         m_data = new long(val);
     }
 
-    void TMXLType::operator=(const sf::Color& val) {
+    void TMXLType::operator=(const sf::Color& val) noexcept {
         if (m_type == TMXLTypes::Color_e){
             *reinterpret_cast<sf::Color*>(m_data) = val;
             return;
@@ -59,7 +59,7 @@ namespace TMXL {
         m_data = new sf::Color(val);
     }
 
-    void TMXLType::operator=(double val) {
+    void TMXLType::operator=(double val) noexcept {
         if (m_type == TMXLTypes::Double_e) {
             *reinterpret_cast<double*>(m_data) = val;
             return;
@@ -69,7 +69,7 @@ namespace TMXL {
         m_data = new double(val);
     }
 
-    void TMXLType::operator=(const sf::String &val) {
+    void TMXLType::operator=(const sf::String &val) noexcept {
         if (m_type == TMXLTypes::String_e){
             *reinterpret_cast<sf::String*>(m_data) = val;
             return;
@@ -79,7 +79,7 @@ namespace TMXL {
         m_data = new sf::String(val);
     }
 
-    void TMXLType::operator=(bool val) {
+    void TMXLType::operator=(bool val) noexcept {
         if (m_type == TMXLTypes::Bool_e) {
             *reinterpret_cast<bool*>(m_data) = val;
             return;
@@ -89,7 +89,7 @@ namespace TMXL {
         m_data = new bool(val);
     }
 
-    void TMXLType::deleteData() {
+    void TMXLType::deleteData() noexcept {
         if (m_data) {
             switch (m_type) {
                 case TMXLTypes::String_e:		delete reinterpret_cast<sf::String*>(m_data); break;
@@ -104,7 +104,7 @@ namespace TMXL {
         }
     }
 
-    int TMXLType::as_int(int defaultValue) const {
+    int TMXLType::as_int(int defaultValue) const noexcept {
 		switch (m_type) {
 			case TMXL::TMXLTypes::String_e:		return strToInt(*reinterpret_cast<sf::String*>(m_data)); break;
 			case TMXL::TMXLTypes::Int_e:		return *reinterpret_cast<int*>(m_data); break;
@@ -119,7 +119,7 @@ namespace TMXL {
         return defaultValue;
     }
 
-    long TMXLType::as_long(long defaultValue) const {
+    long TMXLType::as_long(long defaultValue) const noexcept {
 		switch (m_type) {
 			case TMXL::TMXLTypes::String_e:		return strToLong(*reinterpret_cast<sf::String*>(m_data)); break;
 			case TMXL::TMXLTypes::Int_e:		return *reinterpret_cast<int*>(m_data); break;
@@ -134,7 +134,7 @@ namespace TMXL {
         return defaultValue;
     }
 
-    double TMXLType::as_double(double defaultValue) const {
+    double TMXLType::as_double(double defaultValue) const noexcept {
 		switch (m_type) {
 			case TMXL::TMXLTypes::String_e:		return strToDouble(*reinterpret_cast<sf::String*>(m_data)); break;
 			case TMXL::TMXLTypes::Int_e:		return static_cast<double>(*reinterpret_cast<int*>(m_data)); break;
@@ -149,7 +149,7 @@ namespace TMXL {
         return defaultValue;
     }
 
-    sf::Color TMXLType::as_color(const sf::Color &defaultValue) const {
+    sf::Color TMXLType::as_color(const sf::Color &defaultValue) const noexcept {
 		switch (m_type) {
 			case TMXL::TMXLTypes::String_e:		return strToColorARGB(*reinterpret_cast<sf::String*>(m_data)); break;
 			case TMXL::TMXLTypes::Int_e:		return intToColor(*reinterpret_cast<int*>(m_data)); break;
@@ -164,7 +164,7 @@ namespace TMXL {
         return defaultValue;
     }
 
-    sf::String TMXLType::as_string(const sf::String &defaultValue) const {
+    sf::String TMXLType::as_string(const sf::String &defaultValue) const noexcept {
 		switch (m_type) {
 			case TMXL::TMXLTypes::String_e:		return *reinterpret_cast<sf::String*>(m_data); break;
 			case TMXL::TMXLTypes::Int_e:		return intToString(*reinterpret_cast<int*>(m_data)); break;
@@ -179,7 +179,7 @@ namespace TMXL {
         return defaultValue;
     }
 
-    bool TMXLType::as_bool(bool defaultValue) const {
+    bool TMXLType::as_bool(bool defaultValue) const noexcept {
 		switch (m_type) {
 			case TMXL::TMXLTypes::String_e:		return strToBool(*reinterpret_cast<sf::String*>(m_data), defaultValue); break;
 			case TMXL::TMXLTypes::Int_e:		return intToBool(*reinterpret_cast<int*>(m_data)); break;

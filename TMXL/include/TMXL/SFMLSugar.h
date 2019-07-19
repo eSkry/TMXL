@@ -10,7 +10,7 @@ namespace TMXL {
      * @param str
      * @return
      */
-    static const char* sfStringToChar(const sf::String &str) _TMXL_NOEXCEPT {
+    static const char* sfStringToChar(const sf::String &str) noexcept {
         return str.toAnsiString().c_str();
     }
 

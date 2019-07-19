@@ -35,7 +35,7 @@ namespace TMXL {
         mRootNode = std::make_shared<NodeObject>();
     }
 
-    void XMLParser::parseNode(pugi::xml_node *pNode, std::shared_ptr<NodeObject> pNodeObject) {
+    void XMLParser::parseNode(pugi::xml_node *pNode, std::shared_ptr<NodeObject> pNodeObject) noexcept {
         pNodeObject->name = std::string(pNode->name());
         parseAttributes(pNode, pNodeObject);
 
@@ -51,7 +51,7 @@ namespace TMXL {
         }
     }
 
-    void XMLParser::parseAttributes(pugi::xml_node *pNodeWithAttributes, std::shared_ptr<NodeObject> pToObject) {
+    void XMLParser::parseAttributes(pugi::xml_node *pNodeWithAttributes, std::shared_ptr<NodeObject> pToObject) noexcept {
         for (auto it : pNodeWithAttributes->attributes()){
             TMXLType value;
             value = sf::String(std::string(it.value()));

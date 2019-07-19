@@ -31,24 +31,24 @@ namespace TMXL {
          * @details Возвращает тип хранимых данных.
          * @return
          */
-        TMXLTypes getType() const _TMXL_NOEXCEPT;
+        TMXLTypes getType() const noexcept;
 
-        void operator=(int val) _TMXL_NOEXCEPT;
-        void operator=(bool val) _TMXL_NOEXCEPT;
-        void operator=(long val) _TMXL_NOEXCEPT;
-        void operator=(double val) _TMXL_NOEXCEPT;
-        void operator=(const sf::Color& val) _TMXL_NOEXCEPT;
-        void operator=(const sf::String& val) _TMXL_NOEXCEPT;
+        void operator=(int val) noexcept;
+        void operator=(bool val) noexcept;
+        void operator=(long val) noexcept;
+        void operator=(double val) noexcept;
+        void operator=(const sf::Color& val) noexcept;
+        void operator=(const sf::String& val) noexcept;
 
-        int as_int(int defaultValue = -1) const _TMXL_NOEXCEPT;
-        long as_long(long defaultValue = -1) const _TMXL_NOEXCEPT;
-        bool as_bool(bool defaultValue = false) const _TMXL_NOEXCEPT;
-        double as_double(double defaultValue = -1) const _TMXL_NOEXCEPT;
-        sf::Color as_color(const sf::Color& defaultValue = sf::Color::Black) const _TMXL_NOEXCEPT;
-        sf::String as_string(const sf::String& defaultValue = "") const _TMXL_NOEXCEPT;
+        int as_int(int defaultValue = -1) const noexcept;
+        long as_long(long defaultValue = -1) const noexcept;
+        bool as_bool(bool defaultValue = false) const noexcept;
+        double as_double(double defaultValue = -1) const noexcept;
+        sf::Color as_color(const sf::Color& defaultValue = sf::Color::Black) const noexcept;
+        sf::String as_string(const sf::String& defaultValue = "") const noexcept;
 
     private:
-        void deleteData() _TMXL_NOEXCEPT;
+        void deleteData() noexcept;
 
         TMXLTypes   m_type;
         void*       m_data;

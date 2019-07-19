@@ -33,13 +33,13 @@ namespace TMXL {
          * @brief void setFileName(const TLString_t& fileName) [NOEXCEPT]
          * @param fileName
          */
-        void setFileName(const sf::String& fileName) _TMXL_NOEXCEPT;
+        void setFileName(const sf::String& fileName) noexcept;
 
         /**
          * @brief const TLString_t& getFileName() const [NOEXCEPT]
          * @return
          */
-        const sf::String& getFileName() const _TMXL_NOEXCEPT;
+        const sf::String& getFileName() const noexcept;
 
     protected:
         sf::String  m_fileName;
