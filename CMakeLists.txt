@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 17)
 #   USE_STL_STRING
 #   NOT_USE_SFML_COLOR_TYPE
 
-option(BUILD_EXAMPLES "Build example projects" OFF)
+option(BUILD_EXAMPLES "Build example projects" ON)
 option(BUILD_TESTS "Build tests" OFF)
 option(BUILD_TMXL_TEST_ONLY "Build TMXL test only" OFF)
 option(BUILD_USE_PUGIXML "Use pugixml parser and build module" ON)
