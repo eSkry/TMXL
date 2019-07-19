@@ -4,15 +4,12 @@
 #include "TMXL/Map/NodeObject.h"
 #include "TMXL/Config.h"
 
-#include <sstream>
-#include <memory>
-
 namespace TMXL {
 	
 	class IFormater {
 	public:
 
-		virtual std::stringstream& formatNode(std::shared_ptr<NodeObject> node, bool skipFirstNode = false) = 0;
+		virtual std::stringstream& formatNode(NodeObject& node, bool skipFirstNode = false) = 0;
 
 	};
 

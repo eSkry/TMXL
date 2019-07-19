@@ -7,7 +7,6 @@
 
 #include <sstream>
 #include <string>
-#include <memory>
 
 namespace TMXL {
 
@@ -16,11 +15,11 @@ namespace TMXL {
 		
 		XMLFormater();
 
-		std::stringstream& formatNode(std::shared_ptr<NodeObject> node, bool skipFirstNode = false) override;
+		std::stringstream& formatNode(NodeObject& node, bool skipFirstNode = false) override;
 
 	protected:
 
-		void recurseFormat(std::shared_ptr<NodeObject> node, std::stringstream& stream);
+		void recurseFormat(NodeObject& node, std::stringstream& stream);
 
 	private:
 

@@ -35,9 +35,9 @@ namespace TMXL {
 
     protected:
 
-        void parseNode(pugi::xml_node *pNode, std::shared_ptr<NodeObject> pNodeObject) noexcept;
+        void parseNode(pugi::xml_node *pNode, NodeObject& pNodeObject) noexcept;
 
-        void parseAttributes(pugi::xml_node *pNodeWithAttributes, std::shared_ptr<NodeObject> pToObject) noexcept;
+        void parseAttributes(pugi::xml_node *pNodeWithAttributes, NodeObject& pToObject) noexcept;
 
     private:
         std::shared_ptr<NodeObject>      mRootNode;

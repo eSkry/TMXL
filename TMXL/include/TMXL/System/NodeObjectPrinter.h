@@ -9,14 +9,14 @@
 
 #include <iostream>
 #include <string>
-#include <memory>
+#include <sstream>
 
 namespace TMXL {
 
 	class NodeObjectPrinter {
 	public:
 
-		static std::ostream& print(std::shared_ptr<NodeObject> node, IFormater* formater, std::ostream& os, bool skipFirstNode = false);
+		static std::ostream& print(NodeObject& node, IFormater* formater, std::ostream& os, bool skipFirstNode = false);
 
 	};
 

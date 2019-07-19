@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <vector>
 #include <memory>
 using namespace std;
 
@@ -39,9 +40,10 @@ int main() {
 	TMXL::XMLFormater xmlFormat;
 	//TMXL::NodeObjectPrinter::print(map, &xmlFormat, cout);
 
-	auto nodes = map->findAllNodes("property");
-	cout << nodes->size() << endl;
-	for (auto it : *nodes) {
+	std::vector<TMXL::NodeObject> data;
+	map->findAllNodes("property", data);
+
+	for (auto it : data) {
 		TMXL::NodeObjectPrinter::print(it, &xmlFormat, cout) << endl;
 	}
 

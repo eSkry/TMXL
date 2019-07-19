@@ -21,7 +21,7 @@ namespace TMXL {
 
 		xml_node lRootNode = l_document.root();
 
-        parseNode(&lRootNode, mRootNode);
+        parseNode(&lRootNode, *mRootNode);
         mRootNode->isRootNode = true;
 
         return true;
@@ -35,25 +35,24 @@ namespace TMXL {
         mRootNode = std::make_shared<NodeObject>();
     }
 
-    void PugiParser::parseNode(pugi::xml_node *pNode, std::shared_ptr<NodeObject> pNodeObject) noexcept {
-        pNodeObject->name = std::string(pNode->name());
+    void PugiParser::parseNode(pugi::xml_node *pNode, NodeObject& pNodeObject) noexcept {
+        pNodeObject.name = std::string(pNode->name());
         parseAttributes(pNode, pNodeObject);
 
 		sf::String content = std::string(pNode->text().as_string());
 		if (!content.isEmpty()) {
-			pNodeObject->content = content;
+			pNodeObject.content = content;
 		}
 
         for (auto childNode : pNode->children()){
-            pNodeObject->childrens.push_back(std::make_shared<NodeObject>());
-            pNodeObject->childrens.back()->parent = pNodeObject;
-            parseNode(&childNode, pNodeObject->childrens.back());
+            pNodeObject.childrens.push_back( NodeObject() );
+            parseNode(&childNode, pNodeObject.childrens.back());
         }
     }
 
-    void PugiParser::parseAttributes(pugi::xml_node *pNodeWithAttributes, std::shared_ptr<NodeObject> pToObject) noexcept {
+    void PugiParser::parseAttributes(pugi::xml_node *pNodeWithAttributes, NodeObject& pToObject) noexcept {
         for (auto it : pNodeWithAttributes->attributes()){
-            pToObject->attributes.insert(std::make_pair(std::string(it.name()), it.value()));
+            pToObject.attributes.insert(std::make_pair(std::string(it.name()), it.value()));
         }
     }
 

@@ -24,7 +24,7 @@ namespace TMXL {
 			TLSize_t level = 0;
 		};
 
-        using CallbackType = std::function<void(std::shared_ptr<NodeObject>, TLSize_t thisId, TLSize_t parentId)>;
+        using CallbackType = std::function<void(NodeObject&, TLSize_t thisId, TLSize_t parentId)>;
 
         /**
          * @param nodeName
@@ -32,13 +32,13 @@ namespace TMXL {
          */
         void registerCallback(const sf::String& nodeName, CallbackType callback);
 
-        void run(std::shared_ptr<NodeObject> root);
+        void run(NodeObject& root);
 
         void clearCallbacks();
 
     private:
 
-		void walk(std::shared_ptr<NodeObject> node, TLSize_t thisId, TLSize_t parentId);
+		void walk(NodeObject& node, TLSize_t thisId, TLSize_t parentId);
 
         std::map<sf::String, CallbackType> callbacks;
     };

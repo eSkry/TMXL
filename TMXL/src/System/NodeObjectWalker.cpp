@@ -10,16 +10,16 @@ namespace TMXL {
         callbacks[nodeName] = std::move(callback);
     }
 
-    void NodeObjectWalker::run(std::shared_ptr<NodeObject> node) {
+    void NodeObjectWalker::run(NodeObject& node) {
 		auto rootId = IDGenerator<GCategory::NODEOBJECTS>::getId();
 		walk(node, rootId, rootId);
     }
 
-	void NodeObjectWalker::walk(std::shared_ptr<NodeObject> node, TLSize_t thisId, TLSize_t parentId) {
-		if (const sf::String& name = node->name; callbacks.find(name) != callbacks.end()) {
+	void NodeObjectWalker::walk(NodeObject& node, TLSize_t thisId, TLSize_t parentId) {
+		if (const sf::String& name = node.name; callbacks.find(name) != callbacks.end()) {
 			callbacks[name](node, thisId, parentId);
 		}
-		for (auto it : node->childrens) {
+		for (auto it : node.childrens) {
 			walk(it, IDGenerator<GCategory::NODEOBJECTS>::getId(), thisId);
 		}
 	}
