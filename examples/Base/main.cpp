@@ -4,6 +4,7 @@
 #include <TMXL/Parsers/XML/PugiParser.h>
 #include <TMXL/Parsers/XMLFormater.h>
 #include <TMXL/Map/NodeObject.h>
+#include <TMXL/System/Logger.h>
 #include <TMXL/Tools.h>
 
 #include <SFML/System/String.hpp>
@@ -24,6 +25,8 @@ int main() {
     TMXL::PugiParser parser;
     parser.setFileName("map1.tmx");
     parser.parse();
+
+    TMXL::Log::info("is work!");
 
     auto map = parser.getRoot();
     //map->dump();

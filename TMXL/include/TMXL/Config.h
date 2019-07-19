@@ -8,13 +8,6 @@
 #define MAKE_STR(x) _MAKE_STR(x)
 #define _MAKE_STR(x) #x
 
-#ifdef _COUT_DEBUG_OUTPUT
-#include <iostream>
-#define tmxlDebug(msg) std::cout << "DEBUG: " << msg << std::endl;
-#else
-#define tmxlDebug(msg) /**/
-#endif
-
 #ifndef TMXL_VERSION // If not defined version in CMakeLists.txt then use default value "0.0.0"
 #define TMXL_VERSION "0.0.0"
 #endif

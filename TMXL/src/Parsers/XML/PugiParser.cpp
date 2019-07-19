@@ -4,6 +4,7 @@ namespace TMXL {
 
     bool PugiParser::parse() {
         if (m_fileName.isEmpty()){
+            Log::error("PugiParser: file name is empty!");
             return false;
         }
 
@@ -15,7 +16,7 @@ namespace TMXL {
         xml_parse_result    l_result = l_document.load_file(m_fileName.toAnsiString().c_str());
 
         if (!l_result){
-            tmxlDebug(l_result.description());
+            Log::error("PugiParser: '" + m_fileName + "' " + l_result.description());
             return false;
         }
 
