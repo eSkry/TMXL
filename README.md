@@ -14,7 +14,7 @@ Project uses [CMake](https://cmake.org) to generate platform and compiler-specif
 - [SFML](https://www.sfml-dev.org)
 - `optional` [pugixml](https://pugixml.org)
 
-### CMake options:
+### CMake options
 | Options              | Description                        | Default |
 |----------------------|------------------------------------|---------|
 | BUILD_EXAMPLES       | Build example projects             | ON      |
@@ -24,19 +24,22 @@ Project uses [CMake](https://cmake.org) to generate platform and compiler-specif
 
 ### Building on Linux (Unix Makefiles)
 1. Install SFML: `apt-get install sfml-dev libsfml-*2.4`
-1. Clone repository, enter to TMXL directory and run init script: `git clone https://github.com/eSkry/TMXL && cd ./TMXL && chmod +x ./initsubmodules.sh && ./initsubmodules.sh`
+1. Clone repository, enter to TMXL directory: `git clone https://github.com/eSkry/TMXL && cd ./TMXL`
+1. Run init submodules script: `chmod +x ./initsubmodules.sh && ./initsubmodules.sh`
 1. Build TMXL:
     - By script: `chmod +x ./build.sh && ./build.sh`
-    - By command: `mkdir build && cd build && cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE=Release -DBUILD_EXAMPLES=ON && cmake --build .`
+    - Create build dir: `mkdir build && cd build`
+    - Generate Makefile and build: `cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE=Release && cmake --build .`
 1. For install lib and include files run: `make install`
 
 ### Building on Window (Visual Studio)
 1. Install SFML and add path to include and bin files
 1. CMake build list:
-    - Visual Studio 2019: `cmake .. -G "Visual Studio 16 2019" -DBUILD_EXAMPLES=ON`
-    - Visual Studio 2017: `cmake .. -G "Visual Studio 15 2017 Win64" -DBUILD_EXAMPLES=ON`
-    - Visual Studio 2015: `cmake .. -G "Visual Studio 14 2015 Win64" -DBUILD_EXAMPLES=ON`
+    - Visual Studio 2019: `cmake .. -G "Visual Studio 16 2019"`
+    - Visual Studio 2017: `cmake .. -G "Visual Studio 15 2017 Win64"`
+    - Visual Studio 2015: `cmake .. -G "Visual Studio 14 2015 Win64"`
 1. Open TMXL.sln project
+1. Run build
 
 ## Contributing
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
