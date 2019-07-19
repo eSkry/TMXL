@@ -1,8 +1,8 @@
-#include "TMXL/Parsers/XMLParser.h"
+#include "TMXL/Parsers/XML/PugiParser.h"
 
 namespace TMXL {
 
-    bool XMLParser::parse() {
+    bool PugiParser::parse() {
         if (m_fileName.isEmpty()){
             return false;
         }
@@ -27,15 +27,15 @@ namespace TMXL {
         return true;
     }
 
-    std::shared_ptr<NodeObject> XMLParser::getRoot() {
+    std::shared_ptr<NodeObject> PugiParser::getRoot() {
         return mRootNode;
     }
 
-    XMLParser::XMLParser() {
+    PugiParser::PugiParser() {
         mRootNode = std::make_shared<NodeObject>();
     }
 
-    void XMLParser::parseNode(pugi::xml_node *pNode, std::shared_ptr<NodeObject> pNodeObject) noexcept {
+    void PugiParser::parseNode(pugi::xml_node *pNode, std::shared_ptr<NodeObject> pNodeObject) noexcept {
         pNodeObject->name = std::string(pNode->name());
         parseAttributes(pNode, pNodeObject);
 
@@ -51,7 +51,7 @@ namespace TMXL {
         }
     }
 
-    void XMLParser::parseAttributes(pugi::xml_node *pNodeWithAttributes, std::shared_ptr<NodeObject> pToObject) noexcept {
+    void PugiParser::parseAttributes(pugi::xml_node *pNodeWithAttributes, std::shared_ptr<NodeObject> pToObject) noexcept {
         for (auto it : pNodeWithAttributes->attributes()){
             TMXLType value;
             value = sf::String(std::string(it.value()));

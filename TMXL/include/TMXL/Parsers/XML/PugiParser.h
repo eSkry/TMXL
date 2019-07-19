@@ -1,5 +1,5 @@
-#ifndef TMXL_XMLPARSER_H
-#define TMXL_XMLPARSER_H
+#ifndef TMXL_PUGIPARSER_H
+#define TMXL_PUGIPARSER_H
 
 /**
  * @details XML Структура карты описана в оффициальной документации Tiled Map Editor
@@ -7,11 +7,11 @@
  */
 
 #include "TMXL/System/StringTools.h"
+#include "TMXL/Parsers/IParser.h"
 #include "TMXL/Map/NodeObject.h"
 #include "TMXL/TypeConvert.h"
 #include "TMXL/TMXLType.h"
 #include "TMXL/Config.h"
-#include "IParser.h"
 
 #include <SFML/System/String.hpp>
 
@@ -22,11 +22,11 @@
 
 namespace TMXL {
 
-    class XMLParser : public IParser {
+    class PugiParser : public IParser {
     public:
         bool parse() override;
 
-        XMLParser();
+        PugiParser();
 
         /**
          * @brief Возвращает карту
@@ -46,4 +46,4 @@ namespace TMXL {
 
 }
 
-#endif //TMXL_XMLPARSER_H
+#endif //TMXL_PUGIPARSER_H

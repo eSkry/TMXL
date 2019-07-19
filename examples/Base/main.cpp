@@ -1,8 +1,8 @@
 
 #include <TMXL/System/NodeObjectPrinter.h>
 #include <TMXL/System/NodeObjectWalker.h>
+#include <TMXL/Parsers/XML/PugiParser.h>
 #include <TMXL/Parsers/XMLFormater.h>
-#include <TMXL/Parsers/XMLParser.h>
 #include <TMXL/Map/NodeObject.h>
 #include <TMXL/Tools.h>
 
@@ -20,7 +20,7 @@ int main() {
     cout << cout.hex << TMXL::charToUint8('1', '1') << endl;
     cout << "Color: " << TMXL::colorToStringARGB(sf::Color::Red).toAnsiString() << endl;
 
-    TMXL::XMLParser parser;
+    TMXL::PugiParser parser;
     parser.setFileName("map1.tmx");
     parser.parse();
 
