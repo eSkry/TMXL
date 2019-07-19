@@ -6,7 +6,6 @@
 #define TMXL_NODEOBJECT_H
 
 #include "TMXL/Config.h"
-#include "TMXL/TMXLType.h"
 
 #include <SFML/System/String.hpp>
 
@@ -20,7 +19,7 @@ namespace TMXL {
     class NodeObject {
 	public:
         using NodeList = std::vector<std::shared_ptr<NodeObject>>;
-        using Attributes = std::map<sf::String, TMXLType>;
+        using Attributes = std::map<sf::String, sf::String>;
 
 		/**
 		 * @brief Find nodes on all childrens and return std::shared_ptr<vector<std::shared_ptr<NodeObject>>>
@@ -54,7 +53,7 @@ namespace TMXL {
         /**
          * @brief Node content
          */
-        TMXLType content;
+        sf::String content;
 
         /**
          * @brief ture if is root node

@@ -10,7 +10,6 @@
 #include "TMXL/Parsers/IParser.h"
 #include "TMXL/Map/NodeObject.h"
 #include "TMXL/TypeConvert.h"
-#include "TMXL/TMXLType.h"
 #include "TMXL/Config.h"
 
 #include <SFML/System/String.hpp>

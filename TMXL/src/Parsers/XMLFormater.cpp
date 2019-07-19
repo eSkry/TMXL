@@ -27,12 +27,10 @@ namespace TMXL {
 		++mLevel;
 		mStream << std::string(mLevel, ' ') << '<' << node->name.toAnsiString();
 		for (auto attr : node->attributes) {
-			mStream << ' ' << attr.first.toAnsiString() << "=\"" << attr.second.as_string().toAnsiString() << "\"";
+			mStream << ' ' << attr.first.toAnsiString() << "=\"" << attr.second.toAnsiString() << "\"";
 		}
 
-		auto content = node->content.as_string();
-
-		if (node->childrens.empty() && content.isEmpty()) {
+		if (node->childrens.empty() && node->content.isEmpty()) {
 			mStream << "/>\n";
 			--mLevel;
 			return;
@@ -40,8 +38,8 @@ namespace TMXL {
 
 		stream << ">\n";
 
-		if (!content.isEmpty()) {
-			mStream << content.toAnsiString();
+		if (!node->content.isEmpty()) {
+			mStream << node->content.toAnsiString();
 			mStream << std::string(mLevel, ' ') << "</" << node->name.toAnsiString() << ">\n";
 			--mLevel;
 			return;
