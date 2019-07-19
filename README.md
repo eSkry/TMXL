@@ -27,9 +27,7 @@ Project uses [CMake](https://cmake.org) to generate platform and compiler-specif
 1. Clone repository, enter to TMXL directory: `git clone https://github.com/eSkry/TMXL && cd ./TMXL`
 1. Run init submodules script: `chmod +x ./initsubmodules.sh && ./initsubmodules.sh`
 1. Build TMXL:
-    - By script: `chmod +x ./build.sh && ./build.sh`
-    - Create build dir: `mkdir build && cd build`
-    - Generate Makefile and build: `cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE=Release && cmake --build .`
+    - Run script: `chmod +x ./build.sh && ./build.sh` or create build dir: `mkdir build && cd build` and generate Makefile and build: `cmake -G "Unix Makefiles" .. -DCMAKE_BUILD_TYPE=Release && cmake --build .`
 1. For install lib and include files run: `make install`
 
 ### Building on Window (Visual Studio)
