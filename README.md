@@ -22,7 +22,6 @@ Project uses [CMake](https://cmake.org) to generate platform and compiler-specif
 | BUILD_USE_PUGIXML    | Build lib with pugixml support     | ON      |
 
 ### Building on Linux (Unix Makefiles)
-1. Install SFML: `apt-get install sfml-dev libsfml-*2.4`
 1. Clone repository, enter to TMXL directory: `git clone https://github.com/eSkry/TMXL && cd ./TMXL`
 1. Run init submodules script: `chmod +x ./initsubmodules.sh && ./initsubmodules.sh`
 1. Build TMXL:
@@ -30,7 +29,6 @@ Project uses [CMake](https://cmake.org) to generate platform and compiler-specif
 1. For install lib and include files run: `make install`
 
 ### Building on Window (Visual Studio)
-1. Install SFML and add path to include and bin files
 1. CMake build list:
     - Visual Studio 2019: `cmake .. -G "Visual Studio 16 2019"`
     - Visual Studio 2017: `cmake .. -G "Visual Studio 15 2017 Win64"`
