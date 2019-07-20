@@ -5,8 +5,6 @@
 #ifndef TMXL_STRINGTOOLS_H
 #define TMXL_STRINGTOOLS_H
 
-#include "TMXL/Config.h"
-
 #include <cstring>
 #include <math.h>
 #include <string>

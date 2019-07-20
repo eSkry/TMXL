@@ -5,8 +5,6 @@
 #ifndef TMXL_LOGGER_H
 #define TMXL_LOGGER_H
 
-#include "TMXL/Config.h"
-
 #include <iostream>
 #include <string>
 

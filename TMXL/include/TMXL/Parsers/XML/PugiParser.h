@@ -11,7 +11,6 @@
 #include "TMXL/Map/NodeObject.h"
 #include "TMXL/System/Logger.h"
 #include "TMXL/TypeConvert.h"
-#include "TMXL/Config.h"
 
 #include "pugixml.hpp"
 

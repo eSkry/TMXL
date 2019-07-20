@@ -3,10 +3,7 @@
 //
 
 #ifndef RESOURCEMANAGER_H
-
-#include "TMXL/Config.h"
-
-#include <SFML/System/String.hpp>
+#define RESOURCEMANAGER_H
 
 #include <memory>
 #include <map>
@@ -18,23 +15,21 @@ namespace TMXL {
         USER
     };
 
-    template <typename T, typename String_t = std::string>
-    class ResourceManager : public std::map<String_t, std::shared_ptr<T>> {
+    template <typename T>
+    class ResourceManager : public std::map<std::string, std::shared_ptr<T>> {
     public:
-        ResourceManager() : std::map<String_t, std::shared_ptr<T>>() {}
+        ResourceManager() : std::map<std::string, std::shared_ptr<T>>() {}
 
         /**
          * @brief Reutrn false if resource by name is not exists
          * @param name
          * @return
          */
-        bool exists(const String_t &name) {
+        bool exists(const std::string &name) {
             return !(this->find(name) == this->end());
         }
     };
 
 }
-
-#define RESOURCEMANAGER_H
 
 #endif //RESOURCEMANAGER_H

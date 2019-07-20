@@ -2,7 +2,6 @@
 #define TMXL_IPARSER_H
 
 #include "TMXL/Map/NodeObject.h"
-#include "TMXL/Config.h"
 
 namespace TMXL {
 

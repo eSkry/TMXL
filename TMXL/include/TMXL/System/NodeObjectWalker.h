@@ -7,7 +7,6 @@
 
 #include "TMXL/System/IDGenerator.h"
 #include "TMXL/Map/NodeObject.h"
-#include "TMXL/Config.h"
 
 #include <functional>
 #include <utility>
@@ -19,10 +18,10 @@ namespace TMXL {
     public:
 
 		struct NodeMeta {
-			TLSize_t level = 0;
+			std::size_t level = 0;
 		};
 
-        using CallbackType = std::function<void(NodeObject&, TLSize_t thisId, TLSize_t parentId)>;
+        using CallbackType = std::function<void(NodeObject&, std::size_t thisId, std::size_t parentId)>;
 
         /**
          * @param nodeName
@@ -36,7 +35,7 @@ namespace TMXL {
 
     private:
 
-		void walk(NodeObject& node, TLSize_t thisId, TLSize_t parentId);
+		void walk(NodeObject& node, std::size_t thisId, std::size_t parentId);
 
         std::map<std::string, CallbackType> callbacks;
     };

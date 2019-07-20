@@ -3,7 +3,6 @@
 
 #include "TMXL/Parsers/IFormater.h"
 #include "TMXL/Map/NodeObject.h"
-#include "TMXL/Config.h"
 
 #include <sstream>
 #include <string>

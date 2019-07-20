@@ -3,7 +3,6 @@
 
 #include "TMXL/System/StringTools.h"
 #include "TMXL/System/Color.h"
-#include "Config.h"
 
 #include <algorithm>
 #include <string.h>
@@ -45,10 +44,10 @@ namespace TMXL {
             return {};
         }
 
-        const TLSize_t distance = static_cast<int>('a') - static_cast<int>('A');
+        const std::size_t distance = static_cast<int>('a') - static_cast<int>('A');
         std::string tempStr(str);
 
-        for (TLSize_t i = 0; i < str.length(); i++){
+        for (std::size_t i = 0; i < str.length(); i++){
             if (str[i] >= 'A' && str[i] <= 'Z') {
                 tempStr[i] = str[i] + distance;
             }
@@ -63,7 +62,7 @@ namespace TMXL {
      * @return
      */
     static char charToLowerCase(char ch) noexcept {
-        const TLSize_t distance = static_cast<int>('a') - static_cast<int>('A');
+        const std::size_t distance = static_cast<int>('a') - static_cast<int>('A');
         if (ch >= 'A' && ch <= 'Z'){
             return static_cast<char>(static_cast<int>(ch) + distance);
         }

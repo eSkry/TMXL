@@ -15,7 +15,7 @@ namespace TMXL {
 		walk(node, rootId, rootId);
     }
 
-	void NodeObjectWalker::walk(NodeObject& node, TLSize_t thisId, TLSize_t parentId) {
+	void NodeObjectWalker::walk(NodeObject& node, std::size_t thisId, std::size_t parentId) {
 		if (const std::string& name = node.name; callbacks.find(name) != callbacks.end()) {
 			callbacks[name](node, thisId, parentId);
 		}

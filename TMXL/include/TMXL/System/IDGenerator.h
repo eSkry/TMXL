@@ -1,29 +1,27 @@
 #ifndef IDGENERATOR_H
 #define IDGENERATOR_H
 
-#include "TMXL/Config.h"
-
 #include <limits>
 #include <mutex>
 
 namespace TMXL {
 
-	enum GCategory : TLSize_t {
+	enum GCategory : std::size_t {
 		DEFAULT = 0,
 		NODEOBJECTS
 	};
 
-	template <TLSize_t genCategory = GCategory::DEFAULT>
+	template <std::size_t genCategory = GCategory::DEFAULT>
 	class IDGenerator {
 	public:
 
 		static void reset() noexcept {
-			mId = std::numeric_limits<TLSize_t>::min();
+			mId = std::numeric_limits<std::size_t>::min();
 		}
 
-		static TLSize_t getId() noexcept {
+		static std::size_t getId() noexcept {
 			std::scoped_lock lock(mMutex);
-			if (mId == std::numeric_limits<TLSize_t>::max()) {
+			if (mId == std::numeric_limits<std::size_t>::max()) {
 				// @todo: send exception or massage 'generator out of numeric range'
 			}
 			++mId;
@@ -35,7 +33,7 @@ namespace TMXL {
 		}
 
 	private:
-		static TLSize_t mId;
+		static std::size_t mId;
 		static std::mutex mMutex;
 	};
 

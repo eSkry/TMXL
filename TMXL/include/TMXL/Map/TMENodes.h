@@ -2,6 +2,7 @@
 #define TMXL_TMENODE_H
 
 #include "TMXL/System/ResourceManager.h"
+#include "TMXL/System/Color.h"
 #include "TMXL/Config.h"
 #include "TMXL/Tools.h"
 
@@ -27,42 +28,34 @@ namespace TMXL {
         LeftUp
     };
 
+    struct ITmeBase { };
+
     /**
      * @details TMEProperty - Структура хранащая одну единица параметра в разделе properties
      */
-    struct TMEProperty {
-        sf::String              name;
-        TMXLTypes               type;
-        sf::String              value;
+    struct TMEProperty : ITmeBase {
+        sf::String             name;
+        TMXLTypes              type;
+        sf::String             value;
     };
 
-    struct TMEImage {
-        sf::Color                   trans;
-        unsigned int                width;
-        unsigned int                height;
-        //std::shared_ptr<sf::Image>  image;
+    struct TMEImage : ITmeBase {
+        Color                  trans;
+        std::size_t            width;
+        std::size_t            height;
+        std::string            image;
     };
 
-    struct TMETileset {
-
-        //TMETileset() { image = nullptr; }
-        //~TMETileset() { if (image) delete image; }
-
-        //sf::Image*              image;
-        sf::String              source;
-        sf::String              name;
-        std::size_t             firstGID;
-        //sf::Vector2u            tileSize;
-        int                     spacing;
-        int                     marign;
-        std::size_t             tileCount;
-        std::size_t             columns;
-    };
-
-    class Tilesets : public std::map<sf::String, std::shared_ptr<TMETileset>> {
-    public:
-
-    private:
+    struct TMETileset : ITmeBase {
+        sf::String             source;
+        sf::String             name;
+        std::size_t            firstGID;
+        std::size_t            tileWidth;
+        std::size_t            tileHeight;
+        int                    spacing;
+        int                    marign;
+        std::size_t            tileCount;
+        std::size_t            columns;
     };
 
     /**
@@ -71,24 +64,21 @@ namespace TMXL {
      *              e = even
      *              o = odd
      */
-    struct TMEMap {
-        //sf::Vector2u            mapSize;
-        MapOrientation          mapOrientation        = MapOrientation::Undefined;
-        MapRenderOrder          renderOrder           = MapRenderOrder::Undefined;
+    struct TMEMap : ITmeBase {
+        std::size_t            mapWidth;
+        std::size_t            mapHeight;
+        MapOrientation         mapOrientation        = MapOrientation::Undefined;
+        MapRenderOrder         renderOrder           = MapRenderOrder::Undefined;
 
-        //sf::Vector2u            tileSize;
-        sf::Color               backgroundColor       = sf::Color::White;
-        TLSize_t                nextObjectId          = 0;
-        TLSize_t                nextLayerId           = 0;
-        TLSize_t                hexSideLength         = 0;
-        TLSize_t                tileWidth             = 0;
-        TLSize_t                tileHeight            = 0;
-        char                    staggerIndex          = '-';
-        char                    staggerAxis           = '-';
+        Color                  backgroundColor       = Color::White;
+        std::size_t            nextObjectId          = 0;
+        std::size_t            nextLayerId           = 0;
+        std::size_t            hexSideLength         = 0;
+        std::size_t            tileWidth             = 0;
+        std::size_t            tileHeight            = 0;
+        char                   staggerIndex          = '-';
+        char                   staggerAxis           = '-';
 
-        //ResourceManager<TMEImage>   images            = ResourceManager<TMEImage>::
-
-        Tilesets                                        tilesets;
         std::vector<TMEProperty>                        properties;
     };
 

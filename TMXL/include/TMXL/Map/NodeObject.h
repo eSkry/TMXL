@@ -5,8 +5,6 @@
 #ifndef TMXL_NODEOBJECT_H
 #define TMXL_NODEOBJECT_H
 
-#include "TMXL/Config.h"
-
 #include <iostream>
 #include <vector>
 #include <memory>

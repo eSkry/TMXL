@@ -5,8 +5,6 @@
 #ifndef TMXL_COLOR_H
 #define TMXL_COLOR_H
 
-#include "TMXL/Config.h"
-
 #include <cstdint>
 #include <math.h>
 
