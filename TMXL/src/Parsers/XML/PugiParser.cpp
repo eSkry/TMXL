@@ -24,7 +24,7 @@ namespace TMXL {
         xml_parse_result    l_result = l_document.load_file(mfileName.c_str());
 
         if (!l_result){
-           // Log::error("PugiParser: '", m_fileName.toAnsiString(), ", ", l_result.description());
+            Log::error("PugiParser: '" + mfileName + ", " + l_result.description());
             return false;
         }
 
