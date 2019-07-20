@@ -38,7 +38,7 @@ namespace TMXL {
         return true;
     }
 
-    std::shared_ptr<NodeObject> PugiParser::getRoot() {
+    std::shared_ptr<NodeObject> PugiParser::getRoot() noexcept {
         return mRootNode;
     }
 
@@ -61,6 +61,10 @@ namespace TMXL {
         for (auto it : pNodeWithAttributes->attributes()){
             pToObject.attributes.insert(std::make_pair(std::string(it.name()), it.value()));
         }
+    }
+
+    void PugiParser::clean() noexcept {
+        mRootNode.reset();
     }
 
 }

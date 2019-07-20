@@ -35,7 +35,13 @@ namespace TMXL {
          * @brief Возвращает карту
          * @return
          */
-        std::shared_ptr<NodeObject> getRoot() override;
+        std::shared_ptr<NodeObject> getRoot() noexcept override;
+
+        /**
+         * @brief Clean loaded data on parser
+         * @details Не удаляет дерево объектов если на него есть другие ссылки
+         */
+        void clean() noexcept override;
 
     protected:
 

@@ -26,7 +26,12 @@ namespace TMXL {
          * @details Возвращает структуру карты
          * @return
          */
-        virtual std::shared_ptr<NodeObject> getRoot() = 0;
+        virtual std::shared_ptr<NodeObject> getRoot() noexcept = 0;
+
+        /**
+         * @brief for cleaning parser
+         */
+        virtual void clean() noexcept = 0;
 
         /**
          * @brief void setFileName(const TLString_t& fileName)
