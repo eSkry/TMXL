@@ -11,7 +11,6 @@
 Project uses [CMake](https://cmake.org) to generate platform and compiler-specific build files.
 
 ### Dependencies
-- [SFML](https://www.sfml-dev.org)
 - `optional` [pugixml](https://pugixml.org)
 
 ### CMake options
