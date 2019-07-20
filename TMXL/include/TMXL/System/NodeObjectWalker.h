@@ -17,10 +17,6 @@ namespace TMXL {
     class NodeObjectWalker {
     public:
 
-		struct NodeMeta {
-			std::size_t level = 0;
-		};
-
         using CallbackType = std::function<void(NodeObject&, std::size_t thisId, std::size_t parentId)>;
 
         /**
@@ -29,14 +25,19 @@ namespace TMXL {
          */
         void registerCallback(const std::string& nodeName, CallbackType callback);
 
+        /**
+         * @brief Запускает обход всех дочерних узлов
+         * @param root
+         */
         void run(NodeObject& root);
 
+        /**
+         * @brief Очищает зарегистрированные callbacks
+         */
         void clearCallbacks();
 
     private:
-
 		void walk(NodeObject& node, std::size_t thisId, std::size_t parentId);
-
         std::map<std::string, CallbackType> callbacks;
     };
 
