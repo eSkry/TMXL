@@ -1,6 +1,6 @@
 
 #include <TMXL/System/NodeObjectPrinter.h>
-#include <TMXL/System/NodeObjectWalker.h>
+#include <TMXL/Map/NodeObjectWalker.h>
 #include <TMXL/Parsers/XML/PugiParser.h>
 #include <TMXL/Parsers/XMLFormater.h>
 #include <TMXL/Map/NodeObject.h>
