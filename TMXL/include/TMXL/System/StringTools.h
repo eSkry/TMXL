@@ -7,10 +7,9 @@
 
 #include "TMXL/Config.h"
 
-#include <math.h>
 #include <cstring>
-
-#include <SFML/System/String.hpp>
+#include <math.h>
+#include <string>
 
 namespace TMXL {
 
@@ -50,8 +49,8 @@ namespace TMXL {
      * @param str2
      * @return
      */
-    static bool compare(const sf::String& str1, const sf::String& str2, StringComparison comparsion = StringComparison::Normal) noexcept {
-        if (str1.getSize() != str2.getSize()) {
+    static bool compare(const std::string& str1, const std::string& str2, StringComparison comparsion = StringComparison::Normal) noexcept {
+        if (str1.length() != str2.length()){
             return false;
         }
 
@@ -59,7 +58,7 @@ namespace TMXL {
             return str1 == str2;
         }
 
-        std::size_t len = str1.getSize();
+        std::size_t len = str1.length();
         if (comparsion == StringComparison::IgnoreCase) {
             return ignoreCaseCompire(str1, str2, len);
         }
@@ -74,8 +73,8 @@ namespace TMXL {
      * @param comparison
      * @return
      */
-    static bool compare(const sf::String& str1, const char* str2, std::size_t len, StringComparison comparison = StringComparison::IgnoreCase) noexcept {
-        if (str1.getSize() != len) {
+    static bool compare(const std::string& str1, const char* str2, std::size_t len, StringComparison comparison = StringComparison::IgnoreCase) noexcept {
+        if (str1.length() != len) {
             return false;
         }
 

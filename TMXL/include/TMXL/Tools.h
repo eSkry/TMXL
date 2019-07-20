@@ -1,11 +1,9 @@
 #ifndef TMXL_TOOLS_H
 #define TMXL_TOOLS_H
 
-#include "Config.h"
 #include "TMXL/System/StringTools.h"
-
-#include <SFML/Graphics/Color.hpp>
-#include <SFML/System/String.hpp>
+#include "TMXL/System/Color.h"
+#include "Config.h"
 
 #include <algorithm>
 #include <string.h>
@@ -42,15 +40,15 @@ namespace TMXL {
      * @param str
      * @return
      */
-    static sf::String strToLowerCase(const sf::String& str) noexcept {
-        if (str.isEmpty()){
+    static std::string strToLowerCase(const std::string& str) noexcept {
+        if (str.empty()){
             return {};
         }
 
         const TLSize_t distance = static_cast<int>('a') - static_cast<int>('A');
-        sf::String tempStr(str);
+        std::string tempStr(str);
 
-        for (TLSize_t i = 0; i < str.getSize(); i++){
+        for (TLSize_t i = 0; i < str.length(); i++){
             if (str[i] >= 'A' && str[i] <= 'Z') {
                 tempStr[i] = str[i] + distance;
             }
@@ -78,7 +76,7 @@ namespace TMXL {
      * @param str
      * @return
      */
-    static TMXLTypes stringToType(const sf::String& str) noexcept {
+    static TMXLTypes stringToType(const std::string& str) noexcept {
         if (str == "string"){
             return TMXLTypes::String_e;
         } else if (str == "int"){

@@ -3,10 +3,8 @@
 
 #include "TMXL/Config.h"
 
-#include <SFML/System/Mutex.hpp>
-#include <SFML/System/Lock.hpp>
-
 #include <limits>
+#include <mutex>
 
 namespace TMXL {
 
@@ -24,7 +22,7 @@ namespace TMXL {
 		}
 
 		static TLSize_t getId() noexcept {
-			sf::Lock lock(mMutex);
+			std::scoped_lock lock(mMutex);
 			if (mId == std::numeric_limits<TLSize_t>::max()) {
 				// @todo: send exception or massage 'generator out of numeric range'
 			}
@@ -38,7 +36,7 @@ namespace TMXL {
 
 	private:
 		static TLSize_t mId;
-		static sf::Mutex mMutex;
+		static std::mutex mMutex;
 	};
 
 }

@@ -5,9 +5,9 @@
 
 TEST(tmxl_tools_tolowercase_check, test_eq) {
     using namespace TMXL;
-    ASSERT_STREQ(strToLowerCase("WwWwW").toAnsiString().c_str(), "wwwww");
-    ASSERT_STREQ(strToLowerCase("HellO, WorlD! =) 1234567890").toAnsiString().c_str(), "hello, world! =) 1234567890");
-    ASSERT_STREQ(strToLowerCase("AZ").toAnsiString().c_str(), "az");
+    ASSERT_STREQ(strToLowerCase("WwWwW").c_str(), "wwwww");
+    ASSERT_STREQ(strToLowerCase("HellO, WorlD! =) 1234567890").c_str(), "hello, world! =) 1234567890");
+    ASSERT_STREQ(strToLowerCase("AZ").c_str(), "az");
 }
 
 TEST(tmxl_tools_snn_check, test_eq) {

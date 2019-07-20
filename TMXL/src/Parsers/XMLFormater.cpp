@@ -25,12 +25,12 @@ namespace TMXL {
 
 	void XMLFormater::recurseFormat(const NodeObject& node, std::stringstream& stream) {
 		++mLevel;
-		mStream << std::string(mLevel, ' ') << '<' << node.name.toAnsiString();
+		mStream << std::string(mLevel, ' ') << '<' << node.name;
 		for (auto attr : node.attributes) {
-			mStream << ' ' << attr.first.toAnsiString() << "=\"" << attr.second.toAnsiString() << "\"";
+			mStream << ' ' << attr.first << "=\"" << attr.second << "\"";
 		}
 
-		if (node.childrens.empty() && node.content.isEmpty()) {
+		if (node.childrens.empty() && node.content.empty()) {
 			mStream << "/>\n";
 			--mLevel;
 			return;
@@ -38,9 +38,9 @@ namespace TMXL {
 
 		stream << ">\n";
 
-		if (!node.content.isEmpty()) {
-			mStream << node.content.toAnsiString();
-			mStream << std::string(mLevel, ' ') << "</" << node.name.toAnsiString() << ">\n";
+		if (!node.content.empty()) {
+			mStream << node.content;
+			mStream << std::string(mLevel, ' ') << "</" << node.name << ">\n";
 			--mLevel;
 			return;
 		}
@@ -49,7 +49,7 @@ namespace TMXL {
 			recurseFormat(child, mStream);
 		}
 
-		mStream << std::string(mLevel, ' ') << "</" << node.name.toAnsiString() << ">\n";
+		mStream << std::string(mLevel, ' ') << "</" << node.name << ">\n";
 		--mLevel;
 	}
 

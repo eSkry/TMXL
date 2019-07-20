@@ -3,7 +3,7 @@
 namespace TMXL {
 
     bool PugiParser::parse() {
-        if (m_fileName.isEmpty()){
+        if (m_fileName.empty()){
             Log::error("PugiParser: file name is empty!");
             return false;
         }
@@ -13,10 +13,10 @@ namespace TMXL {
         using pugi::xml_node;
 
         xml_document        l_document;
-        xml_parse_result    l_result = l_document.load_file(m_fileName.toAnsiString().c_str());
+        xml_parse_result    l_result = l_document.load_file(m_fileName.c_str());
 
         if (!l_result){
-            Log::error("PugiParser: '" + m_fileName + "' " + l_result.description());
+           // Log::error("PugiParser: '", m_fileName.toAnsiString(), ", ", l_result.description());
             return false;
         }
 
@@ -40,8 +40,8 @@ namespace TMXL {
         pNodeObject.name = std::string(pNode->name());
         parseAttributes(pNode, pNodeObject);
 
-		sf::String content = std::string(pNode->text().as_string());
-		if (!content.isEmpty()) {
+		std::string content = pNode->text().as_string();
+		if (!content.empty()) {
 			pNodeObject.content = content;
 		}
 

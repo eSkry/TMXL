@@ -18,7 +18,7 @@ namespace TMXL {
         USER
     };
 
-    template <typename T, typename String_t = sf::String>
+    template <typename T, typename String_t = std::string>
     class ResourceManager : public std::map<String_t, std::shared_ptr<T>> {
     public:
         ResourceManager() : std::map<String_t, std::shared_ptr<T>>() {}

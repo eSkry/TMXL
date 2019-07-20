@@ -14,12 +14,6 @@ option(BUILD_USE_PUGIXML "Use pugixml parser and build module" ON)
 
 #### PROJECT TMXL BUILD ####
 project("TMXL")
-set(TMXL_VERSION v0.1.0)
-if(${CMAKE_VERSION} VERSION_LESS "3.12")
-	add_definitions(-DTMXL_VERSION=${TMXL_VERSION})
-else()
-	add_compile_definitions(TMXL_VERSION="${TMXL_VERSION}")
-endif()
 
 set(CMAKE_DEBUG_POSTFIX d)
 set(TMXL_LIBRARY_NAME ${PROJECT_NAME})
@@ -34,12 +28,6 @@ file(GLOB_RECURSE TMXL_LIBRARY_HEADERS "${PROJECT_SOURCE_DIR}/TMXL/*.h")
 file(GLOB_RECURSE TMXL_LIBRARY_SOURCES "${PROJECT_SOURCE_DIR}/TMXL/*.cpp")
 add_library(${TMXL_LIBRARY_NAME} ${TMXL_LIBRARY_HEADERS} ${TMXL_LIBRARY_SOURCES})
 message("TMXL OUT DIR: ${CMAKE_CURRENT_BINARY_DIR}")
-
-find_package(SFML REQUIRED window graphics system)
-if(SFML_FOUND)
-	include_directories(${SFML_INCLUDE_DIR})
-	target_link_libraries(${TMXL_LIBRARY_NAME} ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
-endif()
 
 if (BUILD_USE_PUGIXML)
 	add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/extlibs/pugixml")

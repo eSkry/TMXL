@@ -5,8 +5,6 @@
 #include "TMXL/Map/NodeObject.h"
 #include "TMXL/Config.h"
 
-#include <SFML/System/String.hpp>
-
 #include <iostream>
 #include <string>
 #include <sstream>

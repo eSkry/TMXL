@@ -6,7 +6,7 @@
 
 namespace TMXL {
 
-    void NodeObjectWalker::registerCallback(const sf::String &nodeName, CallbackType callback) {
+    void NodeObjectWalker::registerCallback(const std::string &nodeName, CallbackType callback) {
         callbacks[nodeName] = std::move(callback);
     }
 
@@ -16,7 +16,7 @@ namespace TMXL {
     }
 
 	void NodeObjectWalker::walk(NodeObject& node, TLSize_t thisId, TLSize_t parentId) {
-		if (const sf::String& name = node.name; callbacks.find(name) != callbacks.end()) {
+		if (const std::string& name = node.name; callbacks.find(name) != callbacks.end()) {
 			callbacks[name](node, thisId, parentId);
 		}
 		for (auto it : node.childrens) {

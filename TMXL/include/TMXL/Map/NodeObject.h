@@ -7,11 +7,10 @@
 
 #include "TMXL/Config.h"
 
-#include <SFML/System/String.hpp>
-
 #include <iostream>
 #include <vector>
 #include <memory>
+#include <string>
 #include <map>
 
 namespace TMXL {
@@ -19,19 +18,19 @@ namespace TMXL {
     class NodeObject {
 	public:
         using NodeList = std::vector<NodeObject>;
-        using Attributes = std::map<sf::String, sf::String>;
+        using Attributes = std::map<std::string, std::string>;
 
 		/**
 		 * @brief Find nodes on all childrens and add finded nodes to 'toVector'
 		 * @param nodeName
 		 * @param toVector
 		 */
-        void findAllNodes(const sf::String& nodeName, std::vector<NodeObject>& toVector) noexcept;
+        void findAllNodes(const std::string& nodeName, std::vector<NodeObject>& toVector) noexcept;
 
         /**
          * @brief Node name
          */
-        sf::String name;
+        std::string name;
 
         /**
          * @brief std::map children nodes
@@ -46,7 +45,7 @@ namespace TMXL {
         /**
          * @brief Node content
          */
-        sf::String content;
+        std::string content;
 
         /**
          * @brief ture if is root node
@@ -55,7 +54,7 @@ namespace TMXL {
 
 	private:
 
-		void recursiveFind(const sf::String& nodeName, NodeObject& object, std::vector<NodeObject>& vector) noexcept;
+		void recursiveFind(const std::string& nodeName, NodeObject& object, std::vector<NodeObject>& vector) noexcept;
 
     };
 

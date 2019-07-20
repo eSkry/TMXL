@@ -13,8 +13,6 @@
 #include "TMXL/TypeConvert.h"
 #include "TMXL/Config.h"
 
-#include <SFML/System/String.hpp>
-
 #include "pugixml.hpp"
 
 #include <memory>

@@ -5,11 +5,8 @@
 #include "TMXL/Config.h"
 #include "TMXL/Tools.h"
 
-#include <SFML/System/Vector2.hpp>
-#include <SFML/Graphics/Color.hpp>
-#include <SFML/Graphics/Image.hpp>
-
 #include <vector>
+#include <string>
 #include <map>
 
 namespace TMXL {
@@ -41,20 +38,21 @@ namespace TMXL {
 
     struct TMEImage {
         sf::Color                   trans;
-        sf::Vector2u                size;
-        std::shared_ptr<sf::Image>  image;
+        unsigned int                width;
+        unsigned int                height;
+        //std::shared_ptr<sf::Image>  image;
     };
 
     struct TMETileset {
 
-        TMETileset() { image = nullptr; }
-        ~TMETileset() { if (image) delete image; }
+        //TMETileset() { image = nullptr; }
+        //~TMETileset() { if (image) delete image; }
 
-        sf::Image*              image;
+        //sf::Image*              image;
         sf::String              source;
         sf::String              name;
         std::size_t             firstGID;
-        sf::Vector2u            tileSize;
+        //sf::Vector2u            tileSize;
         int                     spacing;
         int                     marign;
         std::size_t             tileCount;
@@ -74,11 +72,11 @@ namespace TMXL {
      *              o = odd
      */
     struct TMEMap {
-        sf::Vector2u            mapSize;
+        //sf::Vector2u            mapSize;
         MapOrientation          mapOrientation        = MapOrientation::Undefined;
         MapRenderOrder          renderOrder           = MapRenderOrder::Undefined;
 
-        sf::Vector2u            tileSize;
+        //sf::Vector2u            tileSize;
         sf::Color               backgroundColor       = sf::Color::White;
         TLSize_t                nextObjectId          = 0;
         TLSize_t                nextLayerId           = 0;

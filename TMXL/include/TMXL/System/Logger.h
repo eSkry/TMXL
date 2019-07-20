@@ -12,6 +12,7 @@
 
 namespace TMXL::Log {
 
+
     inline void info(const std::string& message) {
         std::cout << "INFO: " << message << std::endl;
     }

@@ -8,22 +8,12 @@
 #define MAKE_STR(x) _MAKE_STR(x)
 #define _MAKE_STR(x) #x
 
-#ifndef TMXL_VERSION // If not defined version in CMakeLists.txt then use default value "0.0.0"
-#define TMXL_VERSION "0.0.0"
-#endif
-
 #include <stddef.h> // Used for std::size_t
 #include <string>
-
-#include <SFML/System/String.hpp>
 
 namespace TMXL {
     // Used size type
     using TLSize_t = std::size_t;
-
-    inline const char* getTMXLVersion() {
-        return MAKE_STR(TMXL_VERSION);
-    }
 
 }
 

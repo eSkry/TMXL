@@ -1,17 +1,15 @@
 #ifndef TMXL_TYPECONVERT_H
 #define TMXL_TYPECONVERT_H
 
-#include "SFMLSugar.h"
-#include "Config.h"
-#include "Tools.h"
+#include "TMXL/System/Color.h"
+#include "TMXL/Config.h"
+#include "TMXL/Tools.h"
 
 #include <typeinfo>
 #include <cstring>
 #include <string>
 #include <sstream>
 #include <iomanip>
-
-#include <SFML/Graphics/Color.hpp>
 
 namespace TMXL {
 
@@ -96,13 +94,10 @@ namespace TMXL {
      * @param a_false - Строка возвращаемая при val == false, по умолчанию "false"
      * @return
      */
-    static sf::String boolToString(bool val, bool fullFormat = true
-                    , const char* a_true = "true"
-                    , const char* a_false = "false") noexcept {
-        if (val && fullFormat) return a_true;
-        if (val && !fullFormat) return a_true[0];
-        if (!val && fullFormat) return a_false;
-        return a_false[0];
+    static std::string boolToString(bool val) noexcept {
+        if (val)
+            return "true";
+        return "false";
     }
 
     /**
@@ -122,21 +117,21 @@ namespace TMXL {
      * @param defaultValue - Значение возвращаемое если строку невозможно преобразовать в bool.
      * @return
      */
-    static bool strToBool(const sf::String& str, bool defaultValue = false) noexcept {
-        if (str.isEmpty()){
+    static bool strToBool(const std::string& str, bool defaultValue = false) noexcept {
+        if (str.empty()){
             return defaultValue;
         }
 
-        if (str.getSize() == 1) {
-            if (str == '1' || str == 't' || str == 'T') {
+        if (str.length() == 1) {
+            if (str == "1" || str == "t" || str == "T") {
                 return true;
-            } else if (str == '0' || str == 'f' || str == 'F') {
+            } else if (str == "0" || str == "f" || str == "F") {
                 return false;
             }
             return defaultValue;
         }
 
-        const sf::String lowerStr = strToLowerCase(str);
+        const std::string lowerStr = strToLowerCase(str);
         if (lowerStr == "true"){
             return true;
         } else if (lowerStr == "false"){
@@ -152,23 +147,23 @@ namespace TMXL {
      * @param ch2
      * @return
      */
-    static sf::Uint8 charToUint8(char ch1, char ch2) noexcept {
-        sf::Uint8 temp = 0;
+    static std::uint8_t charToUint8(char ch1, char ch2) noexcept {
+        std::uint8_t temp = 0;
 
         ch1 = charToLowerCase(ch1);
         ch2 = charToLowerCase(ch2);
 
         if (ch1 >= '0' && ch1 <= '9') {
-            temp = static_cast<sf::Uint8>( ch1 - '0' );
+            temp = static_cast<std::uint8_t >( ch1 - '0' );
         } else if (ch1 >= 'a' && ch1 <= 'f'){
-            temp = static_cast<sf::Uint8>( 10 + (ch1 - 'a') );
+            temp = static_cast<std::uint8_t>( 10 + (ch1 - 'a') );
         }
 
         temp <<= 4u; // Сдвиг влево на 4 бита
         if (ch2 >= '0' && ch2 <= '9') {
-            temp += static_cast<sf::Uint8>( ch2 - '0' );
+            temp += static_cast<std::uint8_t>( ch2 - '0' );
         } else if (ch2 >= 'a' && ch2 <= 'f'){
-            temp += static_cast<sf::Uint8>( 10 + (ch2 - 'a') );
+            temp += static_cast<std::uint8_t>( 10 + (ch2 - 'a') );
         }
 
         return temp;
@@ -185,8 +180,8 @@ namespace TMXL {
      * @param str
      * @return
      */
-    static sf::Color strToColorARGB(const sf::String &str) noexcept {
-        if (str.getSize() < 6) {
+    static Color strToColorARGB(const std::string &str) noexcept {
+        if (str.length() < 6) {
             return {};
         }
 
@@ -195,10 +190,10 @@ namespace TMXL {
             sp += 1;
         }
 
-        sf::Color temp;
+        Color temp;
 
         // TODO: сделать все в соответствии с типами
-        if (str.getSize() > 6 + sp){
+        if (str.length() > 6 + sp){
             temp.a = charToUint8(str[0 + sp], str[1 + sp]);
             sp += 2;
         }
@@ -216,8 +211,8 @@ namespace TMXL {
      * @param defaultValue
      * @return
      */
-    static int strToInt(const sf::String& str, int defaultValue = -1) noexcept {
-        return std::stoi(sfStringToChar(str));
+    static int strToInt(const std::string& str, int defaultValue = -1) noexcept {
+        return std::stoi(str);
     }
 
     /**
@@ -226,8 +221,8 @@ namespace TMXL {
      * @param defaultValue
      * @return
      */
-    static long strToLong(const sf::String& str, long defaultValue = -1) noexcept {
-        return std::stol(sfStringToChar(str));
+    static long strToLong(const std::string& str, long defaultValue = -1) noexcept {
+        return std::stol(str);
     }
 
     /**
@@ -236,8 +231,8 @@ namespace TMXL {
      * @param defaultValue
      * @return
      */
-    static double strToDouble(const sf::String& str, double defaultValue = -1.0) noexcept {
-        return std::stod(sfStringToChar(str));
+    static double strToDouble(const std::string& str, double defaultValue = -1.0) noexcept {
+        return std::stod(str);
     }
 
     /**
@@ -247,7 +242,7 @@ namespace TMXL {
      * @param c
      * @return
      */
-    static int colorToInt(const sf::Color& c) noexcept {
+    static int colorToInt(const Color& c) noexcept {
         return  ( ((c.a & 0xff) << 24)
                 + ((c.r & 0xff) << 16)
                 + ((c.g & 0xff) << 8)
@@ -259,12 +254,12 @@ namespace TMXL {
      * @param color
      * @return
      */
-    static sf::Color intToColor(int color) noexcept {
-        sf::Color temp;
-        temp.a = static_cast<sf::Uint8>((color >> 24) & 0xff);
-        temp.r = static_cast<sf::Uint8>((color >> 16) & 0xff);
-        temp.g = static_cast<sf::Uint8>((color >> 8) & 0xff);
-        temp.b = static_cast<sf::Uint8>(color & 0xff);
+    static Color intToColor(int color) noexcept {
+        Color temp;
+        temp.a = static_cast<std::uint8_t>((color >> 24) & 0xff);
+        temp.r = static_cast<std::uint8_t>((color >> 16) & 0xff);
+        temp.g = static_cast<std::uint8_t>((color >> 8) & 0xff);
+        temp.b = static_cast<std::uint8_t>(color & 0xff);
         return temp;
     }
 
@@ -273,7 +268,7 @@ namespace TMXL {
      * @param val
      * @return
      */
-    static sf::String colorToStringARGB(const sf::Color &val) noexcept {
+    static std::string colorToStringARGB(const Color &val) noexcept {
         char temp[10] = {'0'}; // 10-й эллемент под нуль символ sprintf
         sprintf(temp, "#%2x%2x%2x%2x", val.a, val.r, val.g, val.b);
 
@@ -290,7 +285,7 @@ namespace TMXL {
      * @param val
      * @return
      */
-    static sf::String intToString(int val) noexcept {
+    static std::string intToString(int val) noexcept {
         return std::to_string(val);
     }
 
@@ -299,7 +294,7 @@ namespace TMXL {
      * @param val
      * @return
      */
-    static sf::String longToString(long val) noexcept {
+    static std::string longToString(long val) noexcept {
         return std::to_string(val);
     }
 
