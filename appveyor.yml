@@ -41,10 +41,10 @@ before_build:
     cd build
     cmake --version
     cmake .. -G %generator%
-    dir
-    tree c:\projects\cmake-init /F
+#    dir
+#    tree c:\projects\cmake-init /F
 
 build:
-  project: c:\projects\cmake-init\TMXL\build\TMXL.sln
+  project: c:\projects\cmake-init\TMXL\build\Project.sln
   verbosity: minimal
   parallel: true

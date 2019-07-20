@@ -2,6 +2,7 @@
 
 <div align="center">
  <a href="https://travis-ci.com/eSkry/TMXL"><img src="https://travis-ci.com/eSkry/TMXL.svg?branch=TMXL_V1" /></a>
+ <a href="https://ci.appveyor.com/project/eSkry/tmxl"><img src="https://ci.appveyor.com/api/projects/status/vgkpvw4dda3ykqia?svg=true" /></a>
  <a href="https://coveralls.io/github/eSkry/TMXL?branch=TMXL_V1"><img src="https://coveralls.io/repos/github/eSkry/TMXL/badge.svg?branch=TMXL_V1" /></a>
  <a href="https://www.codefactor.io/repository/github/eskry/tmxl"><img src="https://www.codefactor.io/repository/github/eskry/tmxl/badge" /></a>
  <a href="https://github.com/eSkry/TMXL/blob/TMXL_V1/LICENSE.md"><img src="https://img.shields.io/badge/License-MIT-blue.svg" /></a>
