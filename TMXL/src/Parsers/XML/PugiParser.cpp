@@ -2,8 +2,16 @@
 
 namespace TMXL {
 
+    PugiParser::PugiParser() {
+        mRootNode = std::make_shared<NodeObject>();
+    }
+
+    PugiParser::PugiParser(const std::string fileName) : PugiParser() {
+        mfileName = fileName;
+    }
+
     bool PugiParser::parse() {
-        if (m_fileName.empty()){
+        if (mfileName.empty()){
             Log::error("PugiParser: file name is empty!");
             return false;
         }
@@ -13,7 +21,7 @@ namespace TMXL {
         using pugi::xml_node;
 
         xml_document        l_document;
-        xml_parse_result    l_result = l_document.load_file(m_fileName.c_str());
+        xml_parse_result    l_result = l_document.load_file(mfileName.c_str());
 
         if (!l_result){
            // Log::error("PugiParser: '", m_fileName.toAnsiString(), ", ", l_result.description());
@@ -30,10 +38,6 @@ namespace TMXL {
 
     std::shared_ptr<NodeObject> PugiParser::getRoot() {
         return mRootNode;
-    }
-
-    PugiParser::PugiParser() {
-        mRootNode = std::make_shared<NodeObject>();
     }
 
     void PugiParser::parseNode(pugi::xml_node *pNode, NodeObject& pNodeObject) noexcept {

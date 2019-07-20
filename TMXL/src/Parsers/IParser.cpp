@@ -3,11 +3,11 @@
 namespace TMXL {
 
     void IParser::setFileName(const std::string& fileName) noexcept {
-        m_fileName = fileName;
+        mfileName = fileName;
     }
 
     const std::string &IParser::getFileName() const noexcept {
-        return m_fileName;
+        return mfileName;
     }
 
     IParser::~IParser() = default;

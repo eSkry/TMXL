@@ -41,7 +41,7 @@ namespace TMXL {
         const std::string& getFileName() const noexcept;
 
     protected:
-        std::string  m_fileName;
+        std::string  mfileName;
     };
 
 }

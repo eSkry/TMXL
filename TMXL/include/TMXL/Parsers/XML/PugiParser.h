@@ -24,6 +24,7 @@ namespace TMXL {
         bool parse() override;
 
         PugiParser();
+        PugiParser(const std::string fileName);
 
         /**
          * @brief Возвращает карту

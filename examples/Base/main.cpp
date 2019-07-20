@@ -18,8 +18,7 @@ int main() {
     cout << cout.hex << TMXL::charToUint8('1', '1') << endl;
     cout << "Color: " << TMXL::colorToStringARGB(TMXL::Color::Red) << endl;
 
-    TMXL::PugiParser parser;
-    parser.setFileName("map1.tmx");
+    TMXL::PugiParser parser("map1.tmx");
     parser.parse();
 
     TMXL::Log::info("is work!");
