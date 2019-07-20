@@ -41,7 +41,8 @@ before_build:
     cd build
     cmake --version
     cmake .. -G %generator%
-    tree
+    dir
+    tree c:\projects\cmake-init /F
 
 build:
   project: c:\projects\cmake-init\TMXL\build\TMXL.sln
