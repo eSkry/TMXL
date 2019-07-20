@@ -36,12 +36,13 @@ init:
 
 before_build:
 - cmd: |-
+    cd TMXL
     mkdir build
     cd build
     cmake --version
     cmake .. -G %generator%
 
 build:
-  project: c:\projects\cmake-init\build\template.sln
+  project: c:\projects\cmake-init\TMXL\build\TMXL.sln
   verbosity: minimal
   parallel: true
