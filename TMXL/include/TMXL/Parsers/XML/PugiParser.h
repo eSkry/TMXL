@@ -21,10 +21,15 @@ namespace TMXL {
 
     class PugiParser : public IParser {
     public:
-        bool parse() override;
 
         PugiParser();
-        PugiParser(const std::string fileName);
+        explicit PugiParser(const std::string& fileName);
+
+        /**
+         * @brief Start parsing file
+         * @return result parse
+         */
+        bool parse() override;
 
         /**
          * @brief Возвращает карту

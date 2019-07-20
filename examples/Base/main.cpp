@@ -14,36 +14,17 @@
 using namespace std;
 
 int main() {
-    cout << "Lower: " << TMXL::strToLowerCase("Is LOOOOOOWeer =) yeah 123") << endl;
-    cout << cout.hex << TMXL::charToUint8('1', '1') << endl;
-    cout << "Color: " << TMXL::colorToStringARGB(TMXL::Color::Red) << endl;
-
+    // Set map for load
     TMXL::PugiParser parser("map1.tmx");
+    // Start parsion
     parser.parse();
-
-    TMXL::Log::info("is work!");
-
+    // Get root node of map (is not "map" node)
     auto map = parser.getRoot();
-    //map->dump();
 
- //   TMXL::NodeObjectWalker walker;
-	//walker.registerCallback("map", [](std::shared_ptr<TMXL::NodeObject> node){
- //       cout << node->name.toAnsiString() << endl;
- //   });
-	//walker.registerCallback("object", [](std::shared_ptr<TMXL::NodeObject> node){
- //       node->dump();
- //   });
-	//walker.run(map);
-
+	// For printing map structure to stream - create xmlFormater
 	TMXL::XMLFormater xmlFormat;
-	//TMXL::NodeObjectPrinter::print(map, &xmlFormat, cout);
-
-	std::vector<TMXL::NodeObject> data;
-	map->findAllNodes("property", data);
-
-	for (auto it : data) {
-		TMXL::NodeObjectPrinter::print(it, xmlFormat, cout) << endl;
-	}
+	// And start printing
+	TMXL::NodeObjectPrinter::print(*map, xmlFormat, cout);
 
     return 0;
 }

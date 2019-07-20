@@ -22,20 +22,20 @@ namespace TMXL {
         virtual bool parse() = 0;
 
         /**
-         * @brief virtual std::shared_ptr<TMEMap> getMap()ж
+         * @brief virtual std::shared_ptr<TMEMap> getMap()
          * @details Возвращает структуру карты
          * @return
          */
         virtual std::shared_ptr<NodeObject> getRoot() = 0;
 
         /**
-         * @brief void setFileName(const TLString_t& fileName) [NOEXCEPT]
+         * @brief void setFileName(const TLString_t& fileName)
          * @param fileName
          */
         void setFileName(const std::string& fileName) noexcept;
 
         /**
-         * @brief const TLString_t& getFileName() const [NOEXCEPT]
+         * @brief const TLString_t& getFileName() const
          * @return
          */
         const std::string& getFileName() const noexcept;

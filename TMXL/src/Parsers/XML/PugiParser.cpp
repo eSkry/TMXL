@@ -3,10 +3,10 @@
 namespace TMXL {
 
     PugiParser::PugiParser() {
-        mRootNode = std::make_shared<NodeObject>();
+
     }
 
-    PugiParser::PugiParser(const std::string fileName) : PugiParser() {
+    PugiParser::PugiParser(const std::string& fileName) : PugiParser() {
         mfileName = fileName;
     }
 
@@ -15,6 +15,8 @@ namespace TMXL {
             Log::error("PugiParser: file name is empty!");
             return false;
         }
+
+        mRootNode = std::make_shared<NodeObject>();
 
         using pugi::xml_parse_result;
         using pugi::xml_document;
