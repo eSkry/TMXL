@@ -8,6 +8,7 @@
 #include "TMXL/Config.h"
 
 #include <cstdint>
+#include <math.h>
 
 namespace TMXL {
 
@@ -25,6 +26,11 @@ namespace TMXL {
         static const Color Magenta;
         static const Color Cyan;
         static const Color Transparent;
+        static const Color Orange;
+        static const Color Gold;
+        static const Color Gray;
+        static const Color Pink;
+        static const Color Purple;
 
         std::uint8_t r;
         std::uint8_t g;
@@ -34,7 +40,12 @@ namespace TMXL {
 
     bool operator==(const Color& left, const Color& right);
     bool operator!=(const Color& left, const Color& right);
-    // @todo: add operators +,-,*,/,+=,*=,-=,/=
+    Color operator+(const Color& left, const Color& right);
+    Color operator-(const Color& left, const Color& right);
+    Color operator*(const Color& left, const Color& right);
+    Color& operator+=(Color& left, const Color& right);
+    Color& operator-=(Color& left, const Color& right);
+    Color& operator*=(Color& left, const Color& right);
 }
 
 #endif //TMXL_COLOR_H
