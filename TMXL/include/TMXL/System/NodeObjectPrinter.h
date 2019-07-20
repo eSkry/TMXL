@@ -13,7 +13,7 @@ namespace TMXL {
 	class NodeObjectPrinter {
 	public:
 
-		static std::ostream& print(const NodeObject& node, IFormater* formater, std::ostream& os, bool skipFirstNode = false);
+		static std::ostream& print(const NodeObject& node, IFormater& formater, std::ostream& os, bool skipFirstNode = false);
 
 	};
 

@@ -42,7 +42,7 @@ int main() {
 	map->findAllNodes("property", data);
 
 	for (auto it : data) {
-		TMXL::NodeObjectPrinter::print(it, &xmlFormat, cout) << endl;
+		TMXL::NodeObjectPrinter::print(it, xmlFormat, cout) << endl;
 	}
 
     return 0;
