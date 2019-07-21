@@ -3,7 +3,6 @@
 
 #include "TMXL/System/ResourceManager.h"
 #include "TMXL/System/Color.h"
-#include "TMXL/Config.h"
 #include "TMXL/Tools.h"
 
 #include <vector>
