@@ -1,0 +1,25 @@
+//
+// Created by depish on 21.07.19.
+//
+
+#include "TMXL/System/IDGenerator.h"
+
+namespace TMXL {
+
+    IDGenerator::IDGenerator() {
+        mId = std::numeric_limits<std::size_t>::min();
+    }
+
+    void IDGenerator::reset() noexcept {
+        mId = std::numeric_limits<std::size_t>::min();
+    }
+
+    std::size_t IDGenerator::getId() noexcept {
+        if (mId == std::numeric_limits<std::size_t>::max()) {
+            // @todo: send exception or massage 'generator out of numeric range'
+        }
+        ++mId;
+        return mId;
+    }
+
+}
