@@ -6,6 +6,7 @@
  * url: https://doc.mapeditor.org/en/stable/reference/tmx-map-format/
  */
 
+#include "TMXL/System/IDGenerator.h"
 #include "TMXL/System/StringTools.h"
 #include "TMXL/Parsers/IParser.h"
 #include "TMXL/Map/NodeObject.h"
@@ -51,7 +52,7 @@ namespace TMXL {
 
     private:
         std::shared_ptr<NodeObject>      mRootNode;
-        std::size_t mIdCounter;
+        IDGenerator mGenerator;
     };
 
 }

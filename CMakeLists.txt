@@ -47,7 +47,7 @@ endif()
 
 #### EXAMPLES BUILD ####
 if(BUILD_EXAMPLES)
-	add_subdirectory(examples/Base)
+	add_subdirectory(examples)
 endif()
 #### EXAMPLES BUILD ####
 

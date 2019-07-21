@@ -34,9 +34,9 @@ namespace TMXL {
      * @details TMEProperty - Структура хранащая одну единица параметра в разделе properties
      */
     struct TMEProperty : ITmeBase {
-        sf::String             name;
+        std::string            name;
         TMXLTypes              type;
-        sf::String             value;
+        std::string            value;
     };
 
     struct TMEImage : ITmeBase {
@@ -47,8 +47,8 @@ namespace TMXL {
     };
 
     struct TMETileset : ITmeBase {
-        sf::String             source;
-        sf::String             name;
+        std::string             source;
+        std::string             name;
         std::size_t            firstGID;
         std::size_t            tileWidth;
         std::size_t            tileHeight;

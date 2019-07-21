@@ -3,7 +3,7 @@
 namespace TMXL {
 
     PugiParser::PugiParser() {
-        mIdCounter = 0;
+        mGenerator.reset();
     }
 
     PugiParser::PugiParser(const std::string& fileName) : PugiParser() {
@@ -17,7 +17,7 @@ namespace TMXL {
         }
 
         mRootNode = std::make_shared<NodeObject>();
-        mIdCounter = 0;
+        mGenerator.reset();
 
         using pugi::xml_parse_result;
         using pugi::xml_document;
@@ -34,7 +34,7 @@ namespace TMXL {
 		xml_node lRootNode = l_document.root();
 
         parseNode(&lRootNode, *mRootNode);
-        mRootNode->nodeId = mIdCounter;
+        mRootNode->nodeId = mGenerator.getId();
         mRootNode->isRootNode = true;
 
         return true;
@@ -45,7 +45,6 @@ namespace TMXL {
     }
 
     void PugiParser::parseNode(pugi::xml_node *pNode, NodeObject& pNodeObject) noexcept {
-        ++mIdCounter;
         pNodeObject.name = std::string(pNode->name());
         parseAttributes(pNode, pNodeObject);
 
@@ -56,7 +55,7 @@ namespace TMXL {
 
         for (auto childNode : pNode->children()){
             pNodeObject.childrens.push_back( NodeObject() );
-            pNodeObject.childrens.back().nodeId = mIdCounter;
+            pNodeObject.childrens.back().nodeId = mGenerator.getId();
             parseNode(&childNode, pNodeObject.childrens.back());
         }
     }
@@ -69,7 +68,7 @@ namespace TMXL {
 
     void PugiParser::clean() noexcept {
         mRootNode.reset();
-        mIdCounter = 0;
+        mGenerator.reset();
     }
 
 }
