@@ -1,7 +1,3 @@
-//
-// Created by depish on 20.07.19.
-//
-
 #ifndef TMXL_LOGGER_H
 #define TMXL_LOGGER_H
 

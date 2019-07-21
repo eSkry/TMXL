@@ -1,7 +1,3 @@
-//
-// Created by depish on 20.07.19.
-//
-
 #include "TMXL/System/Color.h"
 
 namespace TMXL {

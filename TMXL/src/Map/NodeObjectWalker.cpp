@@ -1,7 +1,3 @@
-//
-// Created by depish on 17.07.19.
-//
-
 #include "TMXL/Map/NodeObjectWalker.h"
 
 namespace TMXL {

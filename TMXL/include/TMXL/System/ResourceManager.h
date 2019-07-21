@@ -1,7 +1,3 @@
-//
-// Created by depish on 15.07.19.
-//
-
 #ifndef RESOURCEMANAGER_H
 #define RESOURCEMANAGER_H
 

@@ -1,6 +1,12 @@
 #ifndef TMXL_IPARSER_H
 #define TMXL_IPARSER_H
 
+/**
+ * @details XML Структура карты описана в оффициальной документации Tiled Map Editor
+ * url: https://doc.mapeditor.org/en/stable/reference/tmx-map-format/
+ */
+
+
 #include "TMXL/Map/NodeObject.h"
 
 namespace TMXL {

@@ -21,10 +21,8 @@ namespace TMXL {
 		void recurseFormat(const NodeObject& node, std::stringstream& stream);
 
 	private:
-
 		std::stringstream mStream;
 		int mLevel;
-
 	};
 
 }

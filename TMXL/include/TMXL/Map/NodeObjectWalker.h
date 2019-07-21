@@ -1,7 +1,3 @@
-//
-// Created by depish on 17.07.19.
-//
-
 #ifndef TMXL_NODEOBJECTWALKER_H
 #define TMXL_NODEOBJECTWALKER_H
 

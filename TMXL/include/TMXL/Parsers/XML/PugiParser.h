@@ -1,11 +1,6 @@
 #ifndef TMXL_PUGIPARSER_H
 #define TMXL_PUGIPARSER_H
 
-/**
- * @details XML Структура карты описана в оффициальной документации Tiled Map Editor
- * url: https://doc.mapeditor.org/en/stable/reference/tmx-map-format/
- */
-
 #include "TMXL/System/IDGenerator.h"
 #include "TMXL/System/StringTools.h"
 #include "TMXL/Parsers/IParser.h"

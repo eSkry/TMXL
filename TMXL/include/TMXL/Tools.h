@@ -12,7 +12,6 @@ namespace TMXL {
     enum class TMXLTypes {
         Undefined_e = -1,
         Int_e,
-        TLSize_e,
         Long_e,
         Bool_e,
         Double_e,
@@ -76,17 +75,17 @@ namespace TMXL {
      * @return
      */
     static TMXLTypes stringToType(const std::string& str) noexcept {
-        if (str == "string"){
+        if (compare(str, "string", StringComparison::IgnoreCase)){
             return TMXLTypes::String_e;
-        } else if (str == "int"){
+        } else if (compare(str, "int", StringComparison::IgnoreCase)){
             return TMXLTypes::Int_e;
-        } else if (str == "float") {
+        } else if (compare(str, "float", StringComparison::IgnoreCase)) {
             return TMXLTypes::Double_e;
-        } else if (str == "bool") {
+        } else if (compare(str, "bool", StringComparison::IgnoreCase)) {
             return TMXLTypes ::Bool_e;
-        } else if (str == "color") {
+        } else if (compare(str, "color", StringComparison::IgnoreCase)) {
             return TMXLTypes::Color_e;
-        } else if (str == "file") {
+        } else if (compare(str, "file", StringComparison::IgnoreCase)) {
             return TMXLTypes::String_e;
         }
 

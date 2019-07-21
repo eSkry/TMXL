@@ -1,7 +1,3 @@
-//
-// Created by depish on 07.06.19.
-//
-
 #ifndef TMXL_STRINGTOOLS_H
 #define TMXL_STRINGTOOLS_H
 
