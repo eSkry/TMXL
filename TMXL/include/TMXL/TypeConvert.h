@@ -2,7 +2,6 @@
 #define TMXL_TYPECONVERT_H
 
 #include "TMXL/System/Color.h"
-#include "TMXL/Config.h"
 #include "TMXL/Tools.h"
 
 #include <typeinfo>

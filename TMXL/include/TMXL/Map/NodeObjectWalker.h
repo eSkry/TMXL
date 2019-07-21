@@ -38,7 +38,8 @@ namespace TMXL {
 
     private:
 		void walk(NodeObject& node, std::size_t thisId, std::size_t parentId);
-        std::map<std::string, CallbackType> callbacks;
+        std::map<std::string, CallbackType> mCallbacks;
+        IDGenerator mGenerator;
     };
 
 }

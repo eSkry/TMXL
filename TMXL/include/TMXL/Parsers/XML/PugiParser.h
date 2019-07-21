@@ -51,6 +51,7 @@ namespace TMXL {
 
     private:
         std::shared_ptr<NodeObject>      mRootNode;
+        std::size_t mIdCounter;
     };
 
 }

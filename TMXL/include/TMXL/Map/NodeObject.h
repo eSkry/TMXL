@@ -50,6 +50,11 @@ namespace TMXL {
          */
         bool isRootNode             = false;
 
+        /**
+         * @brief Идентификатор узла
+         */
+        std::size_t nodeId          = 0;
+
 	private:
 
 		void recursiveFind(const std::string& nodeName, NodeObject& object, std::vector<NodeObject>& vector) noexcept;
