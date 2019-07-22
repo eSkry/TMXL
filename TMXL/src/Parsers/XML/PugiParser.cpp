@@ -50,6 +50,7 @@ namespace TMXL {
 
 		std::string content = pNode->text().as_string();
 		if (!content.empty()) {
+			TMXL::replaceAll(content, "\n", "");
 			pNodeObject.content = content;
 		}
 
