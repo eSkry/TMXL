@@ -1,6 +1,7 @@
 #ifndef TMXL_COLOR_H
 #define TMXL_COLOR_H
 
+#include <algorithm>
 #include <cstdint>
 #include <math.h>
 
