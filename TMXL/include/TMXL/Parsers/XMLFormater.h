@@ -5,6 +5,7 @@
 #include "TMXL/Map/NodeObject.h"
 
 #include <sstream>
+#include <ostream>
 #include <string>
 
 namespace TMXL {
@@ -14,15 +15,15 @@ namespace TMXL {
 		
 		XMLFormater();
 
-		std::stringstream& formatNode(const NodeObject& node, bool skipFirstNode = false) override;
+		std::ostream& formatNode(const NodeObject& node, std::ostream& os) override;
 
 	protected:
 
-		void recurseFormat(const NodeObject& node, std::stringstream& stream);
+		void recurseFormat(const NodeObject& node, std::ostream& stream);
 
 	private:
-		std::stringstream mStream;
 		int mLevel;
+		bool mSkipFirstNode;
 	};
 
 }

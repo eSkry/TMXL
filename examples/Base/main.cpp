@@ -24,7 +24,7 @@ int main() {
 	// For printing map structure to stream - create xmlFormater
 	TMXL::XMLFormater xmlFormat;
 	// And start printing
-	TMXL::NodeObjectPrinter::print(*map, xmlFormat, cout);
+	TMXL::NodeObjectPrinter::print(*map, xmlFormat, false, cout);
 
     return 0;
 }

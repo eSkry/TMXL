@@ -2,8 +2,16 @@
 
 namespace TMXL {
 
-	std::ostream& NodeObjectPrinter::print(const NodeObject& node, IFormater& formater, std::ostream& os, bool skipFirstNode) {
-		return os << formater.formatNode(node, skipFirstNode).str();
+	std::ostream& NodeObjectPrinter::print(const NodeObject& node, IFormater& formater, bool skipFirstNode, std::ostream& os) {
+        if (skipFirstNode) {
+            for (const auto& it : node.childrens) {
+                formater.formatNode(it, os);
+            }
+        } else {
+            formater.formatNode(node, os);
+        }
+
+		return os;
 	}
 
 }

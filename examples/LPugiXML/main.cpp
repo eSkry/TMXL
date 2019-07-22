@@ -16,7 +16,7 @@ int main(){
     auto mapRoot = parser.getRoot();
 
     TMXL::XMLFormater fXml;
-    TMXL::NodeObjectPrinter::print(*mapRoot, fXml, std::cout, true); // Print structure to std::cout
+    TMXL::NodeObjectPrinter::print(*mapRoot, fXml, true, std::cout); // Print structure to std::cout
 
     return 0;
 }

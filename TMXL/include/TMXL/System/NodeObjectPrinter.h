@@ -6,7 +6,7 @@
 
 #include <iostream>
 #include <string>
-#include <sstream>
+#include <ostream>
 
 namespace TMXL {
 
@@ -21,7 +21,7 @@ namespace TMXL {
 	     * @param skipFirstNode - пропускать печать передаваемого узла?
 	     * @return
 	     */
-		static std::ostream& print(const NodeObject& node, IFormater& formater, std::ostream& os, bool skipFirstNode = false);
+		static std::ostream& print(const NodeObject& node, IFormater& formater, bool skipFirstNode, std::ostream& os);
 
 	};
 
