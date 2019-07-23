@@ -33,41 +33,47 @@ namespace TMXL {
      */
     struct TMEProperty : ITmeBase {
         std::string            name;
-        TMXLTypes              type;
         std::string            value;
+        TMXLTypes              type;
     };
 
+    /**
+     * @brief Информация о изображении 
+     */
     struct TMEImage : ITmeBase {
-        Color                  trans;
-        std::size_t            width;
-        std::size_t            height;
+        Color                  transparentMask;
+        std::size_t            width        = 0;
+        std::size_t            height       = 0;
         std::string            image;
     };
 
     struct TMETileset : ITmeBase {
         std::string            source;
         std::string            name;
-        std::size_t            firstGID;
-        std::size_t            tileWidth;
-        std::size_t            tileHeight;
-        int                    spacing;
-        int                    marign;
-        std::size_t            tileCount;
-        std::size_t            columns;
+        std::size_t            firstGID     = 0;
+        std::size_t            tileWidth    = 0;
+        std::size_t            tileHeight   = 0;
+        std::size_t            tileCount    = 0;
+        std::size_t            columns      = 0;
+        int                    spacing      = 0;
+        int                    marign       = 0;
     };
     
+    /**
+     * @brief TMELayer - Содержит параметры слоя и список ID тайлов
+     */
     struct TMELayer : ITmeBase {
-        std::size_t                             id;
-        std::size_t                             width;
-        std::size_t                             height;
-        std::size_t                             offsetx;
-        std::size_t                             offsety;
+        std::size_t                             id      = 0;
+        std::size_t                             width   = 0;
+        std::size_t                             height  = 0;
+        std::size_t                             offsetx = 0;
+        std::size_t                             offsety = 0;
         float                                   opacity = 1;
         int                                     x       = 0;
         int                                     y       = 0;
         bool                                    visible = true;
         std::string                             name;
-        std::vector<std::size_t>                data;   // reserve width * height
+        std::vector<std::size_t>                data;
         std::map<std::string, TMEProperty>      properties;
     };
 
@@ -78,8 +84,8 @@ namespace TMXL {
      *              o = odd
      */
     struct TMEMap : ITmeBase {
-        std::size_t            mapWidth;
-        std::size_t            mapHeight;
+        std::size_t            mapWidth              = 0;
+        std::size_t            mapHeight             = 0;
         MapOrientation         mapOrientation        = MapOrientation::Undefined;
         MapRenderOrder         renderOrder           = MapRenderOrder::Undefined;
 
