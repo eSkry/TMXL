@@ -1,7 +1,6 @@
 #ifndef TMXL_TMENODE_H
 #define TMXL_TMENODE_H
 
-#include "TMXL/System/ResourceManager.h"
 #include "TMXL/System/Color.h"
 #include "TMXL/Tools.h"
 
