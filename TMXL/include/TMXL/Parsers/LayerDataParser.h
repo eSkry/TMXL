@@ -1,5 +1,5 @@
-#ifndef TMXL_LAYERDATALOADER_H
-#define TMXL_LAYERDATALOADER_H
+#ifndef TMXL_LAYERDATAPARSER_H
+#define TMXL_LAYERDATAPARSER_H
 
 #include <sstream>
 #include <string>
@@ -8,7 +8,7 @@
 
 namespace TMXL {
 
-    class LayerDataLoader {
+    class LayerDataParser {
     public:
 
         /**
@@ -23,4 +23,4 @@ namespace TMXL {
 
 }
 
-#endif
+#endif // TMXL_LAYERDATAPARSER_H
