@@ -8,11 +8,9 @@ namespace TMXL {
         ss << data;
         
         std::size_t idx = 0;
-        std::string::value_type trash;
         while (!ss.eof()) {
-            ss >> to[idx];
-            ss >> trash;
-            ++idx;
+            ss.ignore(std::numeric_limits<std::streamsize>::max(), ',');
+            ss >> to[idx++];
         }
     }
 
