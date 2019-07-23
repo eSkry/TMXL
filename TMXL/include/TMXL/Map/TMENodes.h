@@ -46,8 +46,8 @@ namespace TMXL {
     };
 
     struct TMETileset : ITmeBase {
-        std::string             source;
-        std::string             name;
+        std::string            source;
+        std::string            name;
         std::size_t            firstGID;
         std::size_t            tileWidth;
         std::size_t            tileHeight;
@@ -68,7 +68,7 @@ namespace TMXL {
         int                                     y       = 0;
         bool                                    visible = true;
         std::string                             name;
-        std::vector<std::size_t>                data;
+        std::vector<std::size_t>                data;   // reserve width * height
         std::map<std::string, TMEProperty>      properties;
     };
 
@@ -93,7 +93,7 @@ namespace TMXL {
         char                   staggerIndex          = '-';
         char                   staggerAxis           = '-';
 
-        std::vector<TMEProperty>                        properties;
+        std::vector<TMEProperty>                       properties;
     };
 
 }
