@@ -20,7 +20,7 @@ namespace TMXL {
 
         virtual void encode(const std::string& data, std::string& out) = 0;
         virtual void decode(const std::string& data, std::string& out) = 0;
-        
+
     };
 
 }
