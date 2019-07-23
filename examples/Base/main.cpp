@@ -15,7 +15,7 @@ using namespace std;
 
 int main() {
     // Set map for load
-    TMXL::PugiParser parser("map1.tmx");
+    TMXL::PugiParser parser("Maps/infinite1.tmx");
     // Start parsion
     parser.parse();
     // Get root node of map (is not "map" node)
