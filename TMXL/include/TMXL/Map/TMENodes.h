@@ -56,6 +56,21 @@ namespace TMXL {
         std::size_t            tileCount;
         std::size_t            columns;
     };
+    
+    struct TMELayer : ITmeBase {
+        std::size_t                             id;
+        std::size_t                             width;
+        std::size_t                             height;
+        std::size_t                             offsetx;
+        std::size_t                             offsety;
+        float                                   opacity = 1;
+        int                                     x       = 0;
+        int                                     y       = 0;
+        bool                                    visible = true;
+        std::string                             name;
+        std::vector<std::size_t>                data;
+        std::map<std::string, TMEProperty>      properties;
+    };
 
     /**
      * @details TMEMap - Структура хранящая основную информацию карты.
