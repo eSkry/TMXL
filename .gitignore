@@ -10,3 +10,4 @@ out
 CMakeSettings.json
 docks/html
 docks/latex
+.vscode
