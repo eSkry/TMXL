@@ -4,7 +4,6 @@ namespace TMXL {
 
 	XMLFormater::XMLFormater() {
 		mLevel = -1;
-        mSkipFirstNode = false;
 	}
 
 	std::ostream& XMLFormater::formatNode(const NodeObject& node, std::ostream& os) {

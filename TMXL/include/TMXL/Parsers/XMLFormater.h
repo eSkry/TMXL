@@ -4,12 +4,14 @@
 #include "TMXL/Parsers/IFormater.h"
 #include "TMXL/Map/NodeObject.h"
 
-#include <sstream>
 #include <ostream>
 #include <string>
 
 namespace TMXL {
 
+    /**
+     * @brief Строит XML структуру из NodeObject
+     */
 	class XMLFormater : public IFormater {
 	public:
 		
@@ -23,7 +25,6 @@ namespace TMXL {
 
 	private:
 		int mLevel;
-		bool mSkipFirstNode;
 	};
 
 }

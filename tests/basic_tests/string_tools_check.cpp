@@ -1,7 +1,3 @@
-//
-// Created by depish on 08.06.19.
-//
-
 #include "gtest/gtest.h"
 
 #include "TMXL/System/StringTools.h"
