@@ -2,14 +2,14 @@
 
 namespace TMXL {
 
-    void AutoSwitchLoader::registerParser(const std::string& type, IParser* parser) {
+    void AutoSwitchLoader::registerParser(const std::string& type, std::shared_ptr<IParser> parser) {
         mParsers[type] = parser;
     }
 
     std::shared_ptr<NodeObject> AutoSwitchLoader::parser(const std::string& fileName){
         auto fType = fileName.substr(fileName.find_last_of(".") + 1);
         if (mParsers.find(fType) != mParsers.end()){
-            IParser* parser = mParsers[fType];
+            auto parser = mParsers[fType];
             parser->setFileName(fileName);
             parser->parse();
             return parser->getRoot();
