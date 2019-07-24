@@ -19,12 +19,21 @@ namespace TMXL {
 
 		std::ostream& formatNode(const NodeObject& node, std::ostream& os) override;
 
+		void setFormat(Formatting format) override;
+
+		void unsetFormat(Formatting format) override;
+
+		void clearFormat() override;
+
 	protected:
 
 		void recurseFormat(const NodeObject& node, std::ostream& stream);
 
 	private:
-		int mLevel;
+		void writeNewLine(std::ostream& os);
+
+		int 		mLevel;
+		unsigned 	mFormat;
 	};
 
 }
