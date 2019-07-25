@@ -16,7 +16,7 @@ namespace TMXL {
 
         void registerParser(const std::string& type, std::shared_ptr<IParser> parser);
 
-        std::shared_ptr<NodeObject> parser(const std::string& fileName);
+        std::shared_ptr<NodeObject> parse(const std::string& fileName);
 
     private:
         std::map<std::string, std::shared_ptr<IParser>> mParsers;
