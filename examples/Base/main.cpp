@@ -1,7 +1,8 @@
 
 #include <TMXL/System/NodeObjectPrinter.h>
-#include <TMXL/Map/NodeObjectWalker.h>
+#include <TMXL/System/AutoSwitchLoader.h>
 #include <TMXL/Parsers/XML/PugiParser.h>
+#include <TMXL/Map/NodeObjectWalker.h>
 #include <TMXL/Parsers/XMLFormater.h>
 #include <TMXL/Map/NodeObject.h>
 #include <TMXL/System/Logger.h>
@@ -14,12 +15,12 @@
 using namespace std;
 
 int main() {
-    // Set map for load
-    TMXL::PugiParser parser("Maps/infinite1.tmx");
-    // Start parsion
-    parser.parse();
-    // Get root node of map (is not "map" node)
-    auto map = parser.getRoot();
+    TMXL::AutoSwitchLoader loader;
+    auto TMXParser = std::make_shared<TMXL::PugiParser>();
+    loader.registerParser("tmx", TMXParser);
+
+    // Parse map
+    auto map = loader.parse("Maps/infinite1.tmx");
 
 	// For printing map structure to stream - create xmlFormater
 	TMXL::XMLFormater xmlFormat;
