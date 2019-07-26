@@ -21,6 +21,7 @@ Project uses [CMake](https://cmake.org) to generate platform and compiler-specif
 | BUILD_TESTS          | Build all test existing in project | OFF     |
 | BUILD_TMXL_TEST_ONLY | Build test only for TMXL lib       | OFF     |
 | BUILD_USE_PUGIXML    | Build lib with pugixml support     | ON      |
+| BUILD_SHARED_LIBS    | Build shared libs                  | OFF     |
 
 ### Building on Linux (Unix Makefiles)
 1. Clone repository, enter to TMXL directory: `git clone https://github.com/eSkry/TMXL && cd ./TMXL`
