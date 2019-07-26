@@ -9,6 +9,11 @@ option(BUILD_TMXL_TEST_ONLY "Build TMXL test only" OFF)
 option(BUILD_USE_PUGIXML "Use pugixml parser and build module" ON)
 option(BUILD_SHARED_LIBS "Build library as shared" OFF)
 
+if (NOT CMAKE_BUILD_TYPE)
+    message(STATUS "No build type selected, default to Release")
+	set(CMAKE_BUILD_TYPE "Release")
+	message("CMAKE_CXX_FLAGS_RELEASE is ${CMAKE_CXX_FLAGS_RELEASE}")
+endif()
 
 #### TMXL Defines ####
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/TMXL/include")
