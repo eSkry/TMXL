@@ -1,5 +1,5 @@
-#ifndef IDGENERATOR_H
-#define IDGENERATOR_H
+#ifndef TMXL_IDGENERATOR_H
+#define TMXL_IDGENERATOR_H
 
 #include <limits>
 
@@ -20,4 +20,4 @@ namespace TMXL {
 
 }
 
-#endif //IDGENERATOR_H
+#endif //TMXL_IDGENERATOR_H

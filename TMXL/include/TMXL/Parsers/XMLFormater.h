@@ -1,5 +1,5 @@
-#ifndef XMLFORMATER_H
-#define XMLFORMATER_H
+#ifndef TMXL_XMLFORMATER_H
+#define TMXL_XMLFORMATER_H
 
 #include "TMXL/Parsers/IFormater.h"
 #include "TMXL/Map/NodeObject.h"
@@ -38,4 +38,4 @@ namespace TMXL {
 
 }
 
-#endif // XMLFORMATER_H
+#endif // TMXL_XMLFORMATER_H

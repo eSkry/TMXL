@@ -1,5 +1,5 @@
-#ifndef IFORMATER_H
-#define IFORMATER_H
+#ifndef TMXL_IFORMATER_H
+#define TMXL_IFORMATER_H
 
 #include "TMXL/Map/NodeObject.h"
 
@@ -26,4 +26,4 @@ namespace TMXL {
 
 }
 
-#endif // !IFORMATER_H
+#endif // !TMXL_IFORMATER_H

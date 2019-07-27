@@ -1,5 +1,5 @@
-#ifndef NODEOBJECTPRINTER_H
-#define NODEOBJECTPRINTER_H
+#ifndef TMXL_NODEOBJECTPRINTER_H
+#define TMXL_NODEOBJECTPRINTER_H
 
 #include "TMXL/Parsers/IFormater.h"
 #include "TMXL/Map/NodeObject.h"
@@ -27,4 +27,4 @@ namespace TMXL {
 
 }
 
-#endif // !NODEOBJECTPRINTER_H
+#endif // !TMXL_NODEOBJECTPRINTER_H
