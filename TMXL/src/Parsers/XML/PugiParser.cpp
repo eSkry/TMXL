@@ -48,10 +48,9 @@ namespace TMXL {
         pNodeObject.name = std::string(pNode->name());
         parseAttributes(pNode, pNodeObject);
 
-		std::string content = pNode->text().as_string();
-		if (!content.empty()) {
-			TMXL::replaceAll(content, "\n", "");
-			pNodeObject.content = content;
+		pNodeObject.content = pNode->text().as_string();
+		if (!pNodeObject.content.empty()) {
+			TMXL::replaceAll(pNodeObject.content, "\n", "");
 		}
 
         for (auto childNode : pNode->children()){
