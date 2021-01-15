@@ -11,6 +11,9 @@
 
 namespace TMXL {
 
+    /**
+     * @brief AutoSwitchLoader class - Выбирает парсер в зависимости от типа файла
+     */
     class AutoSwitchLoader {
     public:
 

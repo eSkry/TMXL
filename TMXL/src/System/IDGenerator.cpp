@@ -12,10 +12,10 @@ namespace TMXL {
 
     std::size_t IDGenerator::getId() noexcept {
         if (mId == std::numeric_limits<std::size_t>::max()) {
-            // @todo: send exception or massage 'generator out of numeric range'
+            // @todo: send exception or massage 'generator out of numeric range' or set to minimal value
+            mId = std::numeric_limits<std::size_t>::min();
         }
-        ++mId;
-        return mId;
+        return ++mId;
     }
 
 }
