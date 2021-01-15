@@ -16,7 +16,7 @@ namespace TMXL {
             mCallbacks[name](node, thisId, parentId);
 		}
 		for (auto it : node.childrens) {
-			walk(it, mGenerator.getId(), thisId);
+			walk(*it, mGenerator.getId(), thisId);
 		}
 	}
 

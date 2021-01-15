@@ -11,7 +11,7 @@ namespace TMXL {
 
     class NodeObject {
 	public:
-        using NodeList = std::vector<NodeObject>;
+        using NodeList = std::vector<std::shared_ptr<NodeObject>>;
         using Attributes = std::map<std::string, std::string>;
 
 		/**
@@ -19,7 +19,7 @@ namespace TMXL {
 		 * @param nodeName
 		 * @param toVector
 		 */
-        void findAllNodes(const std::string& nodeName, std::vector<NodeObject>& toVector) noexcept;
+        void findAllNodes(const std::string& nodeName, NodeList& toVector) noexcept;
 
         /**
          * @brief Node name
@@ -53,7 +53,7 @@ namespace TMXL {
 
 	private:
 
-		void recursiveFind(const std::string& nodeName, NodeObject& object, std::vector<NodeObject>& vector) noexcept;
+		void recursiveFind(const std::string& nodeName, std::shared_ptr<NodeObject>& object, NodeList& vector) noexcept;
 
     };
 

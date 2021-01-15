@@ -32,7 +32,7 @@ namespace TMXL {
             to += ',';
             if (addNewLines && (i + 1) % layerWidth == 0){
                 to += '\n';
-            }            
+            }
         }
         to += std::to_string(data[countNumbers - 1]);
     }
