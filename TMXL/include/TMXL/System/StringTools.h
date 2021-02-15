@@ -13,22 +13,20 @@ namespace TMXL {
     };
 
     /**
-     * @tparam T1
-     * @tparam T2
      * @param str1
      * @param str2
-     * @param len
      * @return
      */
-    template <typename T1, typename T2>
-    static bool ignoreCaseCompire(const T1& str1, const T2& str2, std::size_t len) {
+    static bool ignoreCaseCompire(std::string_view str1, std::string_view str2) {
+        if (str1.size() != str2.size()) return false;
+
         int dist = static_cast<int>('a') - static_cast<int>('A');
         int rdist = 0;
 
-        for (std::size_t i = 0; i < len; i++){
-            rdist = std::abs(static_cast<int>(str1[i] - str2[i]));
+        for (auto fIt = str1.begin(), sIt = str2.begin(); fIt != str1.end(); fIt++, sIt++){
+            rdist = std::abs(static_cast<int>(*fIt - *sIt));
 
-            if (str1[i] != str2[i] && rdist != dist){
+            if (*fIt != *sIt && rdist != dist){
                 return false;
             }
         }
@@ -43,7 +41,7 @@ namespace TMXL {
      * @param str2
      * @return
      */
-    static bool compare(const std::string& str1, const std::string& str2, StringComparison comparsion = StringComparison::Normal) noexcept {
+    static bool compare(const std::string_view str1, const std::string_view str2, StringComparison comparsion = StringComparison::Normal) noexcept {
         if (str1.length() != str2.length()){
             return false;
         }
@@ -52,66 +50,11 @@ namespace TMXL {
             return str1 == str2;
         }
 
-        std::size_t len = str1.length();
         if (comparsion == StringComparison::IgnoreCase) {
-            return ignoreCaseCompire(str1, str2, len);
+            return ignoreCaseCompire(str1, str2);
         }
 
         return true;
-    }
-
-    /**
-     * @param str1
-     * @param str2
-     * @param len
-     * @param comparison
-     * @return
-     */
-    static bool compare(const std::string& str1, const char* str2, std::size_t len, StringComparison comparison = StringComparison::IgnoreCase) noexcept {
-        if (str1.length() != len) {
-            return false;
-        }
-
-        if (comparison == StringComparison::Normal) {
-            for (std::size_t i = 0; i < len; i++) {
-                if (str1[i] != str2[i]){
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        if (comparison == StringComparison::IgnoreCase) {
-            return ignoreCaseCompire(str1, str2, len);
-        }
-
-        return false;
-    }
-
-    static bool compareCString(const char* str1, const char* str2, StringComparison comparison = StringComparison::IgnoreCase) {
-        std::size_t len1 = std::strlen(str1);
-        std::size_t len2 = std::strlen(str2);
-
-        if (len1 != len2) {
-            return false;
-        }
-
-        if (comparison == StringComparison::Normal) {
-            for (std::size_t i = 0; i < len1; i++) {
-                if (str1[i] != str2[i]){
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        if (comparison == StringComparison::IgnoreCase){
-            return ignoreCaseCompire(str1, str2, len1);
-        }
-
-        return false;
     }
 
 	static void replaceAll(std::string& str, const std::string& from, const std::string& to) {
@@ -123,6 +66,18 @@ namespace TMXL {
 			start_pos += to.length();
 		}
 	}
+
+    static bool stringEndsWith(std::string_view str, std::string_view end) {
+        if (end.size() > str.size()) return false;
+
+        std::size_t sPos = str.size() - end.size();
+        for (auto it = str.begin() + sPos, eIt = end.begin(); eIt != end.end(); it++, eIt++) {
+            if (*it != *eIt) return false;
+        }
+
+        return true;
+    }
+
 
 }
 
