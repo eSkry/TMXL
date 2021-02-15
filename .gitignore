@@ -11,3 +11,4 @@ CMakeSettings.json
 docks/html
 docks/latex
 .vscode
+CMakeLists.txt.user
