@@ -38,7 +38,7 @@ namespace TMXL {
 		}
 
 		for (const auto& child : node.childrens) {
-			recurseFormat(child, os);
+			recurseFormat(*child, os);
 		}
 
 		os << std::string(mLevel, ' ') << "</" << node.name << ">";

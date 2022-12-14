@@ -131,9 +131,9 @@ namespace TMXL {
         }
 
         const std::string lowerStr = strToLowerCase(str);
-        if (lowerStr == "true"){
+        if (lowerStr == "true") {
             return true;
-        } else if (lowerStr == "false"){
+        } else if (lowerStr == "false") {
             return false;
         }
 
