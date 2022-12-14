@@ -54,9 +54,9 @@ namespace TMXL {
 		}
 
         for (auto childNode : pNode->children()){
-            pNodeObject.childrens.push_back( NodeObject() );
-            pNodeObject.childrens.back().nodeId = mGenerator.getId();
-            parseNode(&childNode, pNodeObject.childrens.back());
+            pNodeObject.childrens.push_back( std::make_shared<NodeObject>() );
+            pNodeObject.childrens.back()->nodeId = mGenerator.getId();
+            parseNode(&childNode, *pNodeObject.childrens.back());
         }
     }
 

@@ -8,7 +8,7 @@
 #include "TMXL/System/Logger.h"
 #include "TMXL/TypeConvert.h"
 
-#include "pugixml.hpp"
+#include <pugixml.hpp>
 
 #include <memory>
 #include <string>
