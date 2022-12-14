@@ -7,19 +7,21 @@
  <a href="https://github.com/eSkry/TMXL/blob/TMXL_V1/LICENSE.md"><img src="https://img.shields.io/badge/License-MIT-blue.svg" /></a>
 </div>
 
-## Build
-Project uses [CMake](https://cmake.org) to generate platform and compiler-specific build files.
+### Languages
+ **EN** [RU](README_RU.md)
 
 ### Dependencies
-- `optional` [pugixml](https://pugixml.org)
+All dependencies writen in `conanfile.txt`
+ - `nlohmann_json 3.11.2`
+ - `base64 0.5.0`
+ - `boost 1.72.0`
+ - `pugixml 1.13`
 
 ### CMake options
 | Options              | Description                        | Default |
 |----------------------|------------------------------------|---------|
 | BUILD_EXAMPLES       | Build example projects             | ON      |
 | BUILD_TESTS          | Build all test existing in project | OFF     |
-| BUILD_TMXL_TEST_ONLY | Build test only for TMXL lib       | OFF     |
-| BUILD_SHARED_LIBS    | Build shared libs                  | ON      |
 
 ### Building on Linux (Unix Makefiles)
 1. Clone repository, enter to TMXL directory: `git clone https://github.com/eSkry/TMXL && cd ./TMXL`
