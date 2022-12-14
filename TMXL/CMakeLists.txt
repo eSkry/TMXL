@@ -51,6 +51,7 @@ target_include_directories(${PROJECT_NAME}
 
 target_link_directories(${PROJECT_NAME}
         PUBLIC ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
+        PUBLIC ${CONAN_LIB_DIRS}
 ) # target_link_directories
 
 target_link_libraries(${PROJECT_NAME}

@@ -19,8 +19,7 @@ Project uses [CMake](https://cmake.org) to generate platform and compiler-specif
 | BUILD_EXAMPLES       | Build example projects             | ON      |
 | BUILD_TESTS          | Build all test existing in project | OFF     |
 | BUILD_TMXL_TEST_ONLY | Build test only for TMXL lib       | OFF     |
-| BUILD_USE_PUGIXML    | Build lib with pugixml support     | ON      |
-| BUILD_SHARED_LIBS    | Build shared libs                  | OFF     |
+| BUILD_SHARED_LIBS    | Build shared libs                  | ON      |
 
 ### Building on Linux (Unix Makefiles)
 1. Clone repository, enter to TMXL directory: `git clone https://github.com/eSkry/TMXL && cd ./TMXL`
@@ -42,6 +41,3 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Badges
-![Badge_status](https://www.code-inspector.com/project/226/status/svg) ![Badge_score](https://www.code-inspector.com/project/226/score/svg) 
