@@ -204,6 +204,76 @@ namespace TMXL {
         return temp;
     }
 
+    static MapOrientation strToMapOrientation(const std::string& str) noexcept {
+        if (str == "orthogonal")
+            return TMXL::MapOrientation::Orthogonal;
+        else if (str == "isometric")
+            return TMXL::MapOrientation::Isometric;
+        else if (str == "staggered")
+            return TMXL::MapOrientation::Staggered;
+        else if (str == "hexagonal")
+            return TMXL::MapOrientation::Hexagonal;
+
+        return TMXL::MapOrientation::Undefined;
+    }
+
+    static MapRenderOrder strToMapRenderOrder(const std::string& str) noexcept {
+        if (str == "right-down")
+            return TMXL::MapRenderOrder::RightDown;
+        else if (str == "right-up")
+            return TMXL::MapRenderOrder::RightUp;
+        else if (str == "left-down")
+            return TMXL::MapRenderOrder::LeftDown;
+        else if (str == "left-up")
+            return TMXL::MapRenderOrder::LeftUp;
+
+        return TMXL::MapRenderOrder::Undefined;
+    }
+
+    static ObjectAlignment strToObjectAlignment(const std::string& str) noexcept {
+        if (str == "unspecified") {
+            return ObjectAlignment::Unspecified;
+        } else if (str == "topleft") {
+            return ObjectAlignment::TopLeft;
+        } else if (str == "top") {
+            return ObjectAlignment::Top;
+        } else if (str == "topright") {
+            return ObjectAlignment::TopRight;
+        } else if (str == "left") {
+            return ObjectAlignment::Left;
+        } else if (str == "center") {
+            return ObjectAlignment::Center;
+        } else if (str == "right") {
+            return ObjectAlignment::Right;
+        } else if (str == "bottomleft") {
+            return ObjectAlignment::BottomLeft;
+        } else if (str == "bottom") {
+            return ObjectAlignment::Bottom;
+        } else if (str == "bottomright") {
+            return ObjectAlignment::BottomRight;
+        }
+
+        return ObjectAlignment::Unspecified;
+    }
+
+    static TileRenderSize strToTileRenderSize(const std::string& str) noexcept {
+        if (str == "tile")
+            return TileRenderSize::Tile;
+        if (str == "grid")
+            return TileRenderSize::Grid;
+
+        return TileRenderSize::Tile; // Default
+    }
+
+    static FillMode strToFillMode(const std::string& str) noexcept {
+        if (str == "stretch")
+            return FillMode::Stretch;
+        if (str == "preserve-aspect-fit")
+            return FillMode::PreserveAspectFit;
+
+        return FillMode::Stretch; // Default
+    }
+
     /**
      * @brief Преобразует строку в int
      * @param str

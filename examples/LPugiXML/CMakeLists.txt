@@ -3,7 +3,7 @@ project(LPugiXMLExample)
 add_executable(${PROJECT_NAME} main.cpp)
 
 target_link_libraries(${PROJECT_NAME}
-        ${TMXL}
+        TMXL
         ${CONAN_LIBS}
 ) # target_link_libraries
 

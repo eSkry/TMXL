@@ -1,48 +1,29 @@
 project(TMXL VERSION 2.0.0 LANGUAGES CXX)
 
-
 set(TMXL_HEADERS
         include/TMXL/Tools.h
         include/TMXL/TypeConvert.h
-        include/TMXL/Encodings/Base64Encoder.h
-        include/TMXL/Encodings/IEncoder.h
-        include/TMXL/Map/NodeObject.h
-        include/TMXL/Map/NodeObjectWalker.h
         include/TMXL/Map/TMENodes.h
-        include/TMXL/Map/Converters/TMEConverter.h
-        include/TMXL/Parsers/IFormater.h
         include/TMXL/Parsers/IParser.h
         include/TMXL/Parsers/LayerDataParser.h
-        include/TMXL/Parsers/XMLFormater.h
-        include/TMXL/Parsers/XML/PugiParser.h
-        include/TMXL/System/AutoSwitchLoader.h
         include/TMXL/System/Color.h
         include/TMXL/System/IDGenerator.h
-        include/TMXL/System/Logger.h
-        include/TMXL/System/NodeObjectPrinter.h
-        include/TMXL/System/StringTools.h)
+        include/TMXL/System/StringTools.h
+        include/TMXL/Parsers/XML/XMLParser.h)
 
 set(TMXL_SOURCES
-        src/Encodings/Base64Encoder.cpp
-        src/Map/NodeObject.cpp
-        src/Map/NodeObjectWalker.cpp
-        src/Map/Converters/TMEConverter.cpp
-        src/Parsers/IParser.cpp
         src/Parsers/LayerDataParser.cpp
-        src/Parsers/XMLFormater.cpp
-        src/Parsers/XML/PugiParser.cpp
-        src/System/AutoSwitchLoader.cpp
         src/System/Color.cpp
         src/System/IDGenerator.cpp
-        src/System/NodeObjectPrinter.cpp)
+        src/Parsers/XML/XMLParser.cpp)
 
+add_library(${PROJECT_NAME} SHARED ${TMXL_HEADERS} ${TMXL_SOURCES})
 
-if (TMXL_BUILD_SHARED)
-    add_library(${PROJECT_NAME} SHARED ${TMXL_HEADERS} ${TMXL_SOURCES})
-else()
-    add_library(${PROJECT_NAME} STATIC ${TMXL_HEADERS} ${TMXL_SOURCES})
-endif()
-
+set_target_properties(${PROJECT_NAME} PROPERTIES
+        VERSION ${PROJECT_VERSION}
+        SOVERSION ${PROJECT_VERSION}
+        OUTPUT_NAME ${PROJECT_NAME}
+) # set_target_properties
 
 target_include_directories(${PROJECT_NAME}
         PUBLIC include

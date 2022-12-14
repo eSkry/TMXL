@@ -1,5 +1,4 @@
-#ifndef TMXL_TOOLS_H
-#define TMXL_TOOLS_H
+#pragma once
 
 #include "TMXL/System/StringTools.h"
 #include "TMXL/System/Color.h"
@@ -112,5 +111,3 @@ namespace TMXL {
 
 
 }
-
-#endif //TMXL_TOOLS_H
