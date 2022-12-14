@@ -13,7 +13,7 @@ target_link_directories(${PROJECT_NAME}
 ) # target_link_directories
 
 target_include_directories(${PROJECT_NAME}
-        PUBLIC ${PROJECT_SOURCE_DIR}/TMXL/include
+        PUBLIC "${CMAKE_SOURCE_DIR}/TMXL/include"
         PUBLIC ${CONAN_INCLUDE_DIRS}
 ) # target_include_directories
 

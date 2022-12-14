@@ -3,6 +3,7 @@ nlohmann_json/3.11.2
 gtest/1.11.0
 base64/0.5.0
 boost/1.72.0
+pugixml/1.13
 
 [options]
 gtest:shared=False

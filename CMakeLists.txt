@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(TMXLoader VERSION 2.0.0 LANGUAGES CXX)
+project(TMXLoader LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 
 option(BUILD_EXAMPLES "Build example projects" ON)

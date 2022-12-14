@@ -1,4 +1,4 @@
-project(BaseExample)
+project(Base)
 
 add_executable(${PROJECT_NAME} main.cpp)
 
@@ -12,8 +12,10 @@ target_link_directories(${PROJECT_NAME}
         PUBLIC ${CONAN_LIB_DIRS}
 ) # target_link_directories
 
+message(${CMAKE_SOURCE_DIR})
+
 target_include_directories(${PROJECT_NAME}
-        PUBLIC ${PROJECT_SOURCE_DIR}/TMXL/include
+        PUBLIC "${CMAKE_SOURCE_DIR}/TMXL/include"
         PUBLIC ${CONAN_INCLUDE_DIRS}
 ) # target_include_directories
 
